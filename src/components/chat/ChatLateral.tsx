@@ -1,17 +1,20 @@
 "use client";
 
-import {
-  LoaderCircle,
-  MessageCircle,
-  RotateCcw,
-  SendHorizontal,
-  X,
-} from "lucide-react";
+import { LoaderCircle, RotateCcw, SendHorizontal, X } from "lucide-react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { MensajeChat, RespuestaChat } from "@/app/api/chat/route";
 import type { Source } from "@/components/Fuentes";
 import { Button } from "@/components/ui/button";
+import { BotonVoton } from "@/components/voton/BotonVoton";
+import { Voton, useSaludo } from "@/components/voton/Voton";
 import { ruta } from "@/config/sitio";
+
+const sinMovimiento = () =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// El panel crece desde la esquina del botón y se recoge hacia ella.
+const ORIGEN = "bottom right";
+const SUAVE = "cubic-bezier(0.23, 1, 0.32, 1)";
 
 type Mensaje = MensajeChat & { fuentes?: Source[] };
 
@@ -130,11 +133,43 @@ export function ChatLateral() {
   const campo = useRef<HTMLTextAreaElement>(null);
   const lista = useRef<HTMLOListElement>(null);
   const boton = useRef<HTMLButtonElement>(null);
+  const panel = useRef<HTMLElement>(null);
+  const cerrando = useRef(false);
+  const devolverFoco = useRef(false);
   // Cambia al empezar una conversación nueva para descartar respuestas viejas.
   const conversacion = useRef(0);
+  // Votón saluda cada vez que aparece la bienvenida.
+  const saludo = useSaludo(abierto && mensajes.length === 0);
 
   useEffect(() => {
     if (abierto) campo.current?.focus();
+    else if (devolverFoco.current) {
+      devolverFoco.current = false;
+      boton.current?.focus();
+    }
+  }, [abierto]);
+
+  // Apertura: el panel sale de la esquina de Votón y la bienvenida entra
+  // escalonada después.
+  useEffect(() => {
+    const el = panel.current;
+    if (!abierto || !el || sinMovimiento()) return;
+    el.animate(
+      [
+        { transform: "scale(0.2)", opacity: 0, transformOrigin: ORIGEN },
+        { transform: "scale(1)", opacity: 1, transformOrigin: ORIGEN },
+      ],
+      { duration: 420, easing: SUAVE },
+    );
+    el.querySelectorAll<HTMLElement>("[data-entra]").forEach((hijo, i) =>
+      hijo.animate(
+        [
+          { transform: "translateY(10px)", opacity: 0 },
+          { transform: "translateY(0)", opacity: 1 },
+        ],
+        { duration: 360, delay: 260 + i * 110, easing: SUAVE, fill: "backwards" },
+      ),
+    );
   }, [abierto]);
 
   useEffect(() => {
@@ -142,8 +177,24 @@ export function ChatLateral() {
   }, [mensajes, enviando]);
 
   function cerrar() {
-    setAbierto(false);
-    boton.current?.focus();
+    const el = panel.current;
+    if (cerrando.current) return;
+    devolverFoco.current = true;
+    if (!el || sinMovimiento()) {
+      setAbierto(false);
+      return;
+    }
+    cerrando.current = true;
+    el.animate(
+      [
+        { transform: "scale(1)", opacity: 1, transformOrigin: ORIGEN },
+        { transform: "scale(0.2)", opacity: 0, transformOrigin: ORIGEN },
+      ],
+      { duration: 200, easing: "ease-in", fill: "forwards" },
+    ).onfinish = () => {
+      cerrando.current = false;
+      setAbierto(false);
+    };
   }
 
   function nuevaConversacion() {
@@ -195,28 +246,28 @@ export function ChatLateral() {
 
   if (!abierto)
     return (
-      <Button
+      <BotonVoton
         ref={boton}
-        variant="sunset"
-        size="lg"
         onClick={() => setAbierto(true)}
-        aria-expanded={false}
-        aria-controls="chat-lateral"
-        className="fixed right-4 bottom-4 z-40 h-11 gap-2 rounded-full px-4 text-[15px] shadow-(--shadow-overlay)"
-      >
-        <MessageCircle aria-hidden="true" />
-        Pregunta tus dudas
-      </Button>
+        controla="chat-lateral"
+      />
     );
 
   return (
     <section
+      ref={panel}
       id="chat-lateral"
       aria-labelledby="chat-titulo"
       onKeyDown={(e) => e.key === "Escape" && cerrar()}
       className="fixed inset-x-2 bottom-2 z-40 flex h-[min(560px,calc(100dvh-16px))] flex-col overflow-hidden rounded-2xl bg-background shadow-(--shadow-overlay) sm:inset-x-auto sm:right-4 sm:bottom-4 sm:w-[380px]"
     >
       <header className="flex items-center justify-between gap-2 border-b px-4 py-3">
+        {mensajes.length > 0 && (
+          <Voton
+            estado={enviando ? "piensa" : "idle"}
+            className="-my-1 h-[47px] w-11 shrink-0"
+          />
+        )}
         <div className="min-w-0 flex-1">
           <h2 id="chat-titulo" className="font-sans text-base font-medium">
             Dudas sobre cómo votar
@@ -256,12 +307,20 @@ export function ChatLateral() {
       >
         {mensajes.length === 0 ? (
           <div className="grid gap-4">
-            <p className="text-[15px] text-(--text-secondary)">
-              Pregunta lo que quieras sobre cómo se vota el 29 de noviembre:
-              voto por correo, plazos, mesas electorales… No escribas datos
-              personales.
+            <div className="grid grid-cols-[88px_minmax(0,1fr)] items-end gap-2">
+              <Voton estado={saludo} className="h-[94px] w-[88px]" />
+              <p
+                data-entra
+                className="mb-10 rounded-xl rounded-bl-sm bg-muted px-3 py-2 text-[15px]"
+              >
+                ¡Hola! Soy Votón. Pregúntame lo que quieras sobre cómo se vota
+                el 29 de noviembre: voto por correo, plazos, mesas electorales…
+              </p>
+            </div>
+            <p data-entra className="text-sm text-(--text-secondary)">
+              No escribas datos personales.
             </p>
-            <div className="grid gap-2">
+            <div data-entra className="grid gap-2">
               <p
                 id="chat-sugerencias"
                 className="font-mono text-xs tracking-[0.06em] text-(--text-secondary) uppercase"
