@@ -47,3 +47,31 @@ export async function completar(
     return data.choices[0].message.content;
   }
 }
+
+// Embeddings (vectores de significado) con el modelo de HelmCode. Devuelve un
+// vector por texto, en el mismo orden. Con timeout: quien llama debe tener un
+// plan B si falla (el chat cae a la búsqueda por palabras clave).
+export const MODELO_EMBEDDINGS = "qwen3-embedding";
+
+export async function embeber(
+  textos: string[],
+  { timeoutMs = 5000 }: { timeoutMs?: number } = {},
+): Promise<number[][]> {
+  const { HELMCODE_API_KEY, HELMCODE_BASE_URL } = process.env;
+  if (!HELMCODE_API_KEY) throw new Error("Falta HELMCODE_API_KEY en .env.local");
+  const res = await fetch(
+    `${HELMCODE_BASE_URL ?? "https://api.helmcode.com/v1"}/embeddings`,
+    {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${HELMCODE_API_KEY}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ model: MODELO_EMBEDDINGS, input: textos }),
+      signal: AbortSignal.timeout(timeoutMs),
+    },
+  );
+  if (!res.ok) throw new Error(`HelmCode (embeddings) respondió ${res.status}`);
+  const data: { data: { index: number; embedding: number[] }[] } = await res.json();
+  return [...data.data].sort((a, b) => a.index - b.index).map((d) => d.embedding);
+}
