@@ -304,10 +304,12 @@ export function ChatLateral() {
     >
       {/* Cabecera como en una app de mensajería: Votón, su nombre y qué hace. */}
       <header className="flex items-center gap-3 border-b px-4 py-3">
-        <span className="grid size-11 shrink-0 place-items-start justify-center overflow-hidden rounded-full bg-muted">
+        {/* Selfie de Votón: primer plano de la cara (centro 120,121 y radio 64 en
+            su lienzo de 240×256) con el mechón asomando, algo inclinado. */}
+        <span className="relative size-11 shrink-0 overflow-hidden rounded-full bg-(--warning) ring-1 ring-foreground/10">
           <Voton
             estado={enviando ? "piensa" : "idle"}
-            className="mt-1.5 h-[60px] w-14 shrink-0"
+            className="absolute top-[-11px] left-[-13px] h-[72px] w-[68px] max-w-none origin-[35px_33px] -rotate-8"
           />
         </span>
         <div className="min-w-0 flex-1">
