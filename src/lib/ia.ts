@@ -12,9 +12,16 @@ export type Mensaje = {
 
 // Con { json: true } se pide al modelo que responda con un objeto JSON.
 // Con { maxTokens } se acota la salida (en glm5.3-flash incluye el razonamiento).
+// Con { razonar: false } se desactiva el razonamiento previo de glm5.3-flash:
+// la respuesta llega en ~0,3-5 s en lugar de 10-30 s (medido el 22/10).
+// HelmCode acepta las dos formas a la vez; enable_thinking es la que manda.
 export async function completar(
   messages: Mensaje[],
-  { json = false, maxTokens }: { json?: boolean; maxTokens?: number } = {},
+  {
+    json = false,
+    maxTokens,
+    razonar = true,
+  }: { json?: boolean; maxTokens?: number; razonar?: boolean } = {},
 ): Promise<string> {
   const { HELMCODE_API_KEY, HELMCODE_BASE_URL, HELMCODE_MODEL } = process.env;
   if (!HELMCODE_API_KEY || !HELMCODE_MODEL)
@@ -34,6 +41,10 @@ export async function completar(
           messages,
           ...(json && { response_format: { type: "json_object" } }),
           ...(maxTokens && { max_tokens: maxTokens }),
+          ...(!razonar && {
+            chat_template_kwargs: { enable_thinking: false },
+            thinking: { type: "disabled" },
+          }),
         }),
       },
     );

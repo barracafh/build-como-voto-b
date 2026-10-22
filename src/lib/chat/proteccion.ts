@@ -12,7 +12,12 @@ import type { Source } from "@/components/Fuentes";
 // (reasoning_content cuenta como salida): medido el 22/10 con preguntas
 // largas reales, ~2.200-2.500 de razonamiento + ~300 de respuesta (≈2.800).
 // 6.000 deja margen para preguntas difíciles y corta salidas desbocadas.
-export const MAX_TOKENS_CHAT = 6000;
+// Sin razonamiento (lo normal, ver RAZONAR_CHAT) basta con 1.500: la
+// respuesta JSON ronda los 300 tokens.
+// Por defecto el chat NO razona (5-10 veces más rápido). CHAT_RAZONAR=1 en el
+// entorno lo reactiva.
+export const RAZONAR_CHAT = process.env.CHAT_RAZONAR === "1";
+export const MAX_TOKENS_CHAT = RAZONAR_CHAT ? 6000 : 1500;
 
 const LIMITES = {
   // Holgado: en el evento muchos salen por la misma IP del wifi.

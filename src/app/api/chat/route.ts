@@ -5,7 +5,7 @@ import {
   normalizar,
   recuperar,
 } from "@/lib/chat/corpus";
-import { MAX_TOKENS_CHAT, protegerChat } from "@/lib/chat/proteccion";
+import { MAX_TOKENS_CHAT, RAZONAR_CHAT, protegerChat } from "@/lib/chat/proteccion";
 import { completar, type Mensaje } from "@/lib/ia";
 
 // Chat de dudas. POST {"mensajes": [{ "rol": "usuario" | "asistente", "texto": "…" }]}
@@ -137,7 +137,11 @@ export async function POST(req: Request) {
 
   let salida: { respuesta?: unknown; citas?: unknown; confirmado?: unknown };
   try {
-    const bruto = await completar(conversacion, { json: true, maxTokens: MAX_TOKENS_CHAT });
+    const bruto = await completar(conversacion, {
+      json: true,
+      maxTokens: MAX_TOKENS_CHAT,
+      razonar: RAZONAR_CHAT,
+    });
     salida = JSON.parse(bruto.slice(bruto.indexOf("{"), bruto.lastIndexOf("}") + 1));
   } catch (e) {
     // Solo el tipo de error: nunca el texto del ciudadano.
