@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
-import { BookOpen, ChevronDown, CircleX, Scale } from "lucide-react";
+import { BookOpen, CircleX, Scale } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { BotonAviso } from "@/components/BotonAviso";
@@ -30,25 +30,15 @@ const titular = "text-[clamp(28px,4vw,40px)] leading-[1.1] tracking-[-0.02em]";
 
 const miles = (n: number) => n.toLocaleString("es-ES");
 
-// Cada afirmación se lee de un vistazo (lo que se dice y la respuesta en una
-// frase); el porqué y la fuente se despliegan. <details> nativo: funciona sin
-// JavaScript y con teclado.
+// Cada afirmación: lo que se dice, la respuesta en una frase y, debajo, el
+// porqué y la fuente, siempre a la vista.
 function Contraste({ a }: { a: Afirmacion }) {
   return (
     <Card render={<article />} className="gap-0 p-0 text-base">
-      <details open className="group">
-        <summary className="block cursor-pointer list-none outline-none focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:ring-inset [&::-webkit-details-marker]:hidden">
+      <div>
+        <div>
           <span className="flex items-start justify-between gap-4 bg-brand/15 px-5 py-5 text-foreground md:px-6">
             <span className="min-w-0 text-lg leading-[1.35]">«{a.dice}»</span>
-            <span className="mt-1 inline-flex shrink-0 items-center gap-1 text-sm">
-              <span className="hidden sm:inline sm:group-open:hidden">Por qué</span>
-              <span className="hidden sm:group-open:inline">Cerrar</span>
-              <ChevronDown
-                aria-hidden="true"
-                className="size-5 transition-transform group-open:rotate-180 motion-reduce:transition-none"
-                strokeWidth={1.75}
-              />
-            </span>
           </span>
           <span className="flex items-start gap-2 bg-background px-5 py-4 font-medium md:px-6">
             <CircleX
@@ -61,9 +51,9 @@ function Contraste({ a }: { a: Afirmacion }) {
               {a.ley}
             </span>
           </span>
-        </summary>
+        </div>
 
-        <div className="bg-background px-5 pt-4 pb-5 md:px-6">
+        <div className="bg-background px-5 pb-5 md:px-6">
           <p>{a.texto}</p>
           {a.matiz && (
             <p className="mt-3 border-l-2 border-brand/60 pl-3 text-[15px] text-(--text-secondary)">
@@ -93,7 +83,7 @@ function Contraste({ a }: { a: Afirmacion }) {
             )}
           </div>
         </div>
-      </details>
+      </div>
     </Card>
   );
 }
