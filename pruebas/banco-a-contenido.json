@@ -1,0 +1,5422 @@
+{
+  "descripcion": "Banco A de contenido del chat de ¿Cómo voto? (29N): casos «dentro» de alcance que cubren los apartados 1.1, 1.3, 2.1-2.7, 3.1-3.4 y 5 de contexto.md con distintas formas de preguntar (formal, coloquial, con faltas, sin tildes, muy corta, primera persona, otras lenguas, seguimientos con historial y preguntas largas). Fecha de referencia: 22/10/2026. Mismo esquema que banco-chat.json más el campo «categoria». Cada expectativa está respaldada por contexto.md o datos/calendario_29N_2026.json (ver «nota»). Comparación sin tildes ni mayúsculas. debe_contener: lista de grupos; cada grupo es una lista de alternativas y basta con que aparezca una. fuentes_esperadas: basta con que una URL devuelta contenga una de las subcadenas.",
+  "casos": [
+    {
+      "id": "a_conv_fecha_formal",
+      "tipo": "dentro",
+      "categoria": "convocatoria",
+      "pregunta": "¿Cuándo se celebran las próximas elecciones generales y qué norma las ha convocado?",
+      "debe_contener": [
+        [
+          "29 de noviembre",
+          "29/11",
+          "29-n",
+          "29n",
+          "29 n"
+        ],
+        [
+          "806/2026",
+          "real decreto"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 1.1: RD 806/2026 convoca para el domingo 29/11/2026 (art. 2)"
+    },
+    {
+      "id": "a_conv_corta",
+      "tipo": "dentro",
+      "categoria": "convocatoria",
+      "pregunta": "elecciones generales fecha",
+      "debe_contener": [
+        [
+          "29 de noviembre",
+          "29/11",
+          "29-n",
+          "29n",
+          "29 n"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 1.1 y calendario votacion (29/11)"
+    },
+    {
+      "id": "a_conv_coloq",
+      "tipo": "dentro",
+      "categoria": "convocatoria",
+      "pregunta": "oye q dia caen las generales? es en domingo no?",
+      "debe_contener": [
+        [
+          "29 de noviembre",
+          "29/11",
+          "29-n",
+          "29n",
+          "29 n"
+        ],
+        [
+          "domingo"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 1.1, RD art. 2: domingo 29/11/2026"
+    },
+    {
+      "id": "a_conv_que_se_elige",
+      "tipo": "dentro",
+      "categoria": "convocatoria",
+      "pregunta": "¿Qué se vota exactamente el 29N, solo el Congreso o también el Senado?",
+      "debe_contener": [
+        [
+          "congreso"
+        ],
+        [
+          "senado"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 1.1 (RD art. 2: elecciones a ambas Cámaras) y 1.3"
+    },
+    {
+      "id": "a_conv_constitucion",
+      "tipo": "dentro",
+      "categoria": "convocatoria",
+      "pregunta": "¿Cuándo se constituyen las nuevas Cortes después de las elecciones?",
+      "debe_contener": [
+        [
+          "23 de diciembre",
+          "23/12"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 1.1 (RD art. 5: 23/12/2026, 10:00) y calendario constitucion_cortes"
+    },
+    {
+      "id": "a_conv_disolucion",
+      "tipo": "dentro",
+      "categoria": "convocatoria",
+      "pregunta": "¿Qué Cortes se han disuelto y qué día se publicó la convocatoria en el BOE?",
+      "debe_contener": [
+        [
+          "6 de octubre",
+          "6/10",
+          "6-10"
+        ],
+        [
+          "2023",
+          "23 de julio",
+          "23/07",
+          "23-j"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 1.1: RD publicado en el BOE el 6/10/2026; disuelve las Cámaras elegidas el 23/07/2023 (art. 1)"
+    },
+    {
+      "id": "a_conv_censo",
+      "tipo": "dentro",
+      "categoria": "convocatoria",
+      "pregunta": "¿Cuántas personas están llamadas a votar en estas generales?",
+      "debe_contener": [
+        [
+          "38.728.356",
+          "38,7 millones",
+          "38.7 millones",
+          "38,73",
+          "casi 39 millones",
+          "38 millones"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "ine.es/dyngs/prensa",
+        "EG2026",
+        "ine.es"
+      ],
+      "nota": "contexto 1.1: censo INE 38.728.356 electores (nota de prensa 09/10/2026)"
+    },
+    {
+      "id": "a_conv_350_sin_tildes",
+      "tipo": "dentro",
+      "categoria": "convocatoria",
+      "pregunta": "cuantos diputados y senadores se eligen el 29 de noviembre",
+      "debe_contener": [
+        [
+          "350"
+        ],
+        [
+          "209",
+          "senador"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 1.3: 350 diputados; 209 senadores de elección directa más los designados"
+    },
+    {
+      "id": "a_pres_horario_corto",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "horario colegios 29n",
+      "debe_contener": [
+        [
+          "9:00",
+          "9 h",
+          "9h",
+          "nueve",
+          "las 9",
+          "9.00"
+        ],
+        [
+          "20:00",
+          "20 h",
+          "20h",
+          "ocho de la tarde",
+          "las 20",
+          "20.00",
+          "8 de la tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "21:00",
+        "8:00 a 20:00"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 1.1 y 2.1.1; calendario votacion (9:00 a 20:00, art. 84.1)"
+    },
+    {
+      "id": "a_pres_horario_sintildes",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "a que hora abren los colegios electorales el 29 de noviembre y hasta que hora se puede votar",
+      "debe_contener": [
+        [
+          "9:00",
+          "9 h",
+          "9h",
+          "nueve",
+          "las 9",
+          "9.00"
+        ],
+        [
+          "20:00",
+          "20 h",
+          "20h",
+          "ocho de la tarde",
+          "las 20",
+          "20.00",
+          "8 de la tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "21:00",
+        "8:00 a 20:00"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "calendario votacion (9:00 a 20:00, art. 84.1 LOREG)"
+    },
+    {
+      "id": "a_pres_horario_coloq",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "salgo de currar a las 8 y media de la tarde el domingo 29, me da tiempo a votar si voy corriendo al cole?",
+      "debe_contener": [
+        [
+          "20:00",
+          "20 h",
+          "20h",
+          "ocho de la tarde",
+          "las 20",
+          "20.00",
+          "8 de la tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "21:00",
+        "hasta las 21"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "calendario votacion: los colegios cierran a las 20:00 (art. 84.1)"
+    },
+    {
+      "id": "a_pres_docs_formal",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "¿Qué documentos de identificación se admiten en la mesa electoral para poder votar?",
+      "debe_contener": [
+        [
+          "dni"
+        ],
+        [
+          "pasaporte"
+        ],
+        [
+          "permiso de conducir",
+          "carne de conducir",
+          "carnet de conducir"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2 (art. 85.1: DNI, pasaporte o permiso de conducir con fotografía)"
+    },
+    {
+      "id": "a_pres_docs_faltas",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "k documento tengo q yevar pa botar? el dni solo o tanbien bale el carnet de conducir",
+      "debe_contener": [
+        [
+          "conducir"
+        ],
+        [
+          "pasaporte",
+          "dni"
+        ]
+      ],
+      "no_debe_contener": [
+        "el carne de conducir no vale",
+        "el carnet de conducir no vale",
+        "el permiso de conducir no vale"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2 (art. 85.1)"
+    },
+    {
+      "id": "a_pres_carne",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "No encuentro el DNI. ¿Me vale el carné de conducir para votar?",
+      "debe_contener": [
+        [
+          "conducir"
+        ],
+        [
+          "fotografia",
+          "foto",
+          "vale",
+          "sirve",
+          "admite",
+          "valid",
+          "puedes"
+        ]
+      ],
+      "no_debe_contener": [
+        "el carne de conducir no vale",
+        "el carnet de conducir no vale",
+        "el permiso de conducir no vale",
+        "no te vale el carne"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2 (art. 85.1: permiso de conducir con fotografía, original)"
+    },
+    {
+      "id": "a_pres_pasaporte",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Soy español pero solo tengo el pasaporte en vigor, el DNI lo perdí. ¿Puedo votar con el pasaporte?",
+      "debe_contener": [
+        [
+          "pasaporte"
+        ],
+        [
+          "puedes",
+          "vale",
+          "sirve",
+          "valid",
+          "admite",
+          "se acepta"
+        ]
+      ],
+      "no_debe_contener": [
+        "el pasaporte no vale",
+        "no puedes votar con pasaporte",
+        "no puedes votar con el pasaporte"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2 (art. 85.1: DNI, pasaporte o permiso de conducir)"
+    },
+    {
+      "id": "a_pres_fotocopia_corta",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "fotocopia dni vale para votar?",
+      "debe_contener": [
+        [
+          "original",
+          "no valen fotocopias",
+          "no vale",
+          "no sirve",
+          "no se admite",
+          "no se acepta",
+          "no es valid",
+          "no valen"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, te vale la fotocopia",
+        "las fotocopias valen",
+        "si vale una fotocopia"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2 y 6.3 (Interior: originales; no valen fotocopias)"
+    },
+    {
+      "id": "a_pres_resguardo",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Tengo el DNI en renovación y solo tengo el resguardo que me dieron en la comisaría. ¿Puedo votar con ese resguardo?",
+      "debe_contener": [
+        [
+          "resguardo"
+        ],
+        [
+          "no vale",
+          "no sirve",
+          "no se admite",
+          "no es valid",
+          "no valen",
+          "no se acepta",
+          "no puedes",
+          "no te vale",
+          "no lo admite",
+          "no lo aceptan",
+          "no lo acepta"
+        ],
+        [
+          "pasaporte",
+          "conducir"
+        ]
+      ],
+      "no_debe_contener": [
+        "el resguardo te vale",
+        "si, puedes votar con el resguardo"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2 (Interior: no valen fotocopias ni el resguardo del DNI en trámite; alternativas: pasaporte o permiso de conducir)"
+    },
+    {
+      "id": "a_pres_dni_caducado",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Mi DNI caducó el mes pasado y no me da tiempo a renovarlo antes del 29 de noviembre. ¿Puedo votar con él?",
+      "debe_contener": [
+        [
+          "caducad"
+        ],
+        [
+          "pasaporte",
+          "conducir",
+          "confirm",
+          "interior",
+          "junta electoral",
+          "jec",
+          "consult"
+        ]
+      ],
+      "no_debe_contener": [
+        "seguro que vale",
+        "sin ningun problema"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2: la FAQ de Interior dice que no importa que esté caducado pero va tras los documentos de extranjeros [sin verificar]; no debe afirmarse que vale sin confirmarlo; alternativas en vigor"
+    },
+    {
+      "id": "a_pres_dni_caducado_coloq",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "tengo el dni caducao desde agosto, me dejan votar o q",
+      "debe_contener": [
+        [
+          "caducad"
+        ],
+        [
+          "pasaporte",
+          "conducir",
+          "confirm",
+          "interior",
+          "junta electoral",
+          "jec",
+          "consult"
+        ]
+      ],
+      "no_debe_contener": [
+        "seguro que vale",
+        "sin ningun problema"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2 (documento caducado: no afirmar que vale hasta confirmarlo con Interior o la JEC)"
+    },
+    {
+      "id": "a_pres_midgt",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "¿Puedo enseñar el carné de conducir de la app miDGT en la mesa para identificarme?",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no se puede",
+          "no vale",
+          "no sirve",
+          "no se admite",
+          "suspend",
+          "no cuentes",
+          "no esta permitido",
+          "no es valid",
+          "no se acepta",
+          "no puedo confirmar",
+          "no lo uses",
+          "mejor lleva",
+          "lleva el dni fisico",
+          "original"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes usar midgt",
+        "si, puedes identificarte con el movil",
+        "midgt es valido"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "juntaelectoral.parlamentodeandalucia",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2 (JEC Acuerdo 94/2026: miDGT y miDNI suspendidos como identificación)"
+    },
+    {
+      "id": "a_pres_midni_sintildes",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "se puede votar con el dni del movil (midni)?",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no se puede",
+          "no vale",
+          "no sirve",
+          "no se admite",
+          "suspend",
+          "no cuentes",
+          "no esta permitido",
+          "no es valid",
+          "no se acepta",
+          "no puedo confirmar",
+          "no lo uses",
+          "mejor lleva",
+          "lleva el dni fisico",
+          "original"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes usar midni",
+        "si, puedes identificarte con el movil",
+        "midni es valido"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "juntaelectoral.parlamentodeandalucia",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2 (JEC Acuerdo 94/2026)"
+    },
+    {
+      "id": "a_pres_tarjeta_censal",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "No me ha llegado la tarjeta censal a casa. ¿Puedo votar igualmente?",
+      "debe_contener": [
+        [
+          "no es necesari",
+          "no hace falta",
+          "no es requisito",
+          "no necesitas",
+          "no es obligatori",
+          "no tienes que llevar",
+          "no te la piden",
+          "no se exige",
+          "no es imprescindible",
+          "no la necesitas",
+          "puedes votar igual",
+          "puedes votar sin"
+        ]
+      ],
+      "no_debe_contener": [
+        "sin la tarjeta censal no puedes votar",
+        "necesitas la tarjeta censal para votar"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.7 (art. 85.1: la tarjeta censal no es requisito)"
+    },
+    {
+      "id": "a_pres_donde_voto",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "¿Cómo puedo saber en qué colegio y en qué mesa me toca votar?",
+      "debe_contener": [
+        [
+          "mesa"
+        ],
+        [
+          "ine",
+          "censo"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sede.ine.gob.es",
+        "cid=1700"
+      ],
+      "nota": "contexto 2.1.1 y SETUP: consulta de mesa y local en sede.ine.gob.es/ce-mesas (INE)"
+    },
+    {
+      "id": "a_pres_otra_ciudad",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Estoy empadronado en Sevilla pero vivo en Madrid por trabajo. ¿Puedo votar en un colegio de Madrid el 29?",
+      "debe_contener": [
+        [
+          "correo"
+        ],
+        [
+          "asignad",
+          "tu mesa",
+          "te corresponde",
+          "censo",
+          "seccion",
+          "inscrit",
+          "sevilla"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar en cualquier colegio"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.1.1 (se vota en la sección y mesa asignadas, arts. 4.1 y 86.2) y 2.2 (voto por correo)"
+    },
+    {
+      "id": "a_pres_cumple18",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Cumplo 18 años el 20 de noviembre. ¿Podré votar el 29?",
+      "debe_contener": [
+        [
+          "puedes votar",
+          "podras votar",
+          "si, podras",
+          "si, puedes",
+          "tienes derecho",
+          "podras hacerlo",
+          "puedes hacerlo"
+        ]
+      ],
+      "no_debe_contener": [
+        "no podras votar"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es",
+        "ine.es"
+      ],
+      "nota": "contexto 2.1.3 (art. 85.2: votan los inscritos como menores que cumplen 18 a la fecha de votación)"
+    },
+    {
+      "id": "a_pres_no_censo",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Si el día 29 voy a mi mesa y no aparezco en la lista, ¿hay alguna forma de votar?",
+      "debe_contener": [
+        [
+          "sentencia"
+        ],
+        [
+          "certificacion censal",
+          "certificado censal",
+          "certificacion"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.4 (art. 85.3 y 85.5: sentencia judicial o certificación censal específica)"
+    },
+    {
+      "id": "a_pres_justificante",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Necesito demostrar en el trabajo que he ido a votar. ¿Me pueden dar un justificante?",
+      "debe_contener": [
+        [
+          "justificante",
+          "certificado"
+        ],
+        [
+          "mesa"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.6 (Interior: justificante ante la mesa el mismo día)"
+    },
+    {
+      "id": "a_pres_obligatorio",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "¿Es obligatorio ir a votar? ¿Me pueden multar si no voy?",
+      "debe_contener": [
+        [
+          "no es obligatorio",
+          "no es obligatori",
+          "voluntari",
+          "no estas obligad",
+          "no tienes obligacion"
+        ]
+      ],
+      "no_debe_contener": [
+        "te pueden multar por no votar",
+        "si, es obligatorio"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.1.5, 3.3 y 6.3 (art. 5 LOREG: votar no es obligatorio)"
+    },
+    {
+      "id": "a_pres_secreto_cabina",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "¿Tengo que coger las papeletas delante de todo el mundo? No quiero que nadie sepa a quién voto.",
+      "debe_contener": [
+        [
+          "secreto"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.1.5 (arts. 4 y 86: voto secreto; art. 5: nadie puede ser obligado a revelar su voto). Cabinas: sin datos en las fuentes, por eso solo se exige «secreto»"
+    },
+    {
+      "id": "a_pres_revelar",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Mi jefe me pregunta a quién voy a votar. ¿Estoy obligado a decírselo?",
+      "debe_contener": [
+        [
+          "no estas obligad",
+          "nadie puede obligarte",
+          "nadie te puede obligar",
+          "no tienes que",
+          "no tienes obligacion",
+          "no puede obligarte",
+          "secreto"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.1.5 (art. 5: nadie puede ser obligado a revelar su voto)"
+    },
+    {
+      "id": "a_pres_personal",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Mi marido no puede ir a votar el domingo. ¿Puedo llevar yo su voto a la mesa junto con el mío?",
+      "debe_contener": [
+        [
+          "personal",
+          "intransferible",
+          "no puedes",
+          "no se puede",
+          "correo"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes llevar su voto"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "correos.es",
+        "cid=1700"
+      ],
+      "nota": "contexto 2.1.5 (voto personal e intransferible, arts. 4 y 86) y 2.2 (voto por correo)"
+    },
+    {
+      "id": "a_pres_dos_papeletas",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Si meto dos papeletas del mismo partido en el sobre del Congreso, ¿el voto es nulo?",
+      "debe_contener": [
+        [
+          "cuenta una",
+          "computa una",
+          "como un solo voto",
+          "un unico voto",
+          "como una",
+          "valido",
+          "se cuenta una",
+          "contara una",
+          "cuenta como uno",
+          "un solo voto"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, es nulo"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.3 (art. 96: con varias papeletas de la misma candidatura cuenta una)"
+    },
+    {
+      "id": "a_correo_corta",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "voto correo plazo",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11",
+          "19 nov"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 19"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.1 y calendario voto_correo_solicitud (6/10 a 19/11)"
+    },
+    {
+      "id": "a_correo_sintildes",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "hasta cuando se puede solicitar el voto por correo para el 29n",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11",
+          "19 nov"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 19"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "calendario voto_correo_solicitud (hasta 19/11, art. 72.a)"
+    },
+    {
+      "id": "a_correo_faltas",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "asta cuando puedo pedir el boto por coreo??",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11",
+          "19 nov"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 19"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "calendario voto_correo_solicitud (hasta 19/11)"
+    },
+    {
+      "id": "a_correo_como_pedir",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "¿Cómo se solicita el voto por correo? ¿Tengo que ir obligatoriamente a una oficina?",
+      "debe_contener": [
+        [
+          "correos"
+        ],
+        [
+          "dni electronico",
+          "certificado digital",
+          "internet",
+          "telematic",
+          "online",
+          "en linea",
+          "web"
+        ],
+        [
+          "oficina"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.2 (telemática con DNIe o certificado en Correos; en oficina con DNI; formulario del INE)"
+    },
+    {
+      "id": "a_correo_sin_certificado",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "No tengo certificado digital ni DNI electrónico. ¿Hay alguna forma de rellenar la solicitud del voto por correo por internet?",
+      "debe_contener": [
+        [
+          "imprim",
+          "duplicado",
+          "formulario",
+          "sede del ine",
+          "sede electronica",
+          "web del ine"
+        ],
+        [
+          "correos"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sede.ine.gob.es",
+        "cid=1700",
+        "correos.es"
+      ],
+      "nota": "contexto 2.2.2 (sede del INE sin certificado: imprimir por duplicado, firmar y presentar en Correos)"
+    },
+    {
+      "id": "a_correo_fotocopia",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "¿Puedo pedir el voto por correo en la oficina de Correos enseñando una fotocopia del DNI?",
+      "debe_contener": [
+        [
+          "original",
+          "no vale",
+          "no sirve",
+          "no se admite",
+          "nunca",
+          "no valen",
+          "no se acepta",
+          "no es valid",
+          "no puedes"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, vale la fotocopia",
+        "puedes llevar una fotocopia"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.2 (en oficina, personalmente, con DNI; nunca fotocopia)"
+    },
+    {
+      "id": "a_correo_pasaporte_oficina",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "¿Puedo ir a Correos a pedir el voto con el pasaporte en vez de con el DNI?",
+      "debe_contener": [
+        [
+          "pasaporte"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.2 (art. 72.b DNI; el INE añade pasaporte u otro documento oficial)"
+    },
+    {
+      "id": "a_correo_quien_puede",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "¿Quién puede votar por correo? ¿Cualquiera o hay que tener un motivo?",
+      "debe_contener": [
+        [
+          "localidad",
+          "no estar",
+          "no vayas a estar",
+          "no puedas",
+          "no puedan",
+          "personarte",
+          "personarse",
+          "acudir",
+          "fuera"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2 (art. 72: quien prevea no estar en su localidad o no pueda personarse)"
+    },
+    {
+      "id": "a_correo_envio_corto",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "ultimo dia enviar voto correo",
+      "debe_contener": [
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11",
+          "25 nov"
+        ]
+      ],
+      "no_debe_contener": [
+        "26 de noviembre",
+        "26/11",
+        "antes del 25"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.5 y calendario voto_correo_remision (hasta 25/11)"
+    },
+    {
+      "id": "a_correo_franqueo",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "¿Tengo que comprar sellos o pagar algo para enviar el voto por correo?",
+      "debe_contener": [
+        [
+          "sin franqueo",
+          "gratuit",
+          "no tienes que pagar",
+          "no hace falta pagar",
+          "no pagas",
+          "gratis",
+          "no necesitas sello",
+          "sin coste",
+          "no cuesta",
+          "sin pagar",
+          "no tiene coste"
+        ],
+        [
+          "certificad"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.5 (art. 73.3: correo certificado, sin franqueo)"
+    },
+    {
+      "id": "a_correo_llegada_doc",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Ya he pedido el voto por correo. ¿Cuándo me llega a casa la documentación?",
+      "debe_contener": [
+        [
+          "9 de noviembre",
+          "9/11",
+          "9 al 22",
+          "9-11"
+        ],
+        [
+          "22 de noviembre",
+          "22/11",
+          "al 22"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.4 y calendario voto_correo_envio_documentacion (9/11 a 22/11)"
+    },
+    {
+      "id": "a_correo_no_en_casa",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Me van a mandar la documentación del voto por correo pero trabajo todo el día y no estaré en casa cuando pase el cartero. ¿Qué pasa entonces?",
+      "debe_contener": [
+        [
+          "oficina",
+          "recoger",
+          "recogerla",
+          "recogida"
+        ],
+        [
+          "personalmente",
+          "en persona",
+          "identidad",
+          "dni",
+          "identific"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.4 (art. 73.2 e Instrucción JEC 5/2023: firma personal con acreditación de identidad; si no, recogida en la oficina de Correos)"
+    },
+    {
+      "id": "a_correo_recoge_otra",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "¿Puede mi madre recoger en mi nombre la documentación del voto por correo que me envía la Oficina del Censo?",
+      "debe_contener": [
+        [
+          "personal",
+          "en persona",
+          "tu mism",
+          "usted mism",
+          "propio elector",
+          "propia electora",
+          "el elector",
+          "la electora",
+          "identidad"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, cualquier familiar puede recogerla",
+        "si, puede recogerla sin problema"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.4 (el aviso de recibo se firma personalmente con acreditación de identidad; si no, recogida en Correos)"
+    },
+    {
+      "id": "a_correo_entrega_otra",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "¿Puede mi hijo llevar a Correos el sobre con mi voto ya preparado?",
+      "debe_contener": [
+        [
+          "personalmente",
+          "en persona",
+          "autoriza"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.5 (Correos pide que el elector entregue el sobre personalmente o con autorización)"
+    },
+    {
+      "id": "a_correo_poder_notarial",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Mi padre tiene 90 años, está encamado y no puede ir a Correos a pedir el voto. ¿Cómo lo hacemos?",
+      "debe_contener": [
+        [
+          "notari"
+        ],
+        [
+          "medic"
+        ],
+        [
+          "representante",
+          "autoriz",
+          "en su nombre"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "correos.es",
+        "cid=1700",
+        "accesibilidad-y-procesos-electorales"
+      ],
+      "nota": "contexto 2.2.3 y 2.5 (art. 72.c: representante autorizado ante notario con certificación médica oficial y gratuita)"
+    },
+    {
+      "id": "a_correo_notario_gratis",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Si mi abuela necesita que venga un notario a casa para pedir el voto por correo, ¿cuánto cuesta?",
+      "debe_contener": [
+        [
+          "gratuit",
+          "gratis",
+          "no cuesta",
+          "sin coste",
+          "no tiene coste",
+          "no tendra que pagar",
+          "no tiene que pagar"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "accesibilidad-y-procesos-electorales",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "correos.es",
+        "cid=1700"
+      ],
+      "nota": "contexto 2.5 (voto por correo con representante: notario a domicilio, gratuito; certificación médica oficial y gratuita, art. 72.c)"
+    },
+    {
+      "id": "a_correo_un_poder_varios",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "¿Puede un mismo poder ante notario servir para pedir el voto por correo de mis dos abuelos?",
+      "debe_contener": [
+        [
+          "un documento por elector",
+          "uno por elector",
+          "uno por cada",
+          "cada elector",
+          "cada uno",
+          "por persona",
+          "individual",
+          "uno para cada",
+          "documento por cada",
+          "por cada elector"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, un mismo poder",
+        "un mismo poder sirve para los dos"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "correos.es",
+        "cid=1700",
+        "accesibilidad-y-procesos-electorales"
+      ],
+      "nota": "contexto 2.2.3 (art. 72.c: un documento por elector)"
+    },
+    {
+      "id": "a_correo_estado",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Pedí el voto por correo hace dos semanas. ¿Cómo puedo saber en qué estado está mi solicitud?",
+      "debe_contener": [
+        [
+          "fecha de nacimiento",
+          "sede",
+          "ine",
+          "oficina del censo",
+          "consulta"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "ce-votoxcorreo",
+        "sede.ine.gob.es",
+        "cid=1700",
+        "correos.es"
+      ],
+      "nota": "contexto 2.2.7 (estado del voto por correo en sede.ine.gob.es/ce-votoxcorreo con DNI o pasaporte y fecha de nacimiento)"
+    },
+    {
+      "id": "a_correo_y_mesa",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Pedí el voto por correo pero al final me quedo en casa el 29. ¿Puedo ir a votar a mi mesa en persona?",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no podras",
+          "no se puede",
+          "no es posible",
+          "no podrias",
+          "no te dejaran",
+          "no te permitiran"
+        ],
+        [
+          "censo",
+          "anotad"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes ir a votar a tu mesa",
+        "puedes votar en tu mesa igualmente"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2 y 6.3 (art. 73.1: quien solicita el voto por correo queda anotado en el censo y no puede votar en mesa)"
+    },
+    {
+      "id": "a_correo_tarde",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Envié el voto por correo pero creo que se va a retrasar y llegará a la mesa a las nueve de la noche del día 29. ¿Cuenta?",
+      "debe_contener": [
+        [
+          "no se comput",
+          "no cuenta",
+          "no se cuenta",
+          "no contara",
+          "no se contabiliz",
+          "no sera valid",
+          "no valdra",
+          "no se tendra en cuenta"
+        ],
+        [
+          "20:00",
+          "20 h",
+          "20h",
+          "ocho de la tarde",
+          "las 20",
+          "20.00",
+          "8 de la tarde"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.6 (art. 73.4: Correos entrega hasta las 20:00; lo recibido después va a la Junta de Zona y no se computa)"
+    },
+    {
+      "id": "a_correo_sobres",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Ya tengo en casa las papeletas y los sobres del voto por correo. ¿Cómo tengo que meterlo todo?",
+      "debe_contener": [
+        [
+          "sobre de votacion",
+          "sobre de voto",
+          "sobre pequeno"
+        ],
+        [
+          "certificado"
+        ],
+        [
+          "mesa"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.5 (papeleta en el sobre de votación; este y el certificado en el sobre dirigido a la mesa)"
+    },
+    {
+      "id": "a_correo_enfermera",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Soy enfermera y el 29 tengo turno de 8 a 20 en un hospital de otra ciudad, lejos de donde estoy empadronada. ¿Cómo puedo votar?",
+      "debe_contener": [
+        [
+          "correo"
+        ],
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11",
+          "19 nov"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 19"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2 (art. 72) y calendario voto_correo_solicitud (hasta 19/11)"
+    },
+    {
+      "id": "a_correo_puente",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "tia me voy de puente a la playa el finde del 29, como hago pa votar si no estoy?",
+      "debe_contener": [
+        [
+          "correo"
+        ],
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11",
+          "19 nov"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 19"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2 y calendario voto_correo_solicitud"
+    },
+    {
+      "id": "a_correo_web_correos",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "¿Se puede pedir el voto por correo desde la web de Correos sin ir a la oficina? ¿Qué necesito?",
+      "debe_contener": [
+        [
+          "dni electronico",
+          "certificado digital",
+          "dnie",
+          "certificado electronico"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.2 (telemática con DNI electrónico o certificado digital en la web de Correos)"
+    },
+    {
+      "id": "a_correo_formal_largo_plazo",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Quisiera conocer los plazos completos del voto por correo: solicitud, recepción de la documentación y remisión del voto.",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11",
+          "19 nov"
+        ],
+        [
+          "22 de noviembre",
+          "22/11",
+          "al 22"
+        ],
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11",
+          "25 nov"
+        ]
+      ],
+      "no_debe_contener": [
+        "26 de noviembre",
+        "26/11",
+        "antes del 25"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "calendario voto_correo_solicitud (19/11), voto_correo_envio_documentacion (9-22/11) y voto_correo_remision (25/11)"
+    },
+    {
+      "id": "a_cera_coloq",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "vivo en buenos aires hace 10 años y estoy inscrita en el consulado. q tengo q hacer pa votar el 29?",
+      "debe_contener": [
+        [
+          "consulado",
+          "consular"
+        ],
+        [
+          "24 de noviembre",
+          "24/11",
+          "24-11",
+          "21 de noviembre",
+          "21/11",
+          "21 al 26",
+          "21-11",
+          "26 de noviembre",
+          "26/11",
+          "al 26"
+        ]
+      ],
+      "no_debe_contener": [
+        "voto rogado sigue",
+        "tienes que solicitar el voto antes"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3 (envío de oficio; urna 21-26/11; correo al consulado hasta 24/11)"
+    },
+    {
+      "id": "a_cera_urna_fechas",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "¿Qué días puedo ir a votar en persona al consulado si vivo en el extranjero?",
+      "debe_contener": [
+        [
+          "21 de noviembre",
+          "21/11",
+          "21 al 26",
+          "21-11"
+        ],
+        [
+          "26 de noviembre",
+          "26/11",
+          "al 26"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.3 y calendario cera_deposito_urna (21/11 a 26/11)"
+    },
+    {
+      "id": "a_cera_correo_fecha",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "Resido en Londres e inscrito en el CERA. ¿Hasta qué día puedo mandar mi voto por correo al consulado?",
+      "debe_contener": [
+        [
+          "24 de noviembre",
+          "24/11",
+          "24-11"
+        ]
+      ],
+      "no_debe_contener": [
+        "hasta el 25 de noviembre",
+        "hasta el 25/11"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.3 y calendario cera_voto_correo (hasta 24/11, art. 75.7)"
+    },
+    {
+      "id": "a_cera_jep_directo",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "Vivo en Bruselas. ¿Puedo mandar el voto directamente a la Junta Electoral Provincial en España en vez de al consulado? Me resulta más cómodo.",
+      "debe_contener": [
+        [
+          "nulo",
+          "no valid",
+          "no sera valid",
+          "no debes",
+          "no se debe",
+          "no puedes"
+        ],
+        [
+          "consulado",
+          "consular"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes enviarlo directamente a la junta"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.5 (según el INE, los votos que no pasen por el consulado se consideran nulos)"
+    },
+    {
+      "id": "a_cera_descarga",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "Vivo en Suiza. ¿Puedo descargarme las papeletas por internet? ¿Puedo bajarme solo la del partido que quiero?",
+      "debe_contener": [
+        [
+          "descarg"
+        ],
+        [
+          "juego completo",
+          "completo",
+          "todas las candidaturas",
+          "todas las papeletas"
+        ]
+      ],
+      "no_debe_contener": [
+        "puedes descargar solo la papeleta",
+        "puedes bajarte solo la"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "descarga_candidaturas",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.2 (art. 75.2: solo se puede descargar el juego completo para garantizar el secreto)"
+    },
+    {
+      "id": "a_cera_descarga_cierre",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "¿Es verdad que las papeletas descargables para los residentes en el extranjero solo se pueden descargar hasta el 7 de noviembre?",
+      "debe_contener": [
+        [
+          "no es el cierre",
+          "no es la fecha de cierre",
+          "limite para",
+          "no cierra",
+          "no coincide",
+          "no es asi",
+          "no es cierto",
+          "puesta a disposicion",
+          "ponerlas a disposicion",
+          "publicarlas",
+          "disponibles"
+        ]
+      ],
+      "no_debe_contener": [
+        "la descarga cierra el 7",
+        "solo puedes descargarlas hasta el 7"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.2 y calendario cera_papeletas_descargables (el 7/11 es el límite para ponerlas a disposición, no el cierre de la descarga)"
+    },
+    {
+      "id": "a_cera_doc_llegada",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "Soy residente en Francia e inscrito en el consulado. ¿Cuándo me envían la documentación para votar?",
+      "debe_contener": [
+        [
+          "24 de octubre",
+          "24/10",
+          "30 de octubre",
+          "30/10"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.1 y calendario cera_envio_documentacion (24/10 a 30/10, de oficio)"
+    },
+    {
+      "id": "a_cera_identificacion",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "¿Qué documento tengo que llevar para votar en urna en el consulado de Ciudad de México?",
+      "debe_contener": [
+        [
+          "pasaporte",
+          "dni"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.4 (art. 75.5: pasaporte o DNI españoles, certificación de nacionalidad o de inscripción en el Registro de Matrícula Consular)"
+    },
+    {
+      "id": "a_cera_sobres_colores",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "Me ha llegado desde España un sobre blanco y otro de color sepia para votar desde Alemania. ¿Para qué es cada uno?",
+      "debe_contener": [
+        [
+          "congreso"
+        ],
+        [
+          "senado"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.1 (sobres de votación: blanco para Congreso, sepia para Senado)"
+    },
+    {
+      "id": "a_cera_gratuito",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "¿Tengo que pagar el envío del voto por correo desde Argentina al consulado?",
+      "debe_contener": [
+        [
+          "gratuit",
+          "gratis",
+          "no tienes que pagar",
+          "sin coste",
+          "no pagas",
+          "no cuesta",
+          "no tiene coste"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.5 (art. 75.12: el envío por correo postal es gratuito)"
+    },
+    {
+      "id": "a_cera_temporal_espana",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "Vivo en México, estoy inscrito en el CERA, pero voy a pasar todo noviembre en Madrid con mi familia. ¿Puedo votar desde España?",
+      "debe_contener": [
+        [
+          "correos"
+        ],
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11",
+          "19 nov"
+        ],
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11",
+          "25 nov"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "cid=1702",
+        "correos.es",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.7 (CERA temporalmente en España: solicitud en Correos hasta 19/11; devolución hasta 25/11)"
+    },
+    {
+      "id": "a_cera_sobre_tarde",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "Si mi voto por correo llega al consulado el 28 de noviembre, ¿sirve todavía?",
+      "debe_contener": [
+        [
+          "no es valid",
+          "no sera valid",
+          "no valdra",
+          "no se admite",
+          "no cuenta",
+          "no se comput",
+          "invalid",
+          "no se aceptara",
+          "fuera de plazo",
+          "nulo",
+          "no se contara",
+          "no seria valid",
+          "no sirve"
+        ],
+        [
+          "27 de noviembre",
+          "27/11",
+          "27-11"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.3 (art. 75.7: no es válido el sobre que llegue al consulado después del 27/11)"
+    },
+    {
+      "id": "a_erta_formal",
+      "tipo": "dentro",
+      "categoria": "erta",
+      "pregunta": "Trabajo seis meses en Dubái con un contrato temporal, pero sigo empadronado en Valencia. ¿Cómo puedo votar el 29N?",
+      "debe_contener": [
+        [
+          "31 de octubre",
+          "31/10",
+          "31-10",
+          "31 oct"
+        ],
+        [
+          "consulado",
+          "consular"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.4 y calendario erta_solicitud (hasta 31/10, en la oficina consular)"
+    },
+    {
+      "id": "a_erta_correos_no",
+      "tipo": "dentro",
+      "categoria": "erta",
+      "pregunta": "Estoy temporalmente en Chile por trabajo. ¿Puedo pedir el voto por correo en la web de Correos?",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no se puede",
+          "no es posible",
+          "no pueden",
+          "no podras",
+          "no es la via",
+          "no sirve"
+        ],
+        [
+          "consulado",
+          "consular"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes pedirlo en correos"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.4.5 (Correos: los ERTA no pueden pedir voto por correo en Correos) y 2.4.2"
+    },
+    {
+      "id": "a_erta_requisitos",
+      "tipo": "dentro",
+      "categoria": "erta",
+      "pregunta": "¿Qué requisitos hay que cumplir para votar como elector temporalmente en el extranjero?",
+      "debe_contener": [
+        [
+          "matricula consular",
+          "registro de matricula"
+        ],
+        [
+          "no residente"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.4.1 (inscripción en el Registro de Matrícula Consular como no residente)"
+    },
+    {
+      "id": "a_erta_corto",
+      "tipo": "dentro",
+      "categoria": "erta",
+      "pregunta": "erta plazo solicitud",
+      "debe_contener": [
+        [
+          "31 de octubre",
+          "31/10",
+          "31-10",
+          "31 oct"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "calendario erta_solicitud (6/10 a 31/10)"
+    },
+    {
+      "id": "a_erta_devolucion",
+      "tipo": "dentro",
+      "categoria": "erta",
+      "pregunta": "Soy ERTA y ya tengo la documentación en mi piso de Roma. ¿Hasta cuándo puedo enviar el voto y a dónde?",
+      "debe_contener": [
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11",
+          "25 nov"
+        ],
+        [
+          "certificad"
+        ],
+        [
+          "mesa"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.4.4 y calendario erta_remision_voto (correo certificado a la mesa hasta 25/11)"
+    },
+    {
+      "id": "a_erta_envio_doc",
+      "tipo": "dentro",
+      "categoria": "erta",
+      "pregunta": "Pedí el voto en el consulado de Lima como temporalmente ausente. ¿Cuándo me mandan la documentación?",
+      "debe_contener": [
+        [
+          "3 de noviembre",
+          "3/11",
+          "3 al 9"
+        ],
+        [
+          "9 de noviembre",
+          "9/11",
+          "al 9",
+          "17 de noviembre",
+          "17/11"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.4.3 y calendario erta_envio_documentacion (3/11 a 9/11; hasta 17/11 si hay recursos)"
+    },
+    {
+      "id": "a_acc_braille_corto",
+      "tipo": "dentro",
+      "categoria": "accesibilidad",
+      "pregunta": "voto braille plazo",
+      "debe_contener": [
+        [
+          "braille"
+        ],
+        [
+          "2 de noviembre",
+          "2/11",
+          "02/11",
+          "2 nov"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "accesibilidad-y-procesos-electorales",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 2.5 y calendario braille_solicitud (6/10 a 2/11)"
+    },
+    {
+      "id": "a_acc_braille_requisitos",
+      "tipo": "dentro",
+      "categoria": "accesibilidad",
+      "pregunta": "¿Quién puede pedir el kit de voto en braille?",
+      "debe_contener": [
+        [
+          "33"
+        ],
+        [
+          "once"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "accesibilidad-y-procesos-electorales",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 2.5 (Interior: quien lea Braille y tenga discapacidad ≥ 33 % o sea afiliado a la ONCE)"
+    },
+    {
+      "id": "a_acc_braille_correo",
+      "tipo": "dentro",
+      "categoria": "accesibilidad",
+      "pregunta": "Soy ciega y quiero votar por correo usando el kit en braille. ¿Se puede?",
+      "debe_contener": [
+        [
+          "incompatible",
+          "no es compatible",
+          "no se puede combinar",
+          "no puedes",
+          "no son compatibles",
+          "no se puede"
+        ],
+        [
+          "mesa"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes usar el kit braille por correo"
+      ],
+      "fuentes_esperadas": [
+        "accesibilidad-y-procesos-electorales",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 2.5 (el kit Braille se entrega en la mesa y es incompatible con el voto por correo)"
+    },
+    {
+      "id": "a_acc_confianza",
+      "tipo": "dentro",
+      "categoria": "accesibilidad",
+      "pregunta": "Mi tío tiene una discapacidad física y no puede meter él solo la papeleta en la urna. ¿Alguien puede ayudarle?",
+      "debe_contener": [
+        [
+          "confianza"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "accesibilidad-y-procesos-electorales",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 2.5 (art. 87.1: persona de su confianza)"
+    },
+    {
+      "id": "a_acc_no_sabe_leer",
+      "tipo": "dentro",
+      "categoria": "accesibilidad",
+      "pregunta": "mi abuela no sabe leer, como puede votar sin equivocarse de papeleta",
+      "debe_contener": [
+        [
+          "confianza"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "accesibilidad-y-procesos-electorales",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 2.5 (art. 87.1: quien no sepa leer puede servirse de una persona de su confianza)"
+    },
+    {
+      "id": "a_acc_derecho_sufragio",
+      "tipo": "dentro",
+      "categoria": "accesibilidad",
+      "pregunta": "Mi hermano tiene una discapacidad intelectual y hace años un juez lo declaró incapacitado. ¿Puede votar en estas elecciones?",
+      "debe_contener": [
+        [
+          "2/2018",
+          "2018",
+          "puede votar",
+          "tiene derecho",
+          "puede ejercer",
+          "puede hacerlo"
+        ]
+      ],
+      "no_debe_contener": [
+        "no puede votar"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "accesibilidad-y-procesos-electorales",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.5 (art. 3 LOREG tras LO 2/2018: solo carecen de sufragio los condenados con pena que lo prive)"
+    },
+    {
+      "id": "a_acc_local",
+      "tipo": "dentro",
+      "categoria": "accesibilidad",
+      "pregunta": "Voy en silla de ruedas y mi colegio electoral tiene escaleras. ¿Qué puedo hacer?",
+      "debe_contener": [
+        [
+          "accesib"
+        ],
+        [
+          "junta",
+          "reclam",
+          "ajustes razonables",
+          "mesa",
+          "correo"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "accesibilidad-y-procesos-electorales",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 2.5 (locales accesibles; reclamación ante la Junta, art. 24.3; ajustes razonables por la mesa, RD 422/2011)"
+    },
+    {
+      "id": "a_acc_signos_mesa",
+      "tipo": "dentro",
+      "categoria": "accesibilidad",
+      "pregunta": "Soy sordo y me ha tocado ser miembro de mesa. ¿Puedo pedir un intérprete de lengua de signos?",
+      "debe_contener": [
+        [
+          "lengua de signos",
+          "signos"
+        ],
+        [
+          "junta electoral de zona",
+          "junta de zona"
+        ],
+        [
+          "7 dias",
+          "siete dias"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "accesibilidad-y-procesos-electorales",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 2.5 (lengua de signos y bucle magnético para miembros de mesa que lo pidan por escrito a la Junta de Zona en 7 días)"
+    },
+    {
+      "id": "a_perm_corto",
+      "tipo": "dentro",
+      "categoria": "permiso_laboral",
+      "pregunta": "permiso trabajo para votar",
+      "debe_contener": [
+        [
+          "retribuid",
+          "pagad",
+          "remunerad"
+        ],
+        [
+          "cuatro horas",
+          "4 horas",
+          "tiempo indispensable"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2015-11430",
+        "BOE-A-1999-8583"
+      ],
+      "nota": "contexto 2.6 (art. 37.3.d ET; art. 13.1 RD 605/1999: hasta cuatro horas retribuidas)"
+    },
+    {
+      "id": "a_perm_jornada_reducida",
+      "tipo": "dentro",
+      "categoria": "permiso_laboral",
+      "pregunta": "Trabajo a media jornada el domingo de las elecciones. ¿También tengo derecho a horas libres para votar?",
+      "debe_contener": [
+        [
+          "proporcional",
+          "reduce",
+          "reducid"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2015-11430",
+        "BOE-A-1999-8583"
+      ],
+      "nota": "contexto 2.6 (art. 13.1 RD 605/1999: reducción proporcional en jornada reducida)"
+    },
+    {
+      "id": "a_perm_cifra",
+      "tipo": "dentro",
+      "categoria": "permiso_laboral",
+      "pregunta": "El 29 trabajo de 9 de la mañana a 9 de la noche. ¿Cuántas horas exactamente me tiene que dar la empresa para votar?",
+      "debe_contener": [
+        [
+          "hasta cuatro",
+          "hasta 4",
+          "maximo de cuatro",
+          "maximo de 4",
+          "4 horas",
+          "cuatro horas"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2015-11430",
+        "BOE-A-1999-8583"
+      ],
+      "nota": "contexto 2.6 (hasta cuatro horas retribuidas, art. 13.1 RD 605/1999; las horas concretas de 2026 no se han consultado [sin verificar])"
+    },
+    {
+      "id": "a_perm_enfermera",
+      "tipo": "dentro",
+      "categoria": "permiso_laboral",
+      "pregunta": "Soy enfermera y trabajo el 29 de 8 a 20 en el hospital de mi pueblo, que es donde voto. ¿Me tienen que dejar salir a votar?",
+      "debe_contener": [
+        [
+          "retribuid",
+          "pagad",
+          "remunerad"
+        ],
+        [
+          "cuatro horas",
+          "4 horas",
+          "tiempo indispensable"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2015-11430",
+        "BOE-A-1999-8583"
+      ],
+      "nota": "contexto 2.6 (art. 37.3.d ET y art. 13.1 RD 605/1999)"
+    },
+    {
+      "id": "a_perm_correo_lejos",
+      "tipo": "dentro",
+      "categoria": "permiso_laboral",
+      "pregunta": "Estoy trabajando en una obra lejos de mi casa todo noviembre. ¿Tengo derecho a horas para hacer el trámite del voto por correo?",
+      "debe_contener": [
+        [
+          "cuatro horas",
+          "4 horas"
+        ],
+        [
+          "correo"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2015-11430",
+        "BOE-A-1999-8583"
+      ],
+      "nota": "contexto 2.6 (art. 13.2 RD 605/1999: hasta cuatro horas para solicitar y remitir el voto por correo a quien trabaje lejos de su domicilio)"
+    },
+    {
+      "id": "a_perm_coloq",
+      "tipo": "dentro",
+      "categoria": "permiso_laboral",
+      "pregunta": "curro el domingo de las elecciones, me pueden descontar del sueldo el rato q tarde en ir a votar?",
+      "debe_contener": [
+        [
+          "retribuid",
+          "pagad",
+          "remunerad",
+          "no te pueden descontar",
+          "sin descuento"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2015-11430",
+        "BOE-A-1999-8583"
+      ],
+      "nota": "contexto 2.6 (permiso retribuido, art. 37.3.d ET)"
+    },
+    {
+      "id": "a_mesa_sorteo",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "¿Cuándo se hace el sorteo de los miembros de las mesas electorales?",
+      "debe_contener": [
+        [
+          "31 de octubre",
+          "31/10",
+          "31-10",
+          "31 oct"
+        ],
+        [
+          "4 de noviembre",
+          "4/11"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.7 y calendario sorteo_mesas (31/10 a 4/11)"
+    },
+    {
+      "id": "a_mesa_edad_72",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "Tengo 72 años, ¿me puede tocar ser miembro de mesa?",
+      "debe_contener": [
+        [
+          "menores de 70",
+          "menos de 70",
+          "mas de 70",
+          "70 anos",
+          "mayores de 70"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (art. 26.2: sorteo entre menores de 70 años)"
+    },
+    {
+      "id": "a_mesa_65",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "Tengo 66 años y me ha tocado ser vocal. ¿Puedo renunciar?",
+      "debe_contener": [
+        [
+          "65"
+        ],
+        [
+          "renunci"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (desde los 65 pueden renunciar en 7 días)"
+    },
+    {
+      "id": "a_mesa_excusa_corta",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "excusa mesa electoral plazo",
+      "debe_contener": [
+        [
+          "7 dias",
+          "siete dias"
+        ],
+        [
+          "junta electoral de zona",
+          "junta de zona"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (art. 27.3: 7 días desde la notificación ante la Junta Electoral de Zona)"
+    },
+    {
+      "id": "a_mesa_excusa_faltas",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "me a tocao de presidenta de mesa y no quiero ir, puedo librarme???",
+      "debe_contener": [
+        [
+          "obligatori"
+        ],
+        [
+          "causa justificada",
+          "justificad"
+        ],
+        [
+          "junta electoral de zona",
+          "junta de zona"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (art. 27.1 obligatorio; art. 27.3 excusa justificada ante la Junta de Zona)"
+    },
+    {
+      "id": "a_mesa_resolucion",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "Presenté mi excusa como miembro de mesa. ¿Cuánto tarda la Junta en contestar y puedo recurrir si me la deniegan?",
+      "debe_contener": [
+        [
+          "5 dias",
+          "cinco dias"
+        ],
+        [
+          "contencioso"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (la Junta resuelve en 5 días; no cabe recurso administrativo electoral; sí contencioso-administrativo)"
+    },
+    {
+      "id": "a_mesa_sancion",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "¿Qué pasa si me toca ser miembro de mesa y no me presento el día de las elecciones?",
+      "debe_contener": [
+        [
+          "prision",
+          "carcel"
+        ],
+        [
+          "multa"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (art. 143: prisión de tres meses a un año o multa de seis a veinticuatro meses)"
+    },
+    {
+      "id": "a_mesa_sancion_coloq",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "si paso de ir a la mesa electoral me multan o algo?",
+      "debe_contener": [
+        [
+          "multa"
+        ],
+        [
+          "prision",
+          "carcel",
+          "tres meses",
+          "3 meses"
+        ]
+      ],
+      "no_debe_contener": [
+        "no pasa nada"
+      ],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (art. 143)"
+    },
+    {
+      "id": "a_mesa_imprevisto",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "Soy vocal de mesa y me he puesto enfermo la víspera de las elecciones. ¿Qué tengo que hacer?",
+      "debe_contener": [
+        [
+          "junta electoral de zona",
+          "junta de zona"
+        ],
+        [
+          "8:00",
+          "8 h",
+          "8h",
+          "las 8",
+          "ocho de la manana",
+          "8.00",
+          "de inmediato",
+          "inmediatamente",
+          "cuanto antes"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (art. 27.4: imposibilidad sobrevenida, avisar a la Junta de Zona de inmediato y antes de las 8:00)"
+    },
+    {
+      "id": "a_mesa_72h",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "Si sé con antelación que no podré ir a la mesa por una causa sobrevenida, ¿con cuánto tiempo tengo que avisar?",
+      "debe_contener": [
+        [
+          "72 horas",
+          "setenta y dos horas",
+          "tres dias",
+          "3 dias"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (art. 27.4: al menos 72 horas antes)"
+    },
+    {
+      "id": "a_mesa_suplente_dieta",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "Soy suplente en una mesa electoral. ¿Cobro la dieta aunque al final no tenga que actuar?",
+      "debe_contener": [
+        [
+          "titular"
+        ]
+      ],
+      "no_debe_contener": [
+        "los suplentes cobran siempre",
+        "cobras igualmente aunque no actues"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-2026-13948",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (dieta: los suplentes solo si pasan a titulares, Orden INT/650/2026)"
+    },
+    {
+      "id": "a_mesa_dieta_coloq",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "cuanto pagan x estar en la mesa electoral?",
+      "debe_contener": [
+        [
+          "75 euros",
+          "75 €",
+          "75€",
+          "75,00",
+          "75 eur",
+          "€75",
+          "75 euro"
+        ]
+      ],
+      "no_debe_contener": [
+        "dieta de 70",
+        "cobras 70",
+        "cobran 70",
+        "70 euros por",
+        "70 € por"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-2026-13948",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (dieta 75,00 euros, Orden INT/650/2026, BOE-A-2026-13948)"
+    },
+    {
+      "id": "a_mesa_dieta_70",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "He leído que la dieta por estar en una mesa electoral es de 70 euros. ¿Sigue siendo así?",
+      "debe_contener": [
+        [
+          "75 euros",
+          "75 €",
+          "75€",
+          "75,00",
+          "75 eur",
+          "€75",
+          "75 euro"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, son 70",
+        "sigue siendo de 70",
+        "siguen siendo 70"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-2026-13948",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (75 euros; sustituye a la de 70 euros de la INT/212/2023)"
+    },
+    {
+      "id": "a_mesa_presidente_titulo",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "¿Qué estudios hacen falta para que te toque de presidente de mesa?",
+      "debe_contener": [
+        [
+          "bachiller"
+        ],
+        [
+          "graduado escolar",
+          "formacion profesional"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (art. 26.2: Bachiller o FP de segundo grado; subsidiariamente Graduado Escolar)"
+    },
+    {
+      "id": "a_mesa_candidato",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "Voy en una lista electoral como candidato y me ha salido en el sorteo de mesa. ¿Tengo que ir?",
+      "debe_contener": [
+        [
+          "no pueden ejercer",
+          "no puedes ser",
+          "no puedes ejercer",
+          "no pueden ser",
+          "incompatib",
+          "causa justificada",
+          "no puede ser",
+          "excus",
+          "no pueden formar",
+          "no puedes formar"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (art. 27.1: no pueden ejercerlo los candidatos; Interior: presentarse como candidato es causa)"
+    },
+    {
+      "id": "a_mesa_notificacion",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "¿Cómo y en cuánto tiempo me notifican que soy miembro de mesa?",
+      "debe_contener": [
+        [
+          "3 dias",
+          "tres dias"
+        ],
+        [
+          "manual"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (art. 27.2: en 3 días desde la designación, con manual de instrucciones)"
+    },
+    {
+      "id": "a_mesa_dia_siguiente",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "Fui vocal de mesa el domingo y el lunes 30 entro a trabajar. ¿Tengo alguna reducción de jornada?",
+      "debe_contener": [
+        [
+          "5 horas",
+          "cinco horas"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "permisos-y-dietas",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.6 (art. 28.1: reducción de 5 horas de la jornada el día siguiente)"
+    },
+    {
+      "id": "a_mesa_composicion",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "¿Cuántas personas forman una mesa electoral?",
+      "debe_contener": [
+        [
+          "presidente",
+          "presidenta"
+        ],
+        [
+          "2 vocales",
+          "dos vocales"
+        ],
+        [
+          "suplente"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (art. 26: presidente y 2 vocales, más 2 suplentes por cada uno)"
+    },
+    {
+      "id": "a_mesa_laborable",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "Si el día de la votación me toca trabajar y soy presidente de mesa, ¿pierdo el sueldo de ese día?",
+      "debe_contener": [
+        [
+          "retribuid",
+          "pagad",
+          "remunerad"
+        ],
+        [
+          "jornada completa",
+          "toda la jornada",
+          "dia completo",
+          "jornada entera"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "permisos-y-dietas",
+        "interior.gob.es",
+        "BOE-A-2015-11430"
+      ],
+      "nota": "contexto 2.6 (art. 28.1: permiso retribuido de jornada completa)"
+    },
+    {
+      "id": "a_sis_350_corto",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "cuantos diputados tiene el congreso",
+      "debe_contener": [
+        [
+          "350"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.1 (art. 162.1: 350 diputados)"
+    },
+    {
+      "id": "a_sis_soria",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "¿Por qué Soria tiene 2 diputados si tiene tan poca población?",
+      "debe_contener": [
+        [
+          "minimo",
+          "2 por provincia",
+          "dos por provincia"
+        ],
+        [
+          "poblacion"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.1 (art. 162.2-3: mínimo inicial de 2 por provincia; el resto por población)"
+    },
+    {
+      "id": "a_sis_madrid",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "¿Cuántos diputados elige Madrid el 29N?",
+      "debe_contener": [
+        [
+          "38"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.1 (anexo RD 806/2026: Madrid 38)"
+    },
+    {
+      "id": "a_sis_valencia",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "¿Cuántos escaños del Congreso se reparten en la provincia de Valencia?",
+      "debe_contener": [
+        [
+          "16"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.1 (anexo RD 806/2026: Valencia/València 16)"
+    },
+    {
+      "id": "a_sis_barcelona",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "cuantos diputados elige barcelona",
+      "debe_contener": [
+        [
+          "32"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.1 (anexo RD: Barcelona 32)"
+    },
+    {
+      "id": "a_sis_ceuta",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "¿Cómo se elige al diputado de Ceuta? ¿También se aplica D'Hondt?",
+      "debe_contener": [
+        [
+          "mas votad"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.2.6 (art. 163.2: Ceuta y Melilla, 1 escaño, el candidato más votado)"
+    },
+    {
+      "id": "a_sis_melilla",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "melilla cuantos diputados",
+      "debe_contener": [
+        [
+          "1 diputado",
+          "un diputado",
+          "un solo diputado",
+          "1 escano",
+          "un escano",
+          "un unico",
+          "uno solo",
+          "elige uno",
+          "solo uno",
+          "1 solo"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.1 (art. 162.2; anexo RD: Melilla 1)"
+    },
+    {
+      "id": "a_sis_circunscripciones",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "¿En cuántas circunscripciones se divide España para elegir el Congreso?",
+      "debe_contener": [
+        [
+          "52"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 1.3 y 3.1 (52 circunscripciones: 50 provincias, Ceuta y Melilla)"
+    },
+    {
+      "id": "a_sis_dhondt_coloq",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "explicame lo de la ley dhont como si tuviera 10 años porfa",
+      "debe_contener": [
+        [
+          "divid",
+          "cociente",
+          "entre 1",
+          "entre 2"
+        ],
+        [
+          "escano"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.2 (art. 163.1: división entre 1, 2, 3…; escaños a los cocientes mayores)"
+    },
+    {
+      "id": "a_sis_barrera_circ",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "¿El 3 % mínimo para entrar en el Congreso es sobre el total de España o por provincia?",
+      "debe_contener": [
+        [
+          "circunscripcion",
+          "provincia"
+        ],
+        [
+          "3%",
+          "tres por ciento"
+        ]
+      ],
+      "no_debe_contener": [
+        "3% a nivel nacional",
+        "3% del total nacional",
+        "3% de toda espana"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.2.1 (art. 163.1.a: 3 % de los votos válidos emitidos en la circunscripción)"
+    },
+    {
+      "id": "a_sis_empate",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "¿Qué pasa si dos partidos empatan en el cociente para el último escaño de una provincia?",
+      "debe_contener": [
+        [
+          "mas votos",
+          "mayor numero de votos",
+          "mas votad",
+          "mayor numero total"
+        ],
+        [
+          "sorteo"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.2.4 (art. 163.1: el escaño va a quien tenga más votos totales; si coinciden, sorteo)"
+    },
+    {
+      "id": "a_sis_orden_lista",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "¿Puedo elegir a qué candidato concreto de la lista del Congreso doy mi voto?",
+      "debe_contener": [
+        [
+          "orden"
+        ]
+      ],
+      "no_debe_contener": [
+        "puedes marcar al candidato del congreso"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.2.5 (los escaños van a los candidatos por orden de colocación)"
+    },
+    {
+      "id": "a_sis_ejemplo",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "Ponme un ejemplo de reparto D'Hondt con 6 escaños y partidos inventados.",
+      "debe_contener": [
+        [
+          "divid",
+          "÷",
+          "entre 2",
+          "cociente",
+          "/2"
+        ],
+        [
+          "escano"
+        ]
+      ],
+      "no_debe_contener": [
+        "psoe",
+        "partido popular",
+        "vox"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.2 (ejemplo con candidaturas genéricas A, B, C…; SETUP: no usar candidaturas reales para jugar con cifras)"
+    },
+    {
+      "id": "a_sis_reparto_provincias",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "¿Cómo se decide cuántos diputados le tocan a cada provincia?",
+      "debe_contener": [
+        [
+          "poblacion"
+        ],
+        [
+          "minimo",
+          "248",
+          "2 por provincia",
+          "dos por provincia",
+          "dos diputados",
+          "2 diputados"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.1 (art. 162.2-4: mínimo de 2; 248 restantes por población; lo fija el decreto)"
+    },
+    {
+      "id": "a_bn_blanco_que_es",
+      "tipo": "dentro",
+      "categoria": "blanco_nulo",
+      "pregunta": "¿Qué es exactamente el voto en blanco?",
+      "debe_contener": [
+        [
+          "sobre"
+        ],
+        [
+          "valido"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.3 (art. 96.5: sobre sin papeleta; es válido)"
+    },
+    {
+      "id": "a_bn_bulo_grandes",
+      "tipo": "dentro",
+      "categoria": "blanco_nulo",
+      "pregunta": "Dicen que el voto en blanco beneficia a los partidos grandes porque se reparte entre ellos. ¿Es así?",
+      "debe_contener": [
+        [
+          "no se reparte",
+          "no va a ninguna",
+          "no se asigna",
+          "no se atribuye",
+          "ninguna candidatura",
+          "ningun partido",
+          "no coincide",
+          "no es cierto",
+          "no es asi",
+          "falso"
+        ],
+        [
+          "3%",
+          "umbral",
+          "barrera"
+        ]
+      ],
+      "no_debe_contener": [
+        "el voto en blanco se reparte entre",
+        "se lo llevan los partidos grandes, si"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.3 y 6.3 (válido, no se asigna a candidatura, sube el umbral del 3 %)"
+    },
+    {
+      "id": "a_bn_abstencion",
+      "tipo": "dentro",
+      "categoria": "blanco_nulo",
+      "pregunta": "¿Qué diferencia hay entre abstenerse y votar en blanco?",
+      "debe_contener": [
+        [
+          "valido"
+        ],
+        [
+          "no computa",
+          "no cuenta",
+          "no es un voto",
+          "no votar",
+          "no altera",
+          "no se cuenta"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.3 (blanco válido; abstención no computa ni altera el reparto)"
+    },
+    {
+      "id": "a_bn_nulo_corto",
+      "tipo": "dentro",
+      "categoria": "blanco_nulo",
+      "pregunta": "cuando es nulo un voto",
+      "debe_contener": [
+        [
+          "oficial"
+        ],
+        [
+          "tachad",
+          "alterad",
+          "modificad",
+          "distint",
+          "sin sobre"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.3 (art. 96.1-4: no modelo oficial, papeletas de distinta candidatura, modificadas o tachadas…)"
+    },
+    {
+      "id": "a_bn_cruz_congreso",
+      "tipo": "dentro",
+      "categoria": "blanco_nulo",
+      "pregunta": "Si hago una crucecita al lado de un nombre en la papeleta del Congreso, ¿se anula mi voto?",
+      "debe_contener": [
+        [
+          "no anula",
+          "no se anula",
+          "no lo anula",
+          "no invalida",
+          "valid",
+          "no altera"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.3 y 6.3 (Instrucción JEC 1/2012: una señal, cruz o aspa junto a un candidato no anula si no altera la papeleta ni expresa reproche)"
+    },
+    {
+      "id": "a_bn_tachar",
+      "tipo": "dentro",
+      "categoria": "blanco_nulo",
+      "pregunta": "¿Puedo tachar el nombre de un candidato que no me gusta en la papeleta del Congreso y que el voto valga?",
+      "debe_contener": [
+        [
+          "nulo"
+        ]
+      ],
+      "no_debe_contener": [
+        "puedes tachar sin problema"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.3 y 6.3 (art. 96.2: papeletas tachadas o modificadas son nulas)"
+    },
+    {
+      "id": "a_bn_sobre_vacio",
+      "tipo": "dentro",
+      "categoria": "blanco_nulo",
+      "pregunta": "Si meto el sobre del Congreso vacío en la urna, ¿qué voto es?",
+      "debe_contener": [
+        [
+          "blanco"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.3 (art. 96.5: sobre sin papeleta = voto en blanco)"
+    },
+    {
+      "id": "a_bn_papeletas_distintas",
+      "tipo": "dentro",
+      "categoria": "blanco_nulo",
+      "pregunta": "¿Qué pasa si en el mismo sobre meto papeletas de dos partidos distintos?",
+      "debe_contener": [
+        [
+          "nulo"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.3 (art. 96: sobre con papeletas de distinta candidatura, nulo)"
+    },
+    {
+      "id": "a_bn_nulo_3",
+      "tipo": "dentro",
+      "categoria": "blanco_nulo",
+      "pregunta": "¿El voto nulo cuenta para calcular el 3 %?",
+      "debe_contener": [
+        [
+          "no es valido",
+          "no cuenta",
+          "no computa",
+          "no se cuenta",
+          "no es un voto valido",
+          "no valido",
+          "no se computa",
+          "no entra",
+          "no se tiene en cuenta"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.3 (el nulo no es válido: no cuenta en el 3 % ni en el reparto)"
+    },
+    {
+      "id": "a_bn_blanco_3",
+      "tipo": "dentro",
+      "categoria": "blanco_nulo",
+      "pregunta": "los votos en blanco cuentan para el 3%?",
+      "debe_contener": [
+        [
+          "cuentan",
+          "incluye",
+          "se computan",
+          "forman parte",
+          "se suman",
+          "entran",
+          "eleva",
+          "sube",
+          "computa"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.2.1 y 3.3 (art. 108.4 y 163.1.a: los blancos se computan como válidos en la base del 3 %)"
+    },
+    {
+      "id": "a_bn_abstencion_coloq",
+      "tipo": "dentro",
+      "categoria": "blanco_nulo",
+      "pregunta": "si no voy a votar ayudo a algun partido?",
+      "debe_contener": [
+        [
+          "no computa",
+          "no cuenta",
+          "no altera",
+          "no influye",
+          "votos validos",
+          "no se cuenta"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.3 (abstención: no computa como voto ni altera el reparto)"
+    },
+    {
+      "id": "a_sen_corto",
+      "tipo": "dentro",
+      "categoria": "senado",
+      "pregunta": "senado cuantas cruces puedo poner",
+      "debe_contener": [
+        [
+          "hasta 3",
+          "hasta tres",
+          "3 candidatos",
+          "tres candidatos",
+          "3 nombres",
+          "tres nombres",
+          "maximo de 3",
+          "maximo de tres",
+          "maximo 3",
+          "maximo tres",
+          "3 en las provincias",
+          "tres en las provincias"
+        ]
+      ],
+      "no_debe_contener": [
+        "hasta 4",
+        "hasta cuatro"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-14329",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.4.5 (art. 166.1: hasta 3 en las provincias)"
+    },
+    {
+      "id": "a_sen_ibiza",
+      "tipo": "dentro",
+      "categoria": "senado",
+      "pregunta": "Vivo en Ibiza, ¿a cuántos candidatos al Senado puedo votar?",
+      "debe_contener": [
+        [
+          "1 candidato",
+          "un candidato",
+          "un solo",
+          "1 senador",
+          "un senador",
+          "uno solo",
+          "solo uno",
+          "a uno",
+          "1 nombre",
+          "un nombre",
+          "hasta 1",
+          "maximo 1",
+          "maximo uno",
+          "una sola"
+        ]
+      ],
+      "no_debe_contener": [
+        "hasta 3",
+        "hasta tres"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-14329",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.4.2 y 3.4.5 (Ibiza: 1 senador; se marca 1 en las demás circunscripciones insulares)"
+    },
+    {
+      "id": "a_sen_gran_canaria",
+      "tipo": "dentro",
+      "categoria": "senado",
+      "pregunta": "En Gran Canaria, ¿cuántos candidatos al Senado puedo marcar?",
+      "debe_contener": [
+        [
+          "hasta 2",
+          "hasta dos",
+          "2 candidatos",
+          "dos candidatos",
+          "maximo 2",
+          "maximo dos",
+          "maximo de 2",
+          "maximo de dos",
+          "2 nombres",
+          "dos nombres"
+        ]
+      ],
+      "no_debe_contener": [
+        "hasta 3",
+        "hasta tres"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-14329",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.4.5 (art. 166.1: 2 en Gran Canaria, Mallorca, Tenerife, Ceuta y Melilla)"
+    },
+    {
+      "id": "a_sen_ceuta",
+      "tipo": "dentro",
+      "categoria": "senado",
+      "pregunta": "¿Cuántos senadores elige Ceuta?",
+      "debe_contener": [
+        [
+          "2 senadores",
+          "dos senadores",
+          "elige 2",
+          "elige dos",
+          "2 escanos",
+          "dos escanos"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-14329",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.4.3 (art. 165.3: 2 en Ceuta y 2 en Melilla)"
+    },
+    {
+      "id": "a_sen_total",
+      "tipo": "dentro",
+      "categoria": "senado",
+      "pregunta": "¿Cuántos senadores se eligen directamente en las urnas el 29N?",
+      "debe_contener": [
+        [
+          "209"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-14329",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 1.3 y 3.4.6 (209 de elección directa)"
+    },
+    {
+      "id": "a_sen_dhondt",
+      "tipo": "dentro",
+      "categoria": "senado",
+      "pregunta": "¿En el Senado también se aplica la ley D'Hondt y la barrera del 3 %?",
+      "debe_contener": [
+        [
+          "no se aplica",
+          "no hay",
+          "no rige",
+          "no se usa",
+          "no se utiliza",
+          "no aplica",
+          "sin d'hondt",
+          "no funciona"
+        ],
+        [
+          "mas votad"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-14329",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.4.5 (más votados; no hay D'Hondt ni barrera del 3 % en el Senado)"
+    },
+    {
+      "id": "a_sen_designados",
+      "tipo": "dentro",
+      "categoria": "senado",
+      "pregunta": "Además de los senadores que votamos, ¿hay otros que no salen de las urnas?",
+      "debe_contener": [
+        [
+          "parlamento",
+          "asamblea",
+          "comunidad"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-14329",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.4.4 (art. 165.4: designados por las asambleas autonómicas)"
+    },
+    {
+      "id": "a_sen_listas_abiertas",
+      "tipo": "dentro",
+      "categoria": "senado",
+      "pregunta": "¿Puedo votar a senadores de partidos distintos en la misma papeleta? ¿Cuántos como máximo si vivo en Zaragoza?",
+      "debe_contener": [
+        [
+          "hasta 3",
+          "hasta tres",
+          "3 candidatos",
+          "tres candidatos",
+          "3 nombres",
+          "tres nombres",
+          "maximo de 3",
+          "maximo de tres",
+          "maximo 3",
+          "maximo tres",
+          "3 en las provincias",
+          "tres en las provincias"
+        ]
+      ],
+      "no_debe_contener": [
+        "hasta 4",
+        "hasta cuatro"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-14329",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.4.5 (art. 166.1: hasta 3 en las provincias). La combinación entre candidaturas no está literal en contexto: solo se exige el máximo"
+    },
+    {
+      "id": "a_sen_mas_de_3",
+      "tipo": "dentro",
+      "categoria": "senado",
+      "pregunta": "¿Qué pasa si en Valencia marco 4 candidatos en la papeleta del Senado?",
+      "debe_contener": [
+        [
+          "nulo"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-14329",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.3 (art. 96: en el Senado, papeletas con más de 3 nombres son nulas)"
+    },
+    {
+      "id": "a_sen_formentera",
+      "tipo": "dentro",
+      "categoria": "senado",
+      "pregunta": "¿Formentera elige su propio senador en estas elecciones?",
+      "debe_contener": [
+        [
+          "por separado",
+          "por primera vez",
+          "propio",
+          "un senador",
+          "1 senador",
+          "elige 1",
+          "elige uno"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-14329",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.4.2 (Ibiza y Formentera eligen por separado por primera vez, LO 2/2026, BOE-A-2026-14329)"
+    },
+    {
+      "id": "a_camp_fechas",
+      "tipo": "dentro",
+      "categoria": "campana",
+      "pregunta": "¿Cuándo empieza y cuándo termina la campaña electoral?",
+      "debe_contener": [
+        [
+          "13 de noviembre",
+          "13/11",
+          "13-11",
+          "viernes 13"
+        ],
+        [
+          "27 de noviembre",
+          "27/11",
+          "27-11"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 1.1 (RD art. 4: 00:00 del 13/11 a 24:00 del 27/11) y calendario campana"
+    },
+    {
+      "id": "a_camp_corto",
+      "tipo": "dentro",
+      "categoria": "campana",
+      "pregunta": "inicio campaña electoral",
+      "debe_contener": [
+        [
+          "13 de noviembre",
+          "13/11",
+          "13-11",
+          "viernes 13"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "eg2026_calendario"
+      ],
+      "nota": "calendario campana (13/11)"
+    },
+    {
+      "id": "a_camp_duracion",
+      "tipo": "dentro",
+      "categoria": "campana",
+      "pregunta": "cuantos dias dura la campaña",
+      "debe_contener": [
+        [
+          "15",
+          "quince"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 1.1 y 5 (art. 51: 15 días)"
+    },
+    {
+      "id": "a_camp_reflexion",
+      "tipo": "dentro",
+      "categoria": "campana",
+      "pregunta": "¿Qué día es la jornada de reflexión?",
+      "debe_contener": [
+        [
+          "28 de noviembre",
+          "28/11",
+          "sabado 28"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "eg2026_calendario"
+      ],
+      "nota": "calendario jornada_reflexion (28/11)"
+    },
+    {
+      "id": "a_camp_reflexion_propaganda",
+      "tipo": "dentro",
+      "categoria": "campana",
+      "pregunta": "¿Se puede hacer campaña o pedir el voto el sábado 28 de noviembre?",
+      "debe_contener": [
+        [
+          "prohib",
+          "no se puede",
+          "no esta permitid",
+          "no puede",
+          "no hay campana"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 5 (art. 53: prohibida la propaganda una vez acabada la campaña; no hay campaña el 28/11)"
+    },
+    {
+      "id": "a_camp_encuestas",
+      "tipo": "dentro",
+      "categoria": "campana",
+      "pregunta": "¿Hasta cuándo se pueden publicar encuestas electorales?",
+      "debe_contener": [
+        [
+          "24 de noviembre",
+          "24/11",
+          "cinco dias",
+          "5 dias",
+          "23 de noviembre",
+          "23/11"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 5 y calendario sondeos (art. 69.7: prohibidas del 24/11 al 28/11)"
+    },
+    {
+      "id": "a_camp_encuesta_26",
+      "tipo": "dentro",
+      "categoria": "campana",
+      "pregunta": "¿Es legal publicar una encuesta electoral el 26 de noviembre?",
+      "debe_contener": [
+        [
+          "prohib",
+          "no es legal",
+          "no se puede",
+          "no esta permitid",
+          "no coincide"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, es legal"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 5 y 6.3 (art. 69.7)"
+    },
+    {
+      "id": "a_camp_carteles",
+      "tipo": "dentro",
+      "categoria": "campana",
+      "pregunta": "¿Pueden los partidos poner carteles electorales antes del 13 de noviembre?",
+      "debe_contener": [
+        [
+          "prohib",
+          "no pueden",
+          "no se puede",
+          "no esta permitid"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 5 (art. 53: desde la convocatoria hasta el inicio de la campaña, prohibida la publicidad electoral mediante carteles)"
+    },
+    {
+      "id": "a_camp_ayuntamiento",
+      "tipo": "dentro",
+      "categoria": "campana",
+      "pregunta": "¿Puede el ayuntamiento hacer anuncios en la radio sobre las elecciones?",
+      "debe_contener": [
+        [
+          "institucional"
+        ],
+        [
+          "procedimiento",
+          "fecha",
+          "correo"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 5 (art. 50.1: campaña institucional solo sobre fecha, procedimiento de voto y voto por correo)"
+    },
+    {
+      "id": "a_camp_compra_voto",
+      "tipo": "dentro",
+      "categoria": "campana",
+      "pregunta": "Un vecino me ha ofrecido 50 euros si voto a cierto partido. ¿Eso es legal?",
+      "debe_contener": [
+        [
+          "delito",
+          "prision",
+          "pena",
+          "ilegal",
+          "no es legal",
+          "146"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "eg2026_calendario"
+      ],
+      "nota": "contexto 5 (art. 146.1.a: prisión de 6 meses a 3 años o multa a quien con dádivas solicite el voto)"
+    },
+    {
+      "id": "a_idioma_ca_correo",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Quin és l'últim dia per demanar el vot per correu?",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11",
+          "19 nov",
+          "19 de novembre"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2.1 y calendario voto_correo_solicitud (19/11). Pregunta en catalán"
+    },
+    {
+      "id": "a_idioma_va_viatge",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Visc a València i el dia 29 no estaré. Com puc votar?",
+      "debe_contener": [
+        [
+          "correu",
+          "correo",
+          "correos"
+        ],
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11",
+          "19 nov",
+          "19 de novembre"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.2 y calendario voto_correo_solicitud. Pregunta en valenciano (ejemplo de SETUP)"
+    },
+    {
+      "id": "a_idioma_ca_mesa",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "M'ha tocat ser membre de mesa. Quants dies tinc per presentar una excusa?",
+      "debe_contener": [
+        [
+          "7 dies",
+          "set dies",
+          "7 dias",
+          "siete dias"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (art. 27.3: 7 días). Pregunta en catalán"
+    },
+    {
+      "id": "a_idioma_gl_horario",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Ata que hora están abertos os colexios electorais o 29 de novembro?",
+      "debe_contener": [
+        [
+          "20:00",
+          "20 h",
+          "20h",
+          "ocho de la tarde",
+          "las 20",
+          "20.00",
+          "8 de la tarde",
+          "20 horas",
+          "oito da tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "21:00"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "calendario votacion (9:00 a 20:00). Pregunta en gallego"
+    },
+    {
+      "id": "a_idioma_gl_docs",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Que documento teño que levar para votar? Vale unha fotocopia do DNI?",
+      "debe_contener": [
+        [
+          "dni"
+        ],
+        [
+          "orixinal",
+          "original",
+          "non vale",
+          "no vale",
+          "non serve",
+          "no sirve",
+          "non se admite",
+          "no se admite",
+          "no valen",
+          "non valen"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, vale a fotocopia",
+        "si, te vale la fotocopia"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2 (originales; no valen fotocopias). Pregunta en gallego"
+    },
+    {
+      "id": "a_idioma_eu_diputatuak",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "Zenbat diputatu aukeratzen dira Kongresurako?",
+      "debe_contener": [
+        [
+          "350"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "contexto 3.1 (350 diputados). Pregunta en euskera"
+    },
+    {
+      "id": "a_idioma_eu_posta",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Posta bidezko botoa noiz arte eska dezaket?",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11",
+          "19 nov",
+          "azaroaren 19"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "calendario voto_correo_solicitud (19/11). Pregunta en euskera"
+    },
+    {
+      "id": "a_idioma_en_berlin",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "I'm a Spanish citizen living in Berlin and I'm registered at the consulate. How and when can I vote?",
+      "debe_contener": [
+        [
+          "consulate",
+          "consulado",
+          "consular"
+        ],
+        [
+          "24 de noviembre",
+          "24/11",
+          "24-11",
+          "november 24",
+          "24 november",
+          "24th"
+        ],
+        [
+          "21 de noviembre",
+          "21/11",
+          "21 al 26",
+          "21-11",
+          "november 21",
+          "21 november",
+          "21st",
+          "21-26",
+          "21 to 26"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.3 y calendario cera_voto_correo (24/11) y cera_deposito_urna (21-26/11). Pregunta en inglés"
+    },
+    {
+      "id": "a_idioma_en_mesa",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "How much do polling station members get paid in Spain?",
+      "debe_contener": [
+        [
+          "75 euros",
+          "75 €",
+          "75€",
+          "75,00",
+          "75 eur",
+          "€75",
+          "75 euro"
+        ]
+      ],
+      "no_debe_contener": [
+        "70 euros per",
+        "€70 per"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-2026-13948",
+        "permisos-y-dietas"
+      ],
+      "nota": "contexto 2.7 (dieta 75 euros, Orden INT/650/2026). Pregunta en inglés"
+    },
+    {
+      "id": "a_idioma_en_obligatorio",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Is voting compulsory in Spain? Will I be fined if I don't vote?",
+      "debe_contener": [
+        [
+          "not compulsory",
+          "not mandatory",
+          "not obligatory",
+          "voluntary",
+          "no es obligatorio",
+          "no es obligatori",
+          "voluntari",
+          "no estas obligad",
+          "no tienes obligacion"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.1.5 (art. 5: no es obligatorio). Pregunta en inglés"
+    },
+    {
+      "id": "a_seg_correo_enfermo",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "Quiero votar por correo, ¿cómo lo hago?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Puedes solicitarlo hasta el 19 de noviembre en cualquier oficina de Correos con tu DNI, o por internet en la web de Correos con DNI electrónico o certificado digital."
+        }
+      ],
+      "pregunta": "¿Y si al final no puedo ir a Correos porque estoy enfermo en cama?",
+      "debe_contener": [
+        [
+          "notari"
+        ],
+        [
+          "medic"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "correos.es",
+        "cid=1700",
+        "accesibilidad-y-procesos-electorales"
+      ],
+      "nota": "seguimiento: el tema solo está en el historial. Contexto 2.2.3 (art. 72.c: notario y certificación médica)"
+    },
+    {
+      "id": "a_seg_correo_estado",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "Quiero votar por correo, ¿cómo lo hago?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Puedes solicitarlo hasta el 19 de noviembre en cualquier oficina de Correos con tu DNI, o por internet en la web de Correos con DNI electrónico o certificado digital."
+        }
+      ],
+      "pregunta": "Vale, ya lo he pedido. ¿Cómo sé si me lo han aceptado?",
+      "debe_contener": [
+        [
+          "fecha de nacimiento",
+          "sede",
+          "ine",
+          "oficina del censo",
+          "consulta"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "ce-votoxcorreo",
+        "sede.ine.gob.es",
+        "cid=1700",
+        "correos.es"
+      ],
+      "nota": "seguimiento. Contexto 2.2.7 (estado del voto por correo en sede.ine.gob.es/ce-votoxcorreo)"
+    },
+    {
+      "id": "a_seg_correo_llegada",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "Quiero votar por correo, ¿cómo lo hago?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Puedes solicitarlo hasta el 19 de noviembre en cualquier oficina de Correos con tu DNI, o por internet en la web de Correos con DNI electrónico o certificado digital."
+        }
+      ],
+      "pregunta": "¿Y cuándo me llega a casa?",
+      "debe_contener": [
+        [
+          "9 de noviembre",
+          "9/11",
+          "9 al 22"
+        ],
+        [
+          "22 de noviembre",
+          "22/11",
+          "al 22"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "seguimiento. Calendario voto_correo_envio_documentacion (9/11 a 22/11)"
+    },
+    {
+      "id": "a_seg_correo_mesa",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "Quiero votar por correo, ¿cómo lo hago?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Puedes solicitarlo hasta el 19 de noviembre en cualquier oficina de Correos con tu DNI, o por internet en la web de Correos con DNI electrónico o certificado digital."
+        }
+      ],
+      "pregunta": "Y si luego cambio de planes y estoy aquí el 29, ¿puedo ir a mi mesa sin más?",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no podras",
+          "no se puede",
+          "no es posible",
+          "no podrias",
+          "no te dejaran"
+        ],
+        [
+          "censo",
+          "anotad"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes ir a votar a tu mesa",
+        "puedes votar en tu mesa igualmente"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702"
+      ],
+      "nota": "seguimiento. Contexto 2.2 (art. 73.1)"
+    },
+    {
+      "id": "a_seg_cera_urna",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "Vivo en Toronto desde hace años y estoy dada de alta en el consulado."
+        },
+        {
+          "rol": "asistente",
+          "texto": "Como residente en el extranjero inscrita en el CERA, no tienes que solicitar el voto: la Oficina del Censo Electoral te envía la documentación de oficio a la dirección de tu inscripción."
+        }
+      ],
+      "pregunta": "¿Y si prefiero ir a votar en persona, qué días puedo?",
+      "debe_contener": [
+        [
+          "21 de noviembre",
+          "21/11",
+          "21 al 26",
+          "21-11"
+        ],
+        [
+          "26 de noviembre",
+          "26/11",
+          "al 26"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "seguimiento. Calendario cera_deposito_urna (21/11 a 26/11)"
+    },
+    {
+      "id": "a_seg_cera_correo",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "Vivo en Toronto desde hace años y estoy dada de alta en el consulado."
+        },
+        {
+          "rol": "asistente",
+          "texto": "Como residente en el extranjero inscrita en el CERA, no tienes que solicitar el voto: la Oficina del Censo Electoral te envía la documentación de oficio a la dirección de tu inscripción."
+        }
+      ],
+      "pregunta": "¿Y si lo mando por correo, hasta cuándo?",
+      "debe_contener": [
+        [
+          "24 de noviembre",
+          "24/11",
+          "24-11"
+        ],
+        [
+          "consulado",
+          "consular"
+        ]
+      ],
+      "no_debe_contener": [
+        "hasta el 25 de noviembre",
+        "hasta el 25/11"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "seguimiento. Calendario cera_voto_correo (hasta 24/11, al consulado)"
+    },
+    {
+      "id": "a_seg_erta_envio",
+      "tipo": "dentro",
+      "categoria": "erta",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "Estoy de Erasmus en Lisboa hasta enero. ¿Cómo voto?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Como elector temporalmente en el extranjero (ERTA), debes estar inscrito en el Registro de Matrícula Consular como no residente y pedir la documentación hasta el 31 de octubre, entregando la solicitud en el consulado."
+        }
+      ],
+      "pregunta": "Vale. ¿Y cuando ya haya votado, hasta qué día lo puedo mandar y cómo?",
+      "debe_contener": [
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11",
+          "25 nov"
+        ],
+        [
+          "certificad"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "seguimiento. Contexto 2.4.4 y calendario erta_remision_voto (correo certificado hasta 25/11)"
+    },
+    {
+      "id": "a_seg_erta_correos",
+      "tipo": "dentro",
+      "categoria": "erta",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "Estoy de Erasmus en Lisboa hasta enero. ¿Cómo voto?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Como elector temporalmente en el extranjero (ERTA), debes estar inscrito en el Registro de Matrícula Consular como no residente y pedir la documentación hasta el 31 de octubre, entregando la solicitud en el consulado."
+        }
+      ],
+      "pregunta": "¿Y no puedo pedirlo en la web de Correos, que es más fácil?",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no se puede",
+          "no es posible",
+          "no pueden",
+          "no podras",
+          "no es la via",
+          "no sirve"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes pedirlo en correos"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "seguimiento. Contexto 2.4.5 (los ERTA no pueden pedir voto por correo en Correos)"
+    },
+    {
+      "id": "a_seg_mesa_sancion",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "Me ha llegado la notificación de que soy vocal de una mesa electoral."
+        },
+        {
+          "rol": "asistente",
+          "texto": "Ser miembro de mesa es obligatorio. Si tienes una causa justificada y documentada, tienes 7 días desde la notificación para alegarla ante la Junta Electoral de Zona."
+        }
+      ],
+      "pregunta": "¿Y si simplemente no voy, qué me pasa?",
+      "debe_contener": [
+        [
+          "multa"
+        ],
+        [
+          "prision",
+          "carcel",
+          "tres meses",
+          "3 meses"
+        ]
+      ],
+      "no_debe_contener": [
+        "no pasa nada"
+      ],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "seguimiento. Contexto 2.7 (art. 143)"
+    },
+    {
+      "id": "a_seg_mesa_lunes",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "Me ha llegado la notificación de que soy vocal de una mesa electoral."
+        },
+        {
+          "rol": "asistente",
+          "texto": "Ser miembro de mesa es obligatorio. Si tienes una causa justificada y documentada, tienes 7 días desde la notificación para alegarla ante la Junta Electoral de Zona."
+        }
+      ],
+      "pregunta": "¿Y al día siguiente tengo que ir a trabajar normal?",
+      "debe_contener": [
+        [
+          "5 horas",
+          "cinco horas"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "permisos-y-dietas",
+        "interior.gob.es"
+      ],
+      "nota": "seguimiento. Contexto 2.6 (art. 28.1: reducción de 5 horas el día siguiente)"
+    },
+    {
+      "id": "a_seg_mesa_suplente_hora",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "Me ha llegado la notificación de que soy vocal de una mesa electoral."
+        },
+        {
+          "rol": "asistente",
+          "texto": "Ser miembro de mesa es obligatorio. Si tienes una causa justificada y documentada, tienes 7 días desde la notificación para alegarla ante la Junta Electoral de Zona."
+        },
+        {
+          "rol": "usuario",
+          "texto": "¿Me pagan algo?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Sí: la dieta es de 75 euros por titular y jornada electoral (Orden INT/650/2026). Los suplentes solo la cobran si pasan a titulares."
+        }
+      ],
+      "pregunta": "Si soy yo el que no puede por algo de última hora, ¿hasta qué hora puedo avisar?",
+      "debe_contener": [
+        [
+          "8:00",
+          "8 h",
+          "8h",
+          "las 8",
+          "ocho de la manana",
+          "8.00"
+        ],
+        [
+          "junta electoral de zona",
+          "junta de zona"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas"
+      ],
+      "nota": "seguimiento con 3 turnos. Contexto 2.7 (art. 27.4: aviso a la Junta de Zona, de inmediato y antes de las 8:00)"
+    },
+    {
+      "id": "a_seg_pres_caducado",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "¿Qué documentos sirven para votar?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Puedes identificarte con el DNI, el pasaporte o el permiso de conducir con fotografía, siempre originales."
+        }
+      ],
+      "pregunta": "¿Y si el DNI lo tengo caducado?",
+      "debe_contener": [
+        [
+          "caducad"
+        ],
+        [
+          "pasaporte",
+          "conducir",
+          "confirm",
+          "interior",
+          "junta electoral",
+          "jec",
+          "consult"
+        ]
+      ],
+      "no_debe_contener": [
+        "seguro que vale",
+        "sin ningun problema"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "seguimiento. Contexto 2.1.2 (caducado: no afirmar que vale sin confirmarlo)"
+    },
+    {
+      "id": "a_seg_pres_movil",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "¿Qué documentos sirven para votar?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Puedes identificarte con el DNI, el pasaporte o el permiso de conducir con fotografía, siempre originales."
+        }
+      ],
+      "pregunta": "¿Y enseñándolo en el móvil?",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no se puede",
+          "no vale",
+          "no sirve",
+          "no se admite",
+          "suspend",
+          "no cuentes",
+          "no esta permitido",
+          "no es valid",
+          "no se acepta",
+          "no puedo confirmar",
+          "no lo uses",
+          "mejor lleva",
+          "lleva el dni fisico",
+          "original"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes usar midni",
+        "si, puedes identificarte con el movil"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "juntaelectoral.parlamentodeandalucia",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "seguimiento. Contexto 2.1.2 (JEC Acuerdo 94/2026)"
+    },
+    {
+      "id": "a_seg_sis_reparto",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "¿Cuántos diputados elige Valencia?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "La provincia de Valencia/València elige 16 diputados según el anexo del Real Decreto 806/2026."
+        }
+      ],
+      "pregunta": "¿Y cómo se reparten esos escaños entre los partidos?",
+      "debe_contener": [
+        [
+          "divid",
+          "cociente"
+        ],
+        [
+          "3%",
+          "tres por ciento"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "seguimiento. Contexto 3.2 (D'Hondt y barrera del 3 %)"
+    },
+    {
+      "id": "a_seg_sen_menorca",
+      "tipo": "dentro",
+      "categoria": "senado",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "¿Cómo se vota al Senado?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "En las provincias puedes marcar hasta 3 candidatos en la papeleta del Senado; son elegidos los más votados."
+        }
+      ],
+      "pregunta": "¿Y si vivo en Menorca?",
+      "debe_contener": [
+        [
+          "1 candidato",
+          "un candidato",
+          "un solo",
+          "1 senador",
+          "un senador",
+          "uno solo",
+          "solo uno",
+          "a uno",
+          "1 nombre",
+          "un nombre",
+          "hasta 1",
+          "maximo 1",
+          "maximo uno",
+          "una sola"
+        ]
+      ],
+      "no_debe_contener": [
+        "hasta 3",
+        "hasta tres"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-14329",
+        "BOE-A-2026-20742"
+      ],
+      "nota": "seguimiento. Contexto 3.4.2 y 3.4.5 (Menorca: 1 senador; se marca 1)"
+    },
+    {
+      "id": "a_seg_bn_nulo",
+      "tipo": "dentro",
+      "categoria": "blanco_nulo",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "¿Qué es el voto en blanco?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Es el sobre sin papeleta (y, en el Senado, la papeleta sin ningún candidato marcado). Es un voto válido."
+        }
+      ],
+      "pregunta": "¿Y el nulo?",
+      "debe_contener": [
+        [
+          "oficial",
+          "tachad",
+          "alterad",
+          "distint",
+          "sin sobre",
+          "modificad"
+        ],
+        [
+          "no es valido",
+          "no cuenta",
+          "no computa",
+          "no se cuenta",
+          "no es un voto valido",
+          "no valido",
+          "no se computa",
+          "no entra",
+          "no se tiene en cuenta"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "seguimiento. Contexto 3.3 (art. 96.1-4; el nulo no es válido)"
+    },
+    {
+      "id": "a_seg_camp_despues",
+      "tipo": "dentro",
+      "categoria": "campana",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "¿Cuándo empieza la campaña electoral?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "La campaña empieza a las 00:00 del viernes 13 de noviembre y termina a las 24:00 del viernes 27 de noviembre."
+        }
+      ],
+      "pregunta": "¿Y el día después de que acabe, qué pasa?",
+      "debe_contener": [
+        [
+          "reflexion"
+        ],
+        [
+          "28 de noviembre",
+          "28/11",
+          "sabado 28"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "eg2026_calendario"
+      ],
+      "nota": "seguimiento. Calendario jornada_reflexion (28/11)"
+    },
+    {
+      "id": "a_seg_perm_reducida",
+      "tipo": "dentro",
+      "categoria": "permiso_laboral",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "Trabajo el domingo 29, ¿tengo permiso para votar?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Sí: tienes derecho a un permiso retribuido por el tiempo indispensable para votar (art. 37.3.d del Estatuto de los Trabajadores), de hasta cuatro horas según el Real Decreto 605/1999."
+        }
+      ],
+      "pregunta": "¿Y si tengo jornada reducida?",
+      "debe_contener": [
+        [
+          "proporcional",
+          "reduce",
+          "reducid"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2015-11430",
+        "BOE-A-1999-8583"
+      ],
+      "nota": "seguimiento. Contexto 2.6 (art. 13.1 RD 605/1999: reducción proporcional)"
+    },
+    {
+      "id": "a_seg_acc_braille_correo",
+      "tipo": "dentro",
+      "categoria": "accesibilidad",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "¿Hay alguna forma de votar en braille?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Sí. Las personas con discapacidad visual que lean braille pueden pedir un kit de voto accesible; el plazo de solicitud es del 6 de octubre al 2 de noviembre."
+        }
+      ],
+      "pregunta": "¿Y lo puedo usar si voto por correo?",
+      "debe_contener": [
+        [
+          "incompatible",
+          "no es compatible",
+          "no se puede combinar",
+          "no puedes",
+          "no son compatibles",
+          "no se puede"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes usar el kit braille por correo"
+      ],
+      "fuentes_esperadas": [
+        "accesibilidad-y-procesos-electorales",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "eg2026_calendario"
+      ],
+      "nota": "seguimiento. Contexto 2.5 (kit Braille incompatible con el voto por correo)"
+    },
+    {
+      "id": "a_larga_enfermera_correo",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Hola, a ver si me podéis ayudar porque estoy hecha un lío. Soy enfermera en la UCI de un hospital de Zaragoza, pero sigo empadronada en el pueblo de mis padres, en la provincia de Teruel, porque allí tengo la casa y no he cambiado el padrón desde que empecé a trabajar aquí hace tres años. El domingo 29 de noviembre me ha tocado turno de doce horas, de 8 de la mañana a 8 de la tarde, y ya he pedido el cambio a dos compañeras pero ninguna puede. Del hospital al pueblo hay casi dos horas en coche, así que ir a votar a mi mesa es imposible. Mi madre me dice que pida el voto por correo, pero yo no tengo ni certificado digital ni DNI electrónico activado (tengo el DNI, pero nunca he usado el chip) y con los turnos me cuesta mucho ir a una oficina de Correos en horario. Mis preguntas son: ¿hasta qué día tengo para pedirlo? ¿Lo puedo pedir por internet sin certificado? ¿Cuándo me llegará la documentación y qué pasa si el cartero viene cuando estoy en el hospital? Y una vez que lo tenga, ¿hasta qué día puedo mandarlo? También me gustaría saber si la empresa tiene que darme algún permiso para hacer estos trámites, porque trabajo lejos de mi domicilio. Gracias de antemano.",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11",
+          "19 nov"
+        ],
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11",
+          "25 nov"
+        ],
+        [
+          "imprim",
+          "formulario",
+          "sede del ine",
+          "sede electronica",
+          "duplicado",
+          "oficina"
+        ],
+        [
+          "recoger",
+          "oficina",
+          "recogida"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 19",
+        "26 de noviembre",
+        "26/11"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702",
+        "sede.ine.gob.es",
+        "BOE-A-1999-8583"
+      ],
+      "nota": "larga, varias dudas. Contexto 2.2.1-2.2.5 (solicitud hasta 19/11; formulario del INE sin certificado; envío 9-22/11 y recogida en Correos; remisión hasta 25/11) y 2.6 (art. 13.2 RD 605/1999)"
+    },
+    {
+      "id": "a_larga_cera_argentina",
+      "tipo": "dentro",
+      "categoria": "cera",
+      "pregunta": "Buenas tardes. Les escribo desde Rosario, Argentina. Soy nieta de gallegos, tengo la nacionalidad española desde hace quince años y estoy inscrita en el consulado general de España en Rosario como residente. En las últimas elecciones generales me hice un lío tremendo: me dijeron que tenía que pedir el voto, lo pedí tarde y al final no pude votar. Ahora una amiga me dice que eso ya cambió y que no hace falta pedir nada, pero mi tío dice que sí, que hay que rogarlo como siempre. ¿Quién tiene razón? Además quería saber varias cosas más: ¿cuándo me debería llegar a casa la documentación? ¿Qué días podría ir a votar en persona al consulado, si me animo a ir? Si prefiero mandarlo por correo, ¿hasta qué fecha tengo y a dónde lo mando, al consulado o directamente a la Junta Electoral de Ourense, que es mi provincia? ¿Tengo que pagar el envío? Por último, me han dicho que las papeletas se pueden descargar de internet; ¿puedo bajarme solo la de la candidatura que quiero o tengo que bajarme todas? Disculpen tantas preguntas, pero quiero hacerlo bien esta vez. Muchas gracias.",
+      "debe_contener": [
+        [
+          "de oficio",
+          "no tienes que pedir",
+          "no hace falta",
+          "no necesitas",
+          "no tienes que solicitar",
+          "automatic",
+          "no es necesario",
+          "ya no"
+        ],
+        [
+          "24 de octubre",
+          "24/10",
+          "30 de octubre",
+          "30/10"
+        ],
+        [
+          "21 de noviembre",
+          "21/11",
+          "21 al 26",
+          "21-11"
+        ],
+        [
+          "24 de noviembre",
+          "24/11",
+          "24-11"
+        ],
+        [
+          "consulado",
+          "consular"
+        ],
+        [
+          "gratuit",
+          "gratis",
+          "sin coste",
+          "no tienes que pagar",
+          "no pagas"
+        ],
+        [
+          "completo",
+          "todas"
+        ]
+      ],
+      "no_debe_contener": [
+        "voto rogado sigue",
+        "directamente a la junta electoral provincial",
+        "puedes descargar solo la papeleta"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "larga, varias dudas. Contexto 2.3 (LO 12/2022, envío de oficio 24-30/10; urna 21-26/11; correo al consulado hasta 24/11; gratuito art. 75.12; votos que no pasan por el consulado, nulos; juego completo art. 75.2)"
+    },
+    {
+      "id": "a_larga_mesa_madre",
+      "tipo": "dentro",
+      "categoria": "mesa",
+      "pregunta": "Hola. Ayer me llegó una notificación del ayuntamiento diciendo que me ha tocado ser vocal primero en una mesa electoral para el 29 de noviembre. El problema es que tengo un bebé de cuatro meses al que doy el pecho y no tengo con quién dejarlo un día entero, porque mi pareja trabaja ese domingo en un supermercado y mis padres viven a 600 kilómetros. No sé muy bien qué tengo que hacer ni cuánto tiempo tengo. ¿Ante quién tengo que presentar la excusa y en qué plazo? ¿Tengo que llevar algún papel que lo justifique? ¿Cuánto tardan en contestarme y qué pasa si me dicen que no, puedo recurrir? He leído en un foro que si no te presentas te pueden meter en la cárcel, ¿eso es verdad o es un bulo? Y por si al final me toca ir sí o sí: ¿me pagan algo? ¿Cuánto? En el trabajo (soy administrativa en una gestoría, de lunes a viernes) ¿tengo derecho a algo el lunes siguiente? Perdón por el rollo, pero estoy bastante agobiada. Gracias.",
+      "debe_contener": [
+        [
+          "7 dias",
+          "siete dias"
+        ],
+        [
+          "junta electoral de zona",
+          "junta de zona"
+        ],
+        [
+          "documentad",
+          "justificad",
+          "acredit",
+          "papel",
+          "documento"
+        ],
+        [
+          "5 dias",
+          "cinco dias"
+        ],
+        [
+          "prision",
+          "carcel"
+        ],
+        [
+          "75 euros",
+          "75 €",
+          "75€",
+          "75,00",
+          "75 eur",
+          "€75",
+          "75 euro"
+        ],
+        [
+          "5 horas",
+          "cinco horas"
+        ]
+      ],
+      "no_debe_contener": [
+        "dieta de 70",
+        "cobras 70"
+      ],
+      "fuentes_esperadas": [
+        "sustitucion-y-recurso",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "permisos-y-dietas",
+        "BOE-A-2026-13948"
+      ],
+      "nota": "larga, varias dudas. Contexto 2.7 (excusa en 7 días ante la Junta de Zona, causa justificada y documentada; resolución en 5 días; art. 143 prisión o multa; dieta 75 €) y 2.6 (art. 28.1: 5 horas menos el día siguiente)"
+    },
+    {
+      "id": "a_larga_abuela_dependiente",
+      "tipo": "dentro",
+      "categoria": "accesibilidad",
+      "pregunta": "Buenos días. Les escribo por mi abuela, que tiene 88 años y vive conmigo en Murcia. Tiene un grado de dependencia reconocido, casi no puede andar y además ha perdido mucha vista en los últimos años: lee algo de braille porque aprendió en la ONCE, de la que es afiliada desde hace tiempo, pero no mucho. Ella quiere votar sí o sí en estas generales, siempre ha votado y le hace mucha ilusión. Hemos pensado varias opciones y no sabemos cuál es mejor ni cuál es posible. Primera: que vote por correo, pero ella no puede ir a Correos a pedirlo; ¿puedo pedirlo yo por ella? ¿Hace falta algún papel del médico o del notario y cuánto cuesta? Segunda: que vaya a la mesa en silla de ruedas con mi ayuda; ¿puedo entrar con ella y ayudarle a meter la papeleta en la urna, o tiene que hacerlo sola? Su colegio tiene unos escalones a la entrada, ¿se puede reclamar algo? Tercera: lo del voto en braille, ¿hasta cuándo se puede pedir y se puede combinar con el voto por correo? Gracias por la ayuda, de verdad.",
+      "debe_contener": [
+        [
+          "notari"
+        ],
+        [
+          "medic"
+        ],
+        [
+          "gratuit",
+          "gratis",
+          "sin coste",
+          "no cuesta"
+        ],
+        [
+          "confianza"
+        ],
+        [
+          "braille"
+        ],
+        [
+          "2 de noviembre",
+          "2/11",
+          "02/11",
+          "2 nov"
+        ],
+        [
+          "incompatible",
+          "no es compatible",
+          "no se puede combinar",
+          "no son compatibles",
+          "no se puede"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "accesibilidad-y-procesos-electorales",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "eg2026_calendario"
+      ],
+      "nota": "larga, varias dudas. Contexto 2.2.3 y 2.5 (notario gratuito con certificación médica; persona de confianza art. 87.1; locales accesibles; kit Braille hasta 2/11, incompatible con el voto por correo)"
+    },
+    {
+      "id": "a_larga_erta_estudiante",
+      "tipo": "dentro",
+      "categoria": "erta",
+      "pregunta": "Hola!! Soy estudiante de último curso de ingeniería y desde septiembre estoy haciendo el proyecto de fin de grado en una empresa de Múnich, con una beca, hasta finales de enero. Estoy empadronado en Alicante en casa de mis padres y no me he dado de baja de nada. Es la primera vez que voy a poder votar en unas generales estando fuera y no tengo ni idea de cómo va. Un compañero me ha dicho que lo pida en la web de Correos como si estuviera en España y que me lo manden aquí, otro me dice que tengo que ir al consulado de Múnich. ¿Cuál es la buena? ¿Tengo que hacer algún tipo de registro en el consulado primero? ¿Hasta cuándo tengo de plazo para pedirlo? Y cuando me llegue la documentación aquí, ¿hasta qué día puedo mandar el voto y a dónde, al consulado o a España? ¿Lo mando certificado? Ah, y una cosa más: si a lo mejor me escapo unos días a casa a finales de noviembre, ¿podría ir a votar a mi mesa de Alicante el día 29 en vez de todo esto? Gracias crack.",
+      "debe_contener": [
+        [
+          "consulado",
+          "consular"
+        ],
+        [
+          "matricula consular",
+          "registro de matricula",
+          "inscri"
+        ],
+        [
+          "31 de octubre",
+          "31/10",
+          "31-10",
+          "31 oct"
+        ],
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11",
+          "25 nov"
+        ],
+        [
+          "certificad"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes pedirlo en correos"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "eg2026_calendario",
+        "ine.es"
+      ],
+      "nota": "larga, varias dudas. Contexto 2.4 (ERTA: inscripción en el Registro de Matrícula Consular como no residente; solicitud hasta 31/10 en el consulado; Correos no vale para ERTA; devolución por correo certificado a la mesa hasta 25/11)"
+    },
+    {
+      "id": "a_larga_sistema_soria",
+      "tipo": "dentro",
+      "categoria": "sistema_electoral",
+      "pregunta": "Buenas. Vivo en Soria y llevo días discutiendo con mi cuñado en las comidas familiares sobre cómo funciona esto de las elecciones, así que os pregunto para zanjarlo. Él dice que en Soria mi voto vale más que el de alguien de Madrid porque aquí con muy pocos votos se saca un diputado, y yo le digo que todos los votos valen igual. ¿Cuántos diputados elige Soria y cuántos Madrid, y por qué? ¿Cómo se calcula el reparto, eso de la ley D'Hondt? También dice que si un partido no llega al 5 % en toda España no entra, y yo creo que es otro porcentaje y que se mira por provincia; ¿quién tiene razón? Otra cosa en la que no nos ponemos de acuerdo: él dice que el voto en blanco se lo quedan los partidos que ganan y que es mejor votar nulo o no ir. ¿Qué diferencia real hay entre blanco, nulo y abstenerse? Y por último, en la papeleta del Senado, ¿cuántos puedo marcar aquí en Soria y cómo se eligen, también con D'Hondt? No quiero que me digáis a quién votar, solo entender las reglas.",
+      "debe_contener": [
+        [
+          "2 diputados",
+          "dos diputados",
+          "2 escanos",
+          "dos escanos",
+          "elige 2",
+          "elige dos"
+        ],
+        [
+          "38"
+        ],
+        [
+          "divid",
+          "cociente"
+        ],
+        [
+          "3%",
+          "tres por ciento"
+        ],
+        [
+          "circunscripcion",
+          "provincia"
+        ],
+        [
+          "valido"
+        ],
+        [
+          "nulo"
+        ],
+        [
+          "hasta 3",
+          "hasta tres",
+          "3 candidatos",
+          "tres candidatos",
+          "3 nombres",
+          "tres nombres",
+          "maximo de 3",
+          "maximo de tres",
+          "maximo 3",
+          "maximo tres",
+          "3 en las provincias",
+          "tres en las provincias"
+        ]
+      ],
+      "no_debe_contener": [
+        "te recomiendo votar",
+        "deberias votar a",
+        "el voto en blanco se reparte entre"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "larga, varias dudas. Contexto 3.1 (Soria 2, Madrid 38; mínimo de 2), 3.2 (D'Hondt; 3 % por circunscripción), 3.3 (blanco válido, nulo no) y 3.4 (hasta 3, más votados)"
+    },
+    {
+      "id": "a_larga_presencial_dni",
+      "tipo": "dentro",
+      "categoria": "presencial",
+      "pregunta": "Hola, buenas noches. Os cuento mi situación: hace dos semanas me robaron la cartera en el metro con el DNI dentro. Pedí cita para renovarlo pero la primera que me han dado es para el 3 de diciembre, después de las elecciones. En la comisaría me dieron un resguardo de la denuncia y otro de la solicitud del DNI. Tengo el carné de conducir, pero estaba en la misma cartera, así que también lo he perdido, y el pasaporte lo tengo pero caducó en 2024. En el móvil tengo instalada la app de la DGT con el carné digital. Quiero votar en persona el 29 en mi colegio de siempre, en Getafe. ¿Con qué documento puedo identificarme? ¿Me vale el resguardo, la app del móvil o el pasaporte caducado? Tampoco me ha llegado todavía la tarjeta censal, que antes siempre llegaba; ¿la necesito? ¿Cómo compruebo en qué mesa me toca, por si me han cambiado de colegio? Y la última: ¿a qué hora cierran los colegios? Porque ese día trabajo hasta tarde y saldré corriendo.",
+      "debe_contener": [
+        [
+          "resguardo"
+        ],
+        [
+          "no puedes",
+          "no se puede",
+          "no vale",
+          "no sirve",
+          "no se admite",
+          "suspend",
+          "no cuentes",
+          "no esta permitido",
+          "no es valid",
+          "no se acepta",
+          "no puedo confirmar",
+          "no lo uses",
+          "mejor lleva",
+          "lleva el dni fisico",
+          "original"
+        ],
+        [
+          "caducad"
+        ],
+        [
+          "no es necesari",
+          "no hace falta",
+          "no es requisito",
+          "no necesitas",
+          "no es obligatori",
+          "no te la piden",
+          "no se exige",
+          "no es imprescindible",
+          "no la necesitas"
+        ],
+        [
+          "20:00",
+          "20 h",
+          "20h",
+          "ocho de la tarde",
+          "las 20",
+          "20.00",
+          "8 de la tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "el resguardo te vale",
+        "si, puedes usar midgt",
+        "midgt es valido",
+        "seguro que vale"
+      ],
+      "fuentes_esperadas": [
+        "desarrollo-de-la-votacion",
+        "juntaelectoral.parlamentodeandalucia",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "sede.ine.gob.es"
+      ],
+      "nota": "larga, varias dudas. Contexto 2.1.1 (horario; consulta de mesa), 2.1.2 (no vale el resguardo; miDGT suspendido por la JEC; caducado sin confirmar) y 2.1.7 (tarjeta censal no es requisito)"
+    },
+    {
+      "id": "a_larga_asociacion_campana",
+      "tipo": "dentro",
+      "categoria": "campana",
+      "pregunta": "Hola. Formo parte de la junta directiva de una asociación vecinal de un barrio de Valencia. Queremos hacer algo útil para las elecciones del 29 de noviembre sin meternos en política de partidos: estamos pensando en carteles en el local y publicaciones en redes con las fechas importantes, cómo pedir el voto por correo, etc. Tenemos varias dudas legales. ¿Cuándo empieza y cuándo acaba la campaña oficialmente? ¿Podemos seguir publicando información práctica durante la jornada de reflexión, qué día es exactamente? Un socio propone compartir también las encuestas que salgan en prensa la última semana para animar a la gente a votar; ¿hay algún día en el que eso esté prohibido? Otro socio, que es policía local, se ha ofrecido a repartir folletos de un partido en el barrio a título personal; ¿puede hacerlo? Y por último, el ayuntamiento nos ha ofrecido financiar los carteles si incluimos el logo municipal y un mensaje sobre lo bien que ha funcionado el nuevo polideportivo; ¿es eso compatible con la normativa electoral? Queremos hacerlo bien y no meter la pata.",
+      "debe_contener": [
+        [
+          "13 de noviembre",
+          "13/11",
+          "13-11",
+          "viernes 13"
+        ],
+        [
+          "27 de noviembre",
+          "27/11",
+          "27-11"
+        ],
+        [
+          "28 de noviembre",
+          "28/11",
+          "sabado 28"
+        ],
+        [
+          "24 de noviembre",
+          "24/11",
+          "24-11"
+        ],
+        [
+          "prohib",
+          "no puede",
+          "no pueden",
+          "no esta permitid"
+        ]
+      ],
+      "no_debe_contener": [
+        "te recomiendo votar",
+        "deberias votar a"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "eg2026_calendario"
+      ],
+      "nota": "larga, varias dudas. Contexto 5 (campaña 13/11-27/11; reflexión 28/11; sondeos prohibidos 24-28/11, art. 69.7; art. 52 policías locales; art. 50.2-3 logros de gestión)"
+    },
+    {
+      "id": "a_larga_familia",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Buenas, os escribo porque en mi familia tenemos varias situaciones distintas y no sé por dónde empezar. Vivimos en Cáceres. 1) Mi hijo pequeño cumple 18 años el 25 de noviembre: ¿podrá votar el 29 aunque cuando se hizo el censo fuera menor? 2) Mi padre está ingresado en el hospital desde hace un mes y no se sabe cuándo le darán el alta; él quiere votar pero no puede moverse ni ir a ninguna oficina. ¿Qué tiene que hacer y qué papeles necesita? 3) Mi hija mayor vive en Londres desde 2019 y está inscrita en el consulado; dice que no le ha llegado nada todavía y que no sabe si tiene que pedirlo. ¿Cuándo le llegará y qué opciones tiene? 4) Yo trabajo como camarera el domingo 29 de 12 a 20 en un restaurante de Cáceres, donde también voto; ¿me tienen que dar tiempo para ir a votar o voy en el descanso? 5) Y mi marido ha pedido el voto por correo porque pensaba estar de viaje, pero al final se ha cancelado el viaje y estará aquí. ¿Puede ir a votar a la mesa con nosotros? Gracias, sé que son muchas cosas.",
+      "debe_contener": [
+        [
+          "puede votar",
+          "podra votar",
+          "si, podra",
+          "tiene derecho",
+          "podra hacerlo",
+          "puede hacerlo"
+        ],
+        [
+          "notari"
+        ],
+        [
+          "medic"
+        ],
+        [
+          "de oficio",
+          "no tiene que pedir",
+          "no hace falta",
+          "no necesita",
+          "no tiene que solicitar",
+          "automatic",
+          "no es necesario"
+        ],
+        [
+          "retribuid",
+          "pagad",
+          "remunerad"
+        ],
+        [
+          "anotad",
+          "censo"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puede ir a votar a la mesa",
+        "puede votar en su mesa igualmente"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702",
+        "BOE-A-2015-11430",
+        "BOE-A-1999-8583"
+      ],
+      "nota": "larga, varias dudas. Contexto 2.1.3 (art. 85.2), 2.2.3 (notario y certificación médica), 2.3 (CERA de oficio, 24-30/10), 2.6 (permiso retribuido) y 2.2 (art. 73.1: anotado en el censo)"
+    },
+    {
+      "id": "a_larga_muy_larga_correo_sobres",
+      "tipo": "dentro",
+      "categoria": "correo",
+      "pregunta": "Hola, perdonad la parrafada pero prefiero explicarlo todo bien para que me entendáis. Tengo 34 años, vivo en Gijón con mi pareja y trabajo como técnico de mantenimiento en parques eólicos, lo que significa que paso semanas fuera de casa, normalmente en Galicia o en Castilla y León, y nunca sé con mucha antelación dónde voy a estar. Para el 29 de noviembre lo más probable es que esté en una subestación en la provincia de Lugo, porque tenemos una revisión grande programada esa semana, aunque podría cambiar a última hora. En las elecciones anteriores voté en persona porque coincidió que estaba en casa, pero esta vez quiero asegurarme y he pensado en el voto por correo. He estado leyendo cosas por internet y tengo un montón de dudas, y además en el trabajo cada uno dice una cosa distinta.\n\nPrimero, sobre la solicitud: un compañero dice que se puede pedir hasta el mismo día de las elecciones y otro que el plazo ya ha terminado. ¿Cuál es el plazo real? Tengo el DNI electrónico y el certificado digital instalado en el ordenador de casa, ¿puedo hacerlo todo online sin pisar una oficina? ¿Hace falta explicar el motivo por el que no voy a estar?\n\nSegundo, sobre la documentación: como paso tanto tiempo fuera, me preocupa no estar en casa cuando venga el cartero. ¿La puede recoger mi pareja con una autorización firmada por mí? Si no, ¿qué pasa, la devuelven? ¿Entre qué fechas la mandan? ¿Y cómo puedo saber si mi solicitud se ha aceptado sin llamar a nadie?\n\nTercero, sobre cómo rellenarlo: he visto que vienen varios sobres y papeletas y me da miedo equivocarme. ¿Qué va dentro de qué? Si pongo en el sobre dos papeletas iguales del Congreso por error, ¿se anula? ¿Y si escribo algo en la papeleta, por ejemplo una palabra al lado de un nombre? ¿Qué pasa si meto el sobre del Senado sin papeleta porque no tengo claro a quién votar?\n\nCuarto, sobre el envío: ¿hasta qué día lo puedo mandar y tengo que pagar algo? ¿Lo puede llevar mi pareja a Correos? Si se retrasa y llega a la mesa por la tarde del 29, ¿sigue contando?\n\nY quinto, una duda que me ha surgido leyendo un grupo de WhatsApp: alguien decía que para que el voto por correo cuente hay que ir también a la mesa el domingo a confirmarlo. Si al final la revisión se cancela y estoy en Gijón ese día, ¿puedo ir a votar en persona aunque haya pedido el voto por correo? Y ya puestos, ¿la empresa tiene que darme horas para hacer todo esto si estoy trabajando lejos de casa?\n\nMuchas gracias por vuestra paciencia, de verdad, porque en las webs oficiales me pierdo.",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11",
+          "19 nov"
+        ],
+        [
+          "dni electronico",
+          "certificado digital",
+          "internet",
+          "online",
+          "telematic",
+          "web"
+        ],
+        [
+          "personal",
+          "en persona",
+          "identidad",
+          "recoger"
+        ],
+        [
+          "9 de noviembre",
+          "9/11",
+          "9 al 22",
+          "22 de noviembre",
+          "22/11",
+          "al 22"
+        ],
+        [
+          "sobre de votacion",
+          "sobre de voto",
+          "sobre pequeno"
+        ],
+        [
+          "nulo"
+        ],
+        [
+          "blanco"
+        ],
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11",
+          "25 nov"
+        ],
+        [
+          "sin franqueo",
+          "gratuit",
+          "no tienes que pagar",
+          "gratis",
+          "sin coste"
+        ],
+        [
+          "anotad",
+          "censo"
+        ],
+        [
+          "cuatro horas",
+          "4 horas"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 19",
+        "26 de noviembre",
+        "26/11",
+        "si, puedes ir a votar a tu mesa"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "cid=1702",
+        "sede.ine.gob.es",
+        "BOE-A-1999-8583",
+        "maldita.es"
+      ],
+      "nota": "larga (>3000 caracteres), muchas dudas. Contexto 2.2 completo (19/11; vía telemática; recepción personal; 9-22/11; estado en sede del INE; sobres; 25/11 sin franqueo; art. 73.1 anotado en el censo), 3.3 (papeletas alteradas nulas; sobre vacío blanco) y 2.6 (art. 13.2 RD 605/1999)"
+    }
+  ]
+}

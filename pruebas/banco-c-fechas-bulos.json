@@ -1,0 +1,3944 @@
+{
+  "descripcion": "Banco C de pruebas del chat de ¿Cómo voto? (29N): fechas del calendario y bulos sobre cómo se vota. Fecha de referencia: 22/10/2026. Fuentes de verdad: datos/calendario_29N_2026.json (26 entradas, todas cubiertas), contexto.md (1.2, 2, 3.3, 5, 6.1, 6.3) y SETUP.md. Mismo esquema que banco-chat.json más «categoria»: calendario (fecha de cada entrada), calendario_a_tiempo (¿estoy a tiempo?, límites inclusivos y días que faltan; hoy 22/10), bulo_corpus (desmentir o confirmar con la cifra o fuente del corpus) y bulo_fuera_corpus (no cubierto: solo se exige no confirmarlo; alternativas generosas). Comparación sin tildes ni mayúsculas; las fechas aceptan «19 de noviembre», «19/11» y «19-11» (una fecha de un dígito, p. ej. «2/11», también casa con 12/11 y 22/11: se acepta la laxitud).",
+  "casos": [
+    {
+      "id": "c_cal_convocatoria",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Qué día se publicó en el BOE el decreto de convocatoria de las elecciones del 29 de noviembre?",
+      "debe_contener": [
+        [
+          "6 de octubre",
+          "6/10",
+          "6-10",
+          "06/10"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "boe.es",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario convocatoria_boe (6/10, RD 806/2026, BOE-A-2026-20742); contexto 1.1. «6/10» también casa con 16/10 o 26/10: se acepta"
+    },
+    {
+      "id": "c_cal_convocatoria_coloquial",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "q dia salio en el boe el real decreto que convoca las generales??",
+      "debe_contener": [
+        [
+          "6 de octubre",
+          "6/10",
+          "6-10",
+          "06/10"
+        ],
+        [
+          "806/2026",
+          "real decreto"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "boe.es",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario convocatoria_boe; contexto 1.1 (RD 806/2026 publicado y en vigor el 6/10). Sin tildes ni mayúsculas"
+    },
+    {
+      "id": "c_cal_erta_solicitud",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "Estoy trabajando seis meses en Londres pero sigo viviendo oficialmente en Madrid. ¿Hasta cuándo puedo solicitar el voto?",
+      "debe_contener": [
+        [
+          "31 de octubre",
+          "31/10",
+          "31-10"
+        ],
+        [
+          "consulado",
+          "consular"
+        ]
+      ],
+      "no_debe_contener": [
+        "hasta el 19 de noviembre puedes"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario erta_solicitud (6/10–31/10); contexto 2.4.2 (se pide a la OCE entregándolo en la oficina consular)"
+    },
+    {
+      "id": "c_atiempo_erta_hoy",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "Hoy es 22 de octubre y me voy de Erasmus a Bolonia hasta febrero. ¿Llego a tiempo para pedir el voto como residente temporal en el extranjero?",
+      "debe_contener": [
+        [
+          "31 de octubre",
+          "31/10",
+          "31-10"
+        ],
+        [
+          "estas a tiempo",
+          "aun puedes",
+          "todavia puedes",
+          "sigue abierto",
+          "esta abierto",
+          "plazo abierto",
+          "aun estas",
+          "todavia estas",
+          "tienes hasta",
+          "puedes solicitar",
+          "puedes pedir",
+          "dentro de plazo",
+          "en plazo",
+          "si, puedes",
+          "si puedes",
+          "aun hay tiempo",
+          "todavia hay tiempo"
+        ]
+      ],
+      "no_debe_contener": [
+        "ya ha cerrado",
+        "ya esta cerrado",
+        "ya se cerro",
+        "el plazo ya termino",
+        "ya ha terminado el plazo",
+        "ya ha finalizado"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario erta_solicitud: plazo abierto el 22/10 (hasta 31/10). No debe decir que ya cerró"
+    },
+    {
+      "id": "c_atiempo_erta_31",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "¿El 31 de octubre todavía vale para pedir el voto ERTA o tiene que ser antes?",
+      "debe_contener": [
+        [
+          "31 de octubre",
+          "31/10",
+          "31-10"
+        ],
+        [
+          "ultimo dia",
+          "incluido",
+          "inclusive",
+          "si, ",
+          "si puedes",
+          "todavia",
+          "aun ",
+          "estas a tiempo",
+          "hasta el"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 31",
+        "tiene que ser antes",
+        "30 de octubre como ultimo"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario erta_solicitud: fecha_fin 31/10 inclusiva"
+    },
+    {
+      "id": "c_atiempo_erta_tarde",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "Se me pasó: ¿puedo pedir el voto ERTA el 3 de noviembre?",
+      "debe_contener": [
+        [
+          "31 de octubre",
+          "31/10",
+          "31-10"
+        ],
+        [
+          "termin",
+          "cerr",
+          "cierr",
+          "finaliz",
+          "ya no",
+          "acabo",
+          "paso el plazo",
+          "fuera de plazo",
+          "expir",
+          "venci",
+          "no puedes",
+          "no podras",
+          "no es posible",
+          "no se puede",
+          "demasiado tarde",
+          "tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes pedirlo el 3",
+        "aun estas a tiempo",
+        "todavia estas a tiempo"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario erta_solicitud: cerrado tras el 31/10; el 3/11 está fuera de plazo"
+    },
+    {
+      "id": "c_cal_braille",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Hasta qué día se puede solicitar la documentación para votar en braille?",
+      "debe_contener": [
+        [
+          "braille"
+        ],
+        [
+          "2 de noviembre",
+          "2/11",
+          "2-11",
+          "02/11"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 2 de noviembre"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "interior.gob.es"
+      ],
+      "nota": "calendario braille_solicitud (6/10–2/11); contexto 2.5 (plazo del kit Braille). «2/11» casa también con 12/11 y 22/11: se acepta"
+    },
+    {
+      "id": "c_atiempo_braille_hoy",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "mi abuela es ciega y lee braille, hoy 22 de octubre todavia puede pedir la documentacion en braille para votar?",
+      "debe_contener": [
+        [
+          "2 de noviembre",
+          "2/11",
+          "2-11",
+          "02/11"
+        ],
+        [
+          "estas a tiempo",
+          "aun puedes",
+          "todavia puedes",
+          "sigue abierto",
+          "esta abierto",
+          "plazo abierto",
+          "aun estas",
+          "todavia estas",
+          "tienes hasta",
+          "puedes solicitar",
+          "puedes pedir",
+          "dentro de plazo",
+          "en plazo",
+          "si, puedes",
+          "si puedes",
+          "aun hay tiempo",
+          "todavia hay tiempo"
+        ]
+      ],
+      "no_debe_contener": [
+        "ya ha cerrado",
+        "ya esta cerrado",
+        "ya se cerro",
+        "el plazo ya termino",
+        "ya ha terminado el plazo",
+        "ya ha finalizado"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "interior.gob.es"
+      ],
+      "nota": "calendario braille_solicitud: abierto el 22/10 (hasta 2/11). Sin tildes"
+    },
+    {
+      "id": "c_atiempo_braille_tarde",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "¿Se puede pedir el kit de voto Braille el 10 de noviembre?",
+      "debe_contener": [
+        [
+          "2 de noviembre",
+          "2/11",
+          "2-11",
+          "02/11"
+        ],
+        [
+          "termin",
+          "cerr",
+          "cierr",
+          "finaliz",
+          "ya no",
+          "acabo",
+          "paso el plazo",
+          "fuera de plazo",
+          "expir",
+          "venci",
+          "no puedes",
+          "no podras",
+          "no es posible",
+          "no se puede",
+          "demasiado tarde",
+          "tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "aun estas a tiempo",
+        "todavia estas a tiempo",
+        "si, puedes pedirlo el 10"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "interior.gob.es"
+      ],
+      "nota": "calendario braille_solicitud: el 10/11 ya está cerrado (fin 2/11)"
+    },
+    {
+      "id": "c_cal_correo_solicitud_formal",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "Le ruego me indique el plazo de solicitud del voto por correspondencia para las elecciones generales de 2026.",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 19"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario voto_correo_solicitud (6/10–19/11); contexto 2.2.1 (art. 72.a). Registro formal"
+    },
+    {
+      "id": "c_cal_correo_solicitud_sintildes",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "hasta cuando puedo solicitar el voto x correo? vivo en valencia y el 29 no estoy",
+      "debe_contener": [
+        [
+          "correo"
+        ],
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 19"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario voto_correo_solicitud; contexto 2.2.1. Coloquial sin tildes"
+    },
+    {
+      "id": "c_atiempo_correo_19",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "¿Puedo pedir el voto por correo el 19 de noviembre o ya es tarde?",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11"
+        ],
+        [
+          "ultimo dia",
+          "incluido",
+          "inclusive",
+          "si, ",
+          "si puedes",
+          "todavia",
+          "aun ",
+          "estas a tiempo",
+          "hasta el"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 19",
+        "ya es tarde",
+        "es demasiado tarde",
+        "18 de noviembre",
+        "18/11"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario voto_correo_solicitud: el 19/11 es el último día, incluido (art. 72.a: décimo día anterior)"
+    },
+    {
+      "id": "c_atiempo_correo_20",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "¿Y si pido el voto por correo el 20 de noviembre, me lo aceptan?",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11"
+        ],
+        [
+          "termin",
+          "cerr",
+          "cierr",
+          "finaliz",
+          "ya no",
+          "acabo",
+          "paso el plazo",
+          "fuera de plazo",
+          "expir",
+          "venci",
+          "no puedes",
+          "no podras",
+          "no es posible",
+          "no se puede",
+          "demasiado tarde",
+          "tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, te lo aceptan",
+        "aun estas a tiempo",
+        "todavia estas a tiempo",
+        "si, puedes pedirlo el 20"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario voto_correo_solicitud: el 20/11 queda fuera (fin 19/11)"
+    },
+    {
+      "id": "c_atiempo_correo_hoy",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "¿Estoy a tiempo de pedir hoy el voto por correo?",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11"
+        ],
+        [
+          "estas a tiempo",
+          "aun puedes",
+          "todavia puedes",
+          "sigue abierto",
+          "esta abierto",
+          "plazo abierto",
+          "aun estas",
+          "todavia estas",
+          "tienes hasta",
+          "puedes solicitar",
+          "puedes pedir",
+          "dentro de plazo",
+          "en plazo",
+          "si, puedes",
+          "si puedes",
+          "aun hay tiempo",
+          "todavia hay tiempo"
+        ]
+      ],
+      "no_debe_contener": [
+        "ya ha cerrado",
+        "ya esta cerrado",
+        "ya se cerro",
+        "el plazo ya termino",
+        "ya ha terminado el plazo",
+        "ya ha finalizado"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario voto_correo_solicitud: abierto el 22/10 (hasta 19/11)"
+    },
+    {
+      "id": "c_dias_correo",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "¿Cuántos días me quedan para pedir el voto por correo?",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11"
+        ],
+        [
+          "28 dias",
+          "29 dias",
+          "cuatro semanas",
+          "4 semanas",
+          "veintiocho dias",
+          "veintinueve dias"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 19"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario voto_correo_solicitud: del 22/10 al 19/11 hay 28 días (29 contando ambos extremos); se aceptan ambos"
+    },
+    {
+      "id": "c_atiempo_correo_cera_en_espana",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "Estoy inscrito como residente en el extranjero pero en noviembre estaré en España. ¿Puedo pedir aquí el voto por correo y hasta cuándo?",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11"
+        ],
+        [
+          "correos"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario voto_correo_solicitud (incluye CERA temporalmente en España); contexto 2.3.7 (solicitud en Correos 6/10–19/11)"
+    },
+    {
+      "id": "c_cal_coaliciones",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Hasta qué día tenían los partidos para comunicar a la Junta Electoral las coaliciones electorales?",
+      "debe_contener": [
+        [
+          "16 de octubre",
+          "16/10",
+          "16-10"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario coaliciones (7/10–16/10). Fecha de procedimiento, no información sobre partidos concretos"
+    },
+    {
+      "id": "c_cal_censo",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿En qué fechas se podía consultar el censo electoral y presentar reclamaciones?",
+      "debe_contener": [
+        [
+          "12 de octubre",
+          "12/10",
+          "12-10"
+        ],
+        [
+          "19 de octubre",
+          "19/10",
+          "19-10"
+        ]
+      ],
+      "no_debe_contener": [
+        "aun puedes reclamar",
+        "todavia puedes reclamar",
+        "aun estas a tiempo",
+        "todavia estas a tiempo"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "ce-mesas"
+      ],
+      "nota": "calendario consulta_censo (12/10–19/10); contexto 1.2; SETUP: cerrada el 22/10"
+    },
+    {
+      "id": "c_atiempo_censo_reclamar",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "Acabo de ver que no aparezco en el censo. Hoy es 22 de octubre, ¿estoy a tiempo de reclamar?",
+      "debe_contener": [
+        [
+          "19 de octubre",
+          "19/10",
+          "19-10",
+          "termin",
+          "cerr",
+          "cierr",
+          "finaliz",
+          "ya no",
+          "acabo",
+          "paso el plazo",
+          "fuera de plazo",
+          "expir",
+          "venci",
+          "no puedes",
+          "no podras",
+          "no es posible",
+          "no se puede",
+          "demasiado tarde",
+          "tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "aun estas a tiempo",
+        "todavia estas a tiempo",
+        "puedes reclamar hasta",
+        "aun puedes reclamar",
+        "todavia puedes reclamar"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "ce-mesas",
+        "cid=1700"
+      ],
+      "nota": "calendario consulta_censo: cerrado el 19/10; SETUP: no ofrecer reclamación como trámite abierto"
+    },
+    {
+      "id": "c_atiempo_censo_coloquial",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "oye el censo se puede mirar todavia pa reclamar?? q no se si estoy apuntada",
+      "debe_contener": [
+        [
+          "19 de octubre",
+          "19/10",
+          "19-10",
+          "termin",
+          "cerr",
+          "cierr",
+          "finaliz",
+          "ya no",
+          "acabo",
+          "paso el plazo",
+          "fuera de plazo",
+          "expir",
+          "venci",
+          "no puedes",
+          "no podras",
+          "no es posible",
+          "no se puede",
+          "demasiado tarde",
+          "tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "aun estas a tiempo",
+        "todavia estas a tiempo",
+        "puedes reclamar hasta",
+        "aun puedes reclamar",
+        "todavia puedes reclamar"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "ce-mesas",
+        "cid=1700"
+      ],
+      "nota": "calendario consulta_censo cerrado (19/10). Puede enlazar la consulta de mesa del INE (SETUP), pero no la reclamación"
+    },
+    {
+      "id": "c_censo_consulta_mesa",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "Quiero saber en qué colegio y en qué mesa me toca votar. ¿Dónde lo puedo mirar?",
+      "debe_contener": [
+        [
+          "ine",
+          "oficina del censo",
+          "tarjeta censal"
+        ]
+      ],
+      "no_debe_contener": [
+        "ya no puedes consultar tu mesa",
+        "no puedes saber tu mesa"
+      ],
+      "fuentes_esperadas": [
+        "ce-mesas",
+        "sede.ine.gob.es",
+        "ine.es"
+      ],
+      "nota": "SETUP y contexto 2.1.1: la consulta de mesa y local del INE (sede.ine.gob.es/ce-mesas) se puede enlazar aunque el plazo de reclamaciones (12–19/10) haya cerrado. «ine» es subcadena muy laxa"
+    },
+    {
+      "id": "c_atiempo_oposicion_propaganda",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "No quiero que los partidos me manden propaganda electoral a casa. ¿Puedo todavía oponerme a que les den mis datos del censo?",
+      "debe_contener": [
+        [
+          "19 de octubre",
+          "19/10",
+          "19-10",
+          "termin",
+          "cerr",
+          "cierr",
+          "finaliz",
+          "ya no",
+          "acabo",
+          "paso el plazo",
+          "fuera de plazo",
+          "expir",
+          "venci",
+          "no puedes",
+          "no podras",
+          "no es posible",
+          "no se puede",
+          "demasiado tarde",
+          "tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "aun estas a tiempo",
+        "todavia estas a tiempo",
+        "puedes oponerte hasta",
+        "aun puedes oponerte",
+        "todavia puedes oponerte"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "ine.es",
+        "ine.gob.es"
+      ],
+      "nota": "contexto 1.2 (19/10: último día para oponerse a figurar en las copias del censo para propaganda, art. 39.3; INE). Cerrado el 22/10"
+    },
+    {
+      "id": "c_cal_candidaturas_presentacion",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Cuál es el plazo de presentación de candidaturas ante las Juntas Electorales Provinciales?",
+      "debe_contener": [
+        [
+          "21 de octubre",
+          "21/10",
+          "21-10"
+        ],
+        [
+          "26 de octubre",
+          "26/10",
+          "26-10"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario presentacion_candidaturas (21/10–26/10); contexto 1.2"
+    },
+    {
+      "id": "c_atiempo_candidaturas_hoy",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "¿Sigue abierto hoy el plazo para presentar candidaturas a las generales?",
+      "debe_contener": [
+        [
+          "26 de octubre",
+          "26/10",
+          "26-10"
+        ],
+        [
+          "abierto",
+          "sigue",
+          "todavia",
+          "aun ",
+          "hasta el 26",
+          "en curso"
+        ]
+      ],
+      "no_debe_contener": [
+        "ya ha cerrado",
+        "ya esta cerrado",
+        "ya se cerro",
+        "el plazo ya termino",
+        "ya ha terminado el plazo",
+        "ya ha finalizado"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario presentacion_candidaturas: el 22/10 está abierto (21/10–26/10)"
+    },
+    {
+      "id": "c_cal_cera_envio_doc",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "Vivo en Buenos Aires y estoy inscrito en el consulado. ¿Cuándo me mandan la documentación para votar? ¿Tengo que pedirla?",
+      "debe_contener": [
+        [
+          "24 de octubre",
+          "24/10",
+          "24-10"
+        ],
+        [
+          "30 de octubre",
+          "30/10",
+          "30-10"
+        ],
+        [
+          "de oficio",
+          "no tienes que pedir",
+          "no hace falta",
+          "no necesitas",
+          "no tienes que solicitar",
+          "automatic",
+          "no es necesario",
+          "sin solicitarla",
+          "sin pedirla",
+          "no hay que pedir",
+          "no hay que solicitar"
+        ]
+      ],
+      "no_debe_contener": [
+        "tienes que solicitarlo antes",
+        "voto rogado sigue"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario cera_envio_documentacion (24/10–30/10, de oficio); contexto 2.3 (art. 75.1 tras LO 12/2022)"
+    },
+    {
+      "id": "c_atiempo_cera_doc_no_llega",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "Soy residente en Londres (CERA). Hoy es 22/10 y no me ha llegado nada de la documentación para votar. ¿Se ha perdido?",
+      "debe_contener": [
+        [
+          "24 de octubre",
+          "24/10",
+          "24-10"
+        ],
+        [
+          "todavia no",
+          "aun no",
+          "no ha empezado",
+          "no ha comenzado",
+          "a partir del",
+          "desde el",
+          "empieza",
+          "comienza",
+          "no se ha",
+          "no es posible",
+          "no puede",
+          "normal",
+          "hasta que"
+        ]
+      ],
+      "no_debe_contener": [
+        "deberia haberte llegado ya",
+        "ya deberias haberla recibido"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario cera_envio_documentacion: el envío empieza el 24/10, así que el 22/10 es normal no tenerla"
+    },
+    {
+      "id": "c_cal_publicacion_candidaturas",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Qué día publica el BOE las candidaturas presentadas?",
+      "debe_contener": [
+        [
+          "28 de octubre",
+          "28/10",
+          "28-10"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario publicacion_candidaturas (28/10); contexto 1.2"
+    },
+    {
+      "id": "c_cal_sorteo_mesas",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Cuándo se hace el sorteo de los miembros de las mesas electorales?",
+      "debe_contener": [
+        [
+          "31 de octubre",
+          "31/10",
+          "31-10"
+        ],
+        [
+          "4 de noviembre",
+          "4/11",
+          "4-11",
+          "04/11"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario sorteo_mesas (31/10–4/11); contexto 2.7 (art. 26.4). «4/11» casa con 14/11 y 24/11: se acepta"
+    },
+    {
+      "id": "c_sorteo_todavia_no",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "Mi vecino dice que ya han sorteado las mesas y que me ha tocado. ¿Puede ser, a día de hoy?",
+      "debe_contener": [
+        [
+          "31 de octubre",
+          "31/10",
+          "31-10"
+        ],
+        [
+          "todavia no",
+          "aun no",
+          "no ha empezado",
+          "no ha comenzado",
+          "a partir del",
+          "desde el",
+          "empieza",
+          "comienza",
+          "no se ha",
+          "no es posible",
+          "no puede",
+          "normal",
+          "hasta que"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, ya se han sorteado",
+        "ya se ha celebrado el sorteo",
+        "ya se hizo el sorteo"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario sorteo_mesas: el 22/10 el sorteo aún no ha empezado (31/10–4/11)"
+    },
+    {
+      "id": "c_dias_sorteo",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "¿Cuántos días faltan para que empiece el sorteo de mesas?",
+      "debe_contener": [
+        [
+          "31 de octubre",
+          "31/10",
+          "31-10"
+        ],
+        [
+          "9 dias",
+          "nueve dias"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario sorteo_mesas: del 22/10 al 31/10 hay 9 días"
+    },
+    {
+      "id": "c_cal_proclamacion",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Qué día proclaman las candidaturas las Juntas Electorales Provinciales?",
+      "debe_contener": [
+        [
+          "2 de noviembre",
+          "2/11",
+          "2-11",
+          "02/11"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario proclamacion_candidaturas (2/11); contexto 1.2 (art. 47.3)"
+    },
+    {
+      "id": "c_cal_cera_papeletas_descargables",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "Vivo en el extranjero. ¿Desde cuándo puedo descargarme las papeletas? ¿Es verdad que la descarga se cierra el 7 de noviembre?",
+      "debe_contener": [
+        [
+          "7 de noviembre",
+          "7/11",
+          "7-11",
+          "07/11"
+        ],
+        [
+          "no se cierra",
+          "no es el cierre",
+          "no cierra",
+          "no es la fecha de cierre",
+          "limite para",
+          "como tarde",
+          "a mas tardar",
+          "no mas tarde",
+          "no es cierto",
+          "no coincide",
+          "no es asi"
+        ]
+      ],
+      "no_debe_contener": [
+        "la descarga se cierra el 7",
+        "solo puedes descargarlas hasta el 7",
+        "si, se cierra el 7"
+      ],
+      "fuentes_esperadas": [
+        "descarga_candidaturas",
+        "ine.es",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario cera_papeletas_descargables (2/11–7/11): el 7/11 es el límite para publicarlas, no el cierre de la descarga; contexto 2.3.2"
+    },
+    {
+      "id": "c_cal_proclamadas_boe",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Cuándo salen publicadas en el BOE las candidaturas ya proclamadas?",
+      "debe_contener": [
+        [
+          "3 de noviembre",
+          "3/11",
+          "3-11",
+          "03/11"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario publicacion_candidaturas_proclamadas (3/11); contexto 1.2. «3/11» casa con 13/11 y 23/11: se acepta"
+    },
+    {
+      "id": "c_cal_erta_envio_doc",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "Ya he solicitado el voto como elector temporalmente en el extranjero. ¿Cuándo me envían la documentación?",
+      "debe_contener": [
+        [
+          "3 de noviembre",
+          "3/11",
+          "3-11",
+          "03/11"
+        ],
+        [
+          "9 de noviembre",
+          "9/11",
+          "9-11",
+          "09/11"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario erta_envio_documentacion (3/11–9/11; hasta 17/11 si hay recursos; INE 10–17/11); contexto 2.4.3"
+    },
+    {
+      "id": "c_cal_erta_remision",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "Como ERTA, ¿hasta qué día puedo enviar mi voto por correo certificado a mi mesa en España?",
+      "debe_contener": [
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11"
+        ],
+        [
+          "certificad"
+        ]
+      ],
+      "no_debe_contener": [
+        "26 de noviembre",
+        "26/11"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario erta_remision_voto (3/11–25/11); contexto 2.4.4"
+    },
+    {
+      "id": "c_cal_cera_envio_papeletas",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Cuándo envían las papeletas oficiales a los españoles que viven en el extranjero?",
+      "debe_contener": [
+        [
+          "4 de noviembre",
+          "4/11",
+          "4-11",
+          "04/11"
+        ],
+        [
+          "8 de noviembre",
+          "8/11",
+          "8-11",
+          "08/11"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario cera_envio_papeletas (4/11–8/11; 6–14/11 si hay recursos); contexto 2.3.2"
+    },
+    {
+      "id": "c_cal_cera_voto_correo",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "Vivo en México y estoy en el CERA. ¿Cuál es el último día para mandar mi voto por correo al consulado?",
+      "debe_contener": [
+        [
+          "24 de noviembre",
+          "24/11",
+          "24-11"
+        ],
+        [
+          "consulado",
+          "consular"
+        ]
+      ],
+      "no_debe_contener": [
+        "25 de noviembre",
+        "25/11"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario cera_voto_correo (4/11–24/11); contexto 2.3.3 (art. 75.7). No confundir con el 25/11 de los residentes en España"
+    },
+    {
+      "id": "c_atiempo_cera_correo_hoy",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "Soy CERA. ¿Puedo mandar ya hoy mi voto por correo al consulado?",
+      "debe_contener": [
+        [
+          "4 de noviembre",
+          "4/11",
+          "4-11",
+          "04/11"
+        ],
+        [
+          "todavia no",
+          "aun no",
+          "no puedes",
+          "no es posible",
+          "no es valid",
+          "no seria valid",
+          "proclamacion",
+          "a partir del",
+          "desde el 4",
+          "primero"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes mandarlo ya",
+        "puedes enviarlo hoy"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario cera_voto_correo: el 22/10 aún no (inicio 4/11 según INE; no valen sobres que lleguen antes de la proclamación definitiva, art. 75.7)"
+    },
+    {
+      "id": "c_cal_correo_envio_doc",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "Ya pedí el voto por correo. ¿Cuándo me llega a casa la documentación?",
+      "debe_contener": [
+        [
+          "9 de noviembre",
+          "9/11",
+          "9-11",
+          "09/11"
+        ],
+        [
+          "22 de noviembre",
+          "22/11",
+          "22-11"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario voto_correo_envio_documentacion (9/11–22/11); contexto 2.2.4 (art. 73.2)"
+    },
+    {
+      "id": "c_correo_doc_aun_no",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "Pedí el voto por correo hace una semana y todavía no me ha llegado nada. ¿Es normal?",
+      "debe_contener": [
+        [
+          "9 de noviembre",
+          "9/11",
+          "9-11",
+          "09/11"
+        ],
+        [
+          "todavia no",
+          "aun no",
+          "no ha empezado",
+          "no ha comenzado",
+          "a partir del",
+          "desde el",
+          "empieza",
+          "comienza",
+          "no se ha",
+          "no es posible",
+          "no puede",
+          "normal",
+          "hasta que"
+        ]
+      ],
+      "no_debe_contener": [
+        "deberia haberte llegado ya",
+        "ya deberias tenerlo",
+        "ya deberias haberlo recibido"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario voto_correo_envio_documentacion: el envío empieza el 9/11; el 22/10 es normal no tenerla"
+    },
+    {
+      "id": "c_cal_correo_remision",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Cuál es el último día para echar el voto por correo en la oficina de Correos?",
+      "debe_contener": [
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11"
+        ]
+      ],
+      "no_debe_contener": [
+        "26 de noviembre",
+        "26/11",
+        "antes del 25"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario voto_correo_remision (hasta 25/11); contexto 2.2.5 y nota de 1.2 (la JEC dice 25/11, no 26/11)"
+    },
+    {
+      "id": "c_atiempo_correo_26",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "Si envío el voto por correo el 26 de noviembre, ¿llega a contar?",
+      "debe_contener": [
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11"
+        ],
+        [
+          "tarde",
+          "fuera de plazo",
+          "ya no",
+          "no llega",
+          "no cuenta",
+          "no se computa",
+          "no es valid",
+          "no seria valid",
+          "no puedes",
+          "no podras",
+          "no se admite",
+          "ultimo dia",
+          "termin",
+          "cerr"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, cuenta",
+        "si llega a contar",
+        "aun estas a tiempo el 26"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario voto_correo_remision: el 26/11 está fuera (fin 25/11)"
+    },
+    {
+      "id": "c_atiempo_correo_envio_hoy",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "¿Puedo enviar ya hoy, 22 de octubre, mi voto por correo?",
+      "debe_contener": [
+        [
+          "9 de noviembre",
+          "9/11",
+          "9-11",
+          "09/11",
+          "10 de noviembre",
+          "10/11",
+          "10-11"
+        ],
+        [
+          "todavia no",
+          "aun no",
+          "no puedes",
+          "no es posible",
+          "primero",
+          "cuando recibas",
+          "cuando te llegue",
+          "una vez recibas",
+          "desde que recibas",
+          "cuando la recibas"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes enviarlo ya",
+        "puedes enviarlo hoy"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario voto_correo_remision (desde que se recibe la documentación, 9 o 10/11) y voto_correo_envio_documentacion (9/11–22/11)"
+    },
+    {
+      "id": "c_seguimiento_correo_19",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "historial": [
+        {
+          "rol": "usuario",
+          "texto": "¿Cómo pido el voto por correo?"
+        },
+        {
+          "rol": "asistente",
+          "texto": "Puedes pedirlo en cualquier oficina de Correos con tu DNI, o por internet en la web de Correos con DNI electrónico o certificado digital."
+        }
+      ],
+      "pregunta": "¿Y si lo pido justo el último día, me da tiempo a votar?",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11"
+        ],
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11"
+        ]
+      ],
+      "no_debe_contener": [
+        "antes del 19"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "seguimiento: el tema está en el historial. Solicitud hasta 19/11 incluido; documentación hasta 22/11; envío hasta 25/11"
+    },
+    {
+      "id": "c_cal_campana",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Cuándo empieza y cuándo termina la campaña electoral?",
+      "debe_contener": [
+        [
+          "13 de noviembre",
+          "13/11",
+          "13-11"
+        ],
+        [
+          "27 de noviembre",
+          "27/11",
+          "27-11"
+        ]
+      ],
+      "no_debe_contener": [
+        "termina el 28",
+        "acaba el 28"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "boe.es",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario campana (00:00 del 13/11 a 24:00 del 27/11); contexto 1.1 (RD art. 4)"
+    },
+    {
+      "id": "c_campana_ya_empezo",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "la campaña ya ha empezao? veo carteles x todas partes",
+      "debe_contener": [
+        [
+          "13 de noviembre",
+          "13/11",
+          "13-11"
+        ],
+        [
+          "todavia no",
+          "aun no",
+          "no ha empezado",
+          "no ha comenzado",
+          "empieza el",
+          "comienza el",
+          "a partir del 13",
+          "desde el 13"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, la campana ya ha empezado",
+        "ya estamos en campana"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "boe.es",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario campana: el 22/10 aún no ha empezado (13/11). Coloquial sin tildes"
+    },
+    {
+      "id": "c_dias_campana_duracion",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Cuántos días dura la campaña electoral?",
+      "debe_contener": [
+        [
+          "15 dias",
+          "quince dias"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "boe.es",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario campana (13/11–27/11, 15 días; contexto 1.1 RD art. 4)"
+    },
+    {
+      "id": "c_dias_campana_falta",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "¿Cuántos días faltan para que empiece la campaña?",
+      "debe_contener": [
+        [
+          "13 de noviembre",
+          "13/11",
+          "13-11"
+        ],
+        [
+          "22 dias",
+          "veintidos dias"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "boe.es",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario campana: del 22/10 al 13/11 hay 22 días"
+    },
+    {
+      "id": "c_cal_cera_urna",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "Soy residente en París. ¿Qué días puedo ir al consulado a votar en urna?",
+      "debe_contener": [
+        [
+          "21 de noviembre",
+          "21/11",
+          "21-11"
+        ],
+        [
+          "26 de noviembre",
+          "26/11",
+          "26-11"
+        ],
+        [
+          "consulado",
+          "consular"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario cera_deposito_urna (21/11–26/11); contexto 2.3.3 (art. 75.4)"
+    },
+    {
+      "id": "c_atiempo_cera_urna_27",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "Vivo en Bruselas. ¿Puedo ir a votar al consulado el viernes 27 de noviembre?",
+      "debe_contener": [
+        [
+          "26 de noviembre",
+          "26/11",
+          "26-11"
+        ],
+        [
+          "termin",
+          "cerr",
+          "cierr",
+          "finaliz",
+          "ya no",
+          "acabo",
+          "paso el plazo",
+          "fuera de plazo",
+          "expir",
+          "venci",
+          "no puedes",
+          "no podras",
+          "no es posible",
+          "no se puede",
+          "demasiado tarde",
+          "tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar en el consulado el 27",
+        "aun estas a tiempo el 27"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario cera_deposito_urna: el voto en urna consular termina el 26/11"
+    },
+    {
+      "id": "c_cal_sondeos",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Desde qué día está prohibido publicar sondeos electorales?",
+      "debe_contener": [
+        [
+          "24 de noviembre",
+          "24/11",
+          "24-11"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario sondeos (24/11–28/11); contexto 5 (art. 69.7). Es norma de campaña, no contenido de encuestas"
+    },
+    {
+      "id": "c_cal_reflexion",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Qué día es la jornada de reflexión?",
+      "debe_contener": [
+        [
+          "28 de noviembre",
+          "28/11",
+          "28-11",
+          "sabado 28"
+        ]
+      ],
+      "no_debe_contener": [
+        "27 de noviembre es la jornada de reflexion"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario jornada_reflexion (28/11)"
+    },
+    {
+      "id": "c_reflexion_campana",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Se puede pedir el voto en un mitin el sábado 28 de noviembre?",
+      "debe_contener": [
+        [
+          "reflexion"
+        ],
+        [
+          "no se puede",
+          "no esta permitid",
+          "prohibid",
+          "no hay campana",
+          "no se permite",
+          "termina el 27",
+          "acaba el 27",
+          "27 de noviembre",
+          "27/11"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, se puede hacer campana el sabado"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672",
+        "BOE-A-2026-20742",
+        "boe.es"
+      ],
+      "nota": "calendario jornada_reflexion (28/11) y campana (fin 27/11); contexto 5 (art. 53)"
+    },
+    {
+      "id": "c_cal_votacion",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Cuándo son las elecciones generales y a qué hora puedo ir a votar?",
+      "debe_contener": [
+        [
+          "29 de noviembre",
+          "29/11",
+          "29-11"
+        ],
+        [
+          "9:00",
+          "9 h",
+          "9h",
+          "nueve",
+          "las 9",
+          "9.00"
+        ],
+        [
+          "20:00",
+          "20 h",
+          "20h",
+          "ocho de la tarde",
+          "las 20",
+          "20.00",
+          "8 de la tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "21:00",
+        "8:00 a 20:00"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "boe.es",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "calendario votacion (29/11, 9:00–20:00; art. 84.1)"
+    },
+    {
+      "id": "c_votacion_domingo",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "las elecciones son el sabado 29 no?",
+      "debe_contener": [
+        [
+          "domingo"
+        ],
+        [
+          "29 de noviembre",
+          "29/11",
+          "29-11"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, el sabado 29",
+        "son el sabado"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "boe.es",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario votacion: 29/11/2026 es domingo (contexto 1.1, RD art. 2)"
+    },
+    {
+      "id": "c_votacion_8_mediamanana",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Puedo ir a votar a las ocho y media de la mañana el día 29?",
+      "debe_contener": [
+        [
+          "9:00",
+          "9 h",
+          "9h",
+          "nueve",
+          "las 9",
+          "9.00"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, a las 8",
+        "si, puedes votar a las ocho"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-2026-20742",
+        "boe.es"
+      ],
+      "nota": "calendario votacion: los colegios abren a las 9:00 (art. 84.1)"
+    },
+    {
+      "id": "c_dias_votacion",
+      "categoria": "calendario_a_tiempo",
+      "tipo": "dentro",
+      "pregunta": "¿Cuántos días faltan para las elecciones?",
+      "debe_contener": [
+        [
+          "29 de noviembre",
+          "29/11",
+          "29-11"
+        ],
+        [
+          "38 dias",
+          "treinta y ocho dias",
+          "37 dias",
+          "39 dias"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "boe.es",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario votacion: del 22/10 al 29/11 hay 38 días (se aceptan 37/39 por la forma de contar)"
+    },
+    {
+      "id": "c_cal_escrutinio",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Cuándo es el escrutinio general de las Juntas Electorales Provinciales?",
+      "debe_contener": [
+        [
+          "4 de diciembre",
+          "4/12",
+          "4-12",
+          "04/12"
+        ],
+        [
+          "7 de diciembre",
+          "7/12",
+          "7-12",
+          "07/12"
+        ]
+      ],
+      "no_debe_contener": [
+        "2 de diciembre",
+        "2/12"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario escrutinio_general (4/12–7/12); contexto nota de 1.2 (algunos medios dan 2/12; prevalece la JEC)"
+    },
+    {
+      "id": "c_cal_constitucion",
+      "categoria": "calendario",
+      "tipo": "dentro",
+      "pregunta": "¿Qué día se constituyen el nuevo Congreso y el nuevo Senado?",
+      "debe_contener": [
+        [
+          "23 de diciembre",
+          "23/12",
+          "23-12"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-2026-20742",
+        "boe.es",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario constitucion_cortes (23/12, 10:00; RD art. 5)"
+    },
+    {
+      "id": "c_bulo_correo_mesa_whatsapp",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "⚠️⚠️ REENVIADO MUCHAS VECES ⚠️⚠️\nOJO!!! Esto me lo ha pasado una amiga que trabaja en el ayuntamiento 👇👇\nSI HABÉIS PEDIDO EL VOTO POR CORREO Y AL FINAL NO LO MANDÁIS, NO PASA NADA: EL DÍA 29 VAIS A VUESTRO COLEGIO Y VOTÁIS NORMAL CON EL DNI, QUE EL VOTO POR CORREO SE ANULA SOLO 🗳️✅\nEs más, dice que lo mejor es pedirlo \"por si acaso\" y luego decidir. Así si ese día hace bueno os vais de puente y si no, votáis en persona. Mucha gente no lo sabe y se queda sin votar!!!! 😡😡\nPÁSALO A TODOS TUS GRUPOS, que esto no lo dicen en la tele 📺❌\n¿Esto es verdad?",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no podras",
+          "no hace falta",
+          "no es necesario",
+          "no tienes que",
+          "no debes",
+          "no es asi",
+          "no es cierto",
+          "no coincide",
+          "no se puede",
+          "falso"
+        ],
+        [
+          "censo",
+          "anotad"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar en la mesa",
+        "puedes votar en la mesa igualmente",
+        "puedes ir a votar a la mesa sin problema"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "maldita.es",
+        "cid=1700",
+        "correos.es"
+      ],
+      "nota": "contexto 6.3 (No coincide; art. 73.1: quien pide el voto por correo queda anotado en el censo y no puede votar en mesa) y 2.2. WhatsApp reenviado, MAYÚSCULAS y emojis"
+    },
+    {
+      "id": "c_bulo_correo_mesa_corto",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Si pido el voto por correo y al final no lo envío, ¿puedo votar en mi mesa el día 29?",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no podras",
+          "no hace falta",
+          "no es necesario",
+          "no tienes que",
+          "no debes",
+          "no es asi",
+          "no es cierto",
+          "no coincide",
+          "no se puede",
+          "falso"
+        ],
+        [
+          "censo",
+          "anotad"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar en la mesa",
+        "puedes votar en la mesa igualmente"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "maldita.es",
+        "cid=1700",
+        "correos.es"
+      ],
+      "nota": "contexto 6.3 (No coincide, art. 73.1) y 2.2"
+    },
+    {
+      "id": "c_bulo_correo_mesa_asegurar",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Me ha llegado esto por el grupo de la comunidad: \"Atención: para que tu voto por correo cuente, el día 29 tienes que ir también a tu mesa electoral a confirmarlo, si no se queda en el limbo\". ¿Hay que hacerlo?",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no podras",
+          "no hace falta",
+          "no es necesario",
+          "no tienes que",
+          "no debes",
+          "no es asi",
+          "no es cierto",
+          "no coincide",
+          "no se puede",
+          "falso"
+        ],
+        [
+          "censo",
+          "anotad"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, tienes que ir",
+        "tambien debes ir a la mesa",
+        "tambien tienes que ir a la mesa"
+      ],
+      "fuentes_esperadas": [
+        "maldita.es",
+        "BOE-A-1985-11672",
+        "cid=1700",
+        "correos.es"
+      ],
+      "nota": "contexto 6.3: verificación de Maldita.es (6/10/2026, «Falso») y art. 73.1 LOREG"
+    },
+    {
+      "id": "c_bulo_fotocopia_whatsapp",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "📢📢 IMPORTANTE PARA EL 29N 📢📢\nEste año la Junta Electoral permite votar con una FOTOCOPIA del DNI, así que si lo tienes caducado, perdido o en renovación NO TE PREOCUPES: imprime una copia, aunque sea en blanco y negro, y llévala al colegio electoral. También vale una foto en el móvil 📱. Lo ha confirmado un interventor que conozco. Compártelo con tus mayores, que muchos se quedan sin votar por esto 👵👴🙏\n---\nReenviado del grupo \"Vecinos Calle Mayor 🏘️\":\n> Yo en las municipales llevé la fotocopia y me dejaron, así que es verdad. Lo importante es que se vea bien la cara y el número. Si la mesa te pone pegas, diles que es una instrucción nueva de la Junta y que pueden llamar a la Junta de Zona para comprobarlo. Y si no te dejan, ¡¡denúncialo!! 💪\n¿Alguien sabe si es cierto?",
+      "debe_contener": [
+        [
+          "original"
+        ],
+        [
+          "no valen fotocopias",
+          "no vale",
+          "no sirve",
+          "no se admite",
+          "no es valid",
+          "no coincide",
+          "no se acepta",
+          "no es cierto",
+          "no puedes",
+          "falso"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, te vale la fotocopia",
+        "las fotocopias valen",
+        "si vale una fotocopia",
+        "si, vale la foto"
+      ],
+      "fuentes_esperadas": [
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 6.3 («Puedo votar con una fotocopia del DNI»: No coincide; Interior «no valen fotocopias») y 2.1.2 (se exigen originales)"
+    },
+    {
+      "id": "c_bulo_fotocopia_perdido",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "se me ha perdido el dni, me vale llevar una fotocopia q tengo en casa?",
+      "debe_contener": [
+        [
+          "original",
+          "no valen fotocopias",
+          "no vale",
+          "no sirve"
+        ],
+        [
+          "pasaporte",
+          "permiso de conducir",
+          "carnet de conducir",
+          "carne de conducir"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, te vale la fotocopia",
+        "las fotocopias valen",
+        "si vale una fotocopia"
+      ],
+      "fuentes_esperadas": [
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 6.3 y 2.1.2 (DNI, pasaporte o permiso de conducir originales; no valen fotocopias)"
+    },
+    {
+      "id": "c_bulo_resguardo_dni",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Me están renovando el DNI y solo tengo el resguardo de la comisaría. ¿Me sirve para votar?",
+      "debe_contener": [
+        [
+          "no vale",
+          "no sirve",
+          "no se admite",
+          "no es valid",
+          "no se acepta",
+          "no puedes",
+          "no coincide",
+          "no es suficiente"
+        ],
+        [
+          "pasaporte",
+          "permiso de conducir",
+          "carnet de conducir",
+          "carne de conducir"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, el resguardo vale",
+        "te sirve el resguardo",
+        "si, te sirve"
+      ],
+      "fuentes_esperadas": [
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2 (Interior: no vale el resguardo del DNI en trámite)"
+    },
+    {
+      "id": "c_bulo_foto_dni_movil",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Me han dicho que basta con enseñar en la mesa una foto del DNI en el móvil. ¿Es así?",
+      "debe_contener": [
+        [
+          "original",
+          "no vale",
+          "no sirve",
+          "no es valid",
+          "no se admite",
+          "no se acepta",
+          "no puedes",
+          "no coincide",
+          "no es cierto",
+          "no puedo confirmar"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, basta con la foto",
+        "si, vale la foto",
+        "puedes ensenar la foto"
+      ],
+      "fuentes_esperadas": [
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2 (se exigen originales; no valen fotocopias; tampoco miDGT ni miDNI). La foto no es original"
+    },
+    {
+      "id": "c_bulo_midni_whatsapp",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "👉 NOVEDAD 29N: ya no hace falta llevar el DNI físico, con la app miDNI en el móvil te identificas en la mesa en 2 segundos. Lo ha aprobado la Junta Electoral Central. ¡Pásalo! 📲✅",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no se puede",
+          "no vale",
+          "no sirve",
+          "no se admite",
+          "suspend",
+          "no cuentes",
+          "no esta permitido",
+          "no es valid",
+          "no se acepta",
+          "no puedo confirmar",
+          "no lo uses",
+          "no coincide",
+          "no es cierto"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes usar midni",
+        "si, puedes identificarte con el movil",
+        "midni es valido"
+      ],
+      "fuentes_esperadas": [
+        "interior.gob.es",
+        "juntaelectoral"
+      ],
+      "nota": "contexto 2.1.2 (JEC, Acuerdo 94/2026: miDNI y miDGT suspendidos como identificación; no debe contarse con ellos)"
+    },
+    {
+      "id": "c_bulo_dni_caducado",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Tengo el DNI caducado desde el verano. Me dicen que con el DNI caducado no te dejan votar, ¿es verdad?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "confirma",
+          "consulta",
+          "interior",
+          "junta electoral",
+          "pasaporte",
+          "permiso de conducir",
+          "carnet de conducir",
+          "carne de conducir"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar con el dni caducado sin problema",
+        "el dni caducado vale sin problema",
+        "es cierto, con el dni caducado no puedes"
+      ],
+      "fuentes_esperadas": [
+        "interior.gob.es",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.1.2: DNI caducado [sin verificar]; no debe afirmarse en ningún sentido hasta confirmarlo con Interior o la JEC; puede sugerir otro documento"
+    },
+    {
+      "id": "c_bulo_19nov_coincide",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Me han pasado esta imagen en el grupo del trabajo: \"ÚLTIMO DÍA PARA PEDIR EL VOTO POR CORREO: 19 DE NOVIEMBRE\". ¿Es correcto?",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11"
+        ],
+        [
+          "coincide",
+          "correcto",
+          "es cierto",
+          "asi es",
+          "efectivamente",
+          "si,",
+          "cierto",
+          "exacto",
+          "es el ultimo dia"
+        ]
+      ],
+      "no_debe_contener": [
+        "no coincide",
+        "es falso",
+        "no es correcto",
+        "no es cierto"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 6.3 («El último día para pedir el voto por correo es el 19 de noviembre»: Coincide; art. 72.a, calendario JEC, Correos)"
+    },
+    {
+      "id": "c_bulo_25nov_solicitud",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "En un grupo dicen que el plazo para pedir el voto por correo acaba el 25 de noviembre. ¿Es así?",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11"
+        ],
+        [
+          "no coincide",
+          "no es correcto",
+          "no es cierto",
+          "no es asi",
+          "falso",
+          "incorrect",
+          "en realidad",
+          "se confunde",
+          "confund"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, acaba el 25",
+        "si, termina el 25",
+        "hasta el 25 de noviembre puedes pedir"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 6.1 (ejemplo tipo a) y 6.3: la solicitud acaba el 19/11; el 25/11 es el último día para enviarlo (art. 73.3)"
+    },
+    {
+      "id": "c_bulo_correo_hasta_dia_29",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "MI PRIMO DICE QUE EL VOTO POR CORREO SE PUEDE PEDIR HASTA EL MISMO DÍA DE LAS ELECCIONES!!! 😱 es verdad??",
+      "debe_contener": [
+        [
+          "19 de noviembre",
+          "19/11",
+          "19-11"
+        ],
+        [
+          "no coincide",
+          "no es correcto",
+          "no es cierto",
+          "no es asi",
+          "falso",
+          "incorrect",
+          "no puedes",
+          "no se puede",
+          "termina",
+          "ultimo dia"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, hasta el mismo dia",
+        "puedes pedirlo hasta el 29"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.2.1 y 6.3: solicitud hasta el 19/11 (art. 72.a)"
+    },
+    {
+      "id": "c_bulo_correo_envio_26",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "He leído en un periódico que el voto por correo se puede echar en Correos hasta el 26 de noviembre. ¿Es correcto?",
+      "debe_contener": [
+        [
+          "25 de noviembre",
+          "25/11",
+          "25-11"
+        ],
+        [
+          "no coincide",
+          "no es correcto",
+          "no es cierto",
+          "no es asi",
+          "falso",
+          "incorrect",
+          "en realidad",
+          "ultimo dia",
+          "hasta el 25"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, hasta el 26",
+        "es correcto, el 26"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.2.5 y nota de 1.2 (algunos medios dan 26/11; el calendario de la JEC dice 25/11 y prevalece)"
+    },
+    {
+      "id": "c_bulo_tachar_candidato_whatsapp",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "🔥🔥 TRUCO PARA CASTIGAR A LOS POLÍTICOS 🔥🔥\nCuando cojas la papeleta del Congreso, TACHA con boli el nombre del candidato que no te guste y escribe al lado \"CORRUPTO\" o lo que quieras. El voto SIGUE VALIENDO para el partido y además ese candidato pierde el puesto en la lista!!! Lo dice un abogado en TikTok con 2 millones de seguidores 💯. Si todos lo hacemos, se van a enterar. REENVÍA 🔁🔁🔁\nInstrucciones paso a paso:\n1️⃣ Coge la papeleta del partido que quieras.\n2️⃣ Tacha con una raya gorda al candidato que no te guste (puedes tachar a varios).\n3️⃣ Si quieres, escribe tu queja en el margen, total nadie lee las papeletas.\n4️⃣ Métela en el sobre y vota normal.\nEn el recuento los interventores cuentan las tachaduras y si hay muchas el candidato se cae de la lista. Así funciona en Italia y aquí también desde la última reforma. ¿Es verdad esto?",
+      "debe_contener": [
+        [
+          "nulo",
+          "anula",
+          "no es valid",
+          "no seria valid",
+          "no vale",
+          "no cuenta",
+          "invalid"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, sigue valiendo",
+        "si, sigue siendo valido",
+        "si, el voto sigue valiendo"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859",
+        "juntaelectoralcentral.es"
+      ],
+      "nota": "contexto 6.3 («Una papeleta tachada o con una anotación es válida»: No coincide; art. 96.2 LOREG; Instrucción JEC 1/2012) y 3.3"
+    },
+    {
+      "id": "c_bulo_mensaje_papeleta",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "¿Puedo escribir un mensaje en la papeleta del Congreso? Me han dicho que el voto sigue contando igual.",
+      "debe_contener": [
+        [
+          "nulo",
+          "anula",
+          "no es valid",
+          "no seria valid",
+          "no cuenta",
+          "invalid",
+          "no coincide"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, sigue contando",
+        "sigue contando igual, si"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859",
+        "juntaelectoralcentral.es"
+      ],
+      "nota": "contexto 3.3 y 6.3 (papeletas con leyendas o alteraciones voluntarias: nulo, art. 96.2)"
+    },
+    {
+      "id": "c_bulo_cruz_anula",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Dicen que si pones una cruz al lado del nombre de un candidato en la papeleta, el voto se anula. ¿Eso es así?",
+      "debe_contener": [
+        [
+          "no anula",
+          "no lo anula",
+          "no invalida",
+          "no lo invalida",
+          "no hace nulo",
+          "no lo hace nulo",
+          "no convierte",
+          "no lo convierte",
+          "si no altera",
+          "siempre que no altere",
+          "mientras no altere",
+          "no altere"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, una cruz anula",
+        "si, lo anula",
+        "si, se anula"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859",
+        "juntaelectoralcentral.es"
+      ],
+      "nota": "contexto 6.3 (matiz) y 3.3: según la Instrucción JEC 1/2012, una señal, cruz o aspa junto a un candidato no anula si no altera la papeleta ni expresa reproche"
+    },
+    {
+      "id": "c_bulo_senado_circulo",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "En la papeleta del Senado, si marcas con una X a los candidatos el voto es nulo, hay que rodear los nombres con un círculo. ¿Es verdad?",
+      "debe_contener": [
+        [
+          "aspa",
+          "cruz",
+          "marca"
+        ],
+        [
+          "no es cierto",
+          "no coincide",
+          "no es asi",
+          "no es nulo",
+          "no anula",
+          "no lo anula",
+          "se marca",
+          "debes marcar",
+          "hay que marcar",
+          "se marcan",
+          "falso"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, es nulo",
+        "efectivamente hay que rodear"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859",
+        "juntaelectoralcentral.es"
+      ],
+      "nota": "contexto 6.3 (matiz: en el Senado el candidato se marca con aspa) y 3.4.5"
+    },
+    {
+      "id": "c_bulo_senado_4_valencia",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Vivo en Valencia. Me dicen que en el Senado puedo marcar a 4 candidatos y el voto vale. ¿Es así?",
+      "debe_contener": [
+        [
+          "3 candidatos",
+          "tres candidatos",
+          "hasta 3",
+          "hasta tres",
+          "maximo de 3",
+          "maximo de tres",
+          "maximo 3",
+          "maximo tres",
+          "3 nombres",
+          "tres nombres"
+        ],
+        [
+          "nulo",
+          "no coincide",
+          "no es cierto",
+          "no es asi",
+          "no es valid",
+          "no puedes",
+          "no vale"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes marcar 4",
+        "hasta 4",
+        "hasta cuatro"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "BOE-A-2012-3859"
+      ],
+      "nota": "contexto 3.3 (más de 3 nombres en provincia: nulo, art. 96) y 3.4.5 (hasta 3 en provincias, art. 166.1)"
+    },
+    {
+      "id": "c_bulo_obligatorio_votar",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "¿Es obligatorio votar en las elecciones generales?",
+      "debe_contener": [
+        [
+          "no es obligatorio",
+          "no hay obligacion",
+          "no estas obligado",
+          "voluntari",
+          "no es una obligacion",
+          "es un derecho",
+          "no coincide"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, es obligatorio"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 6.3 («Es obligatorio votar»: No coincide; art. 5 LOREG; Interior) y 2.1.5"
+    },
+    {
+      "id": "c_bulo_obligatorio_reforma",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Mi cuñado, que \"sabe mucho de leyes\", dice en la cena familiar que desde la reforma electoral de 2022 votar es OBLIGATORIO en España como en Bélgica, y que a los que no vayan les van a quitar el paro y las ayudas. Que lo ha leído en un foro. Yo no me lo creo pero no sé qué contestarle. ¿Quién tiene razón?",
+      "debe_contener": [
+        [
+          "no es obligatorio",
+          "no hay obligacion",
+          "no estas obligado",
+          "voluntari",
+          "no es una obligacion",
+          "es un derecho",
+          "no coincide",
+          "no es cierto"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, es obligatorio",
+        "tu cunado tiene razon"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 6.3 y 2.1.5 (art. 5 LOREG: votar no es obligatorio). La parte de las ayudas no está en el corpus: basta con desmentir la obligatoriedad"
+    },
+    {
+      "id": "c_bulo_encuestas_26",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "¿Se pueden publicar encuestas electorales el 26 de noviembre?",
+      "debe_contener": [
+        [
+          "prohibid",
+          "no se pueden",
+          "no se puede",
+          "no esta permitid",
+          "no coincide",
+          "no es posible"
+        ],
+        [
+          "24 de noviembre",
+          "24/11",
+          "24-11",
+          "69.7",
+          "cinco dias",
+          "5 dias"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, se pueden publicar"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "contexto 6.3 («Se pueden publicar encuestas el 26/11»: No coincide; art. 69.7; calendario 24–28/11) y 5"
+    },
+    {
+      "id": "c_bulo_encuestas_viernes",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Un amigo que trabaja en un periódico dice que el último sondeo se puede publicar el viernes 27, el día antes de la reflexión, y que luego ya no. ¿Es así?",
+      "debe_contener": [
+        [
+          "prohibid",
+          "no se pueden",
+          "no se puede",
+          "no esta permitid",
+          "no coincide",
+          "no es asi",
+          "no es cierto"
+        ],
+        [
+          "24 de noviembre",
+          "24/11",
+          "24-11",
+          "69.7",
+          "cinco dias",
+          "5 dias"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, el 27 se puede",
+        "es correcto, hasta el 27"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "calendario sondeos (prohibición 24/11–28/11); contexto 5 (art. 69.7) y 6.3"
+    },
+    {
+      "id": "c_bulo_blanco_ganador_whatsapp",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "‼️‼️ EL VOTO EN BLANCO VA AL PARTIDO QUE GANA ‼️‼️\nNO VOTÉIS EN BLANCO!!!! 🚫🗳️ Lo que no sabe la gente es que la ley D'Hondt coge todos los votos en blanco y se los SUMA al partido más votado de tu provincia. Por eso a los grandes les interesa que votes en blanco 🤬. Si no te gusta ninguno, mejor vota nulo o quédate en casa, que esos no cuentan para nadie.\nEsto lo explicó un catedrático en la radio, búscalo. COMPARTE ANTES DE QUE LO BORREN ⏳⏳\n📊 Ejemplo: en una provincia con 100.000 votos, si hay 5.000 en blanco, el partido que gana se lleva esos 5.000 y le da para un escaño más. Así han ganado siempre los mismos. En cambio el voto nulo no se le suma a nadie, por eso es el voto de protesta \"de verdad\". Y si te abstienes, igual: tu voto no se lo queda nadie.\nLo han dicho también en un vídeo de YouTube con más de un millón de visitas, y en el grupo de mi pueblo todo el mundo está de acuerdo 👍👍. ¿Me podéis confirmar si es así antes de reenviarlo?",
+      "debe_contener": [
+        [
+          "no va",
+          "no se asigna",
+          "no se reparte",
+          "no se suma",
+          "ninguna candidatura",
+          "ningun partido",
+          "no coincide",
+          "no es cierto",
+          "no es asi",
+          "falso"
+        ],
+        [
+          "valido"
+        ],
+        [
+          "3%",
+          "umbral",
+          "barrera",
+          "tres por ciento"
+        ]
+      ],
+      "no_debe_contener": [
+        "el voto en blanco se reparte entre",
+        "se lo llevan los partidos grandes, si",
+        "si, se suma al partido"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 6.3 («El voto en blanco se reparte entre los partidos más votados»: No coincide; arts. 96.5, 108.4 y 163.1: válido, no se asigna, sube el umbral del 3 %) y 3.3"
+    },
+    {
+      "id": "c_bulo_blanco_coloquial",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "si voto en blanco mi voto se lo queda el partido mas votado no?",
+      "debe_contener": [
+        [
+          "no va",
+          "no se asigna",
+          "no se reparte",
+          "no se suma",
+          "ninguna candidatura",
+          "ningun partido",
+          "no coincide",
+          "no es cierto",
+          "no es asi",
+          "no se lo queda"
+        ],
+        [
+          "valido",
+          "3%",
+          "umbral",
+          "barrera"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, se lo queda",
+        "el voto en blanco se reparte entre"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 6.3 y 3.3 (voto en blanco: válido, no genera escaño)"
+    },
+    {
+      "id": "c_bulo_blanco_abstencion",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Votar en blanco es lo mismo que abstenerse, ¿verdad?",
+      "debe_contener": [
+        [
+          "valido"
+        ],
+        [
+          "no es lo mismo",
+          "no son lo mismo",
+          "diferente",
+          "distint",
+          "diferencia",
+          "no coincide",
+          "no es cierto",
+          "no es asi"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, es lo mismo",
+        "si, son lo mismo"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 3.3 (blanco: voto válido en la base del 3 %; abstención: no computa)"
+    },
+    {
+      "id": "c_bulo_nulo_cuenta",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Me han dicho que el voto nulo acaba sumando para el partido más votado. ¿Es cierto?",
+      "debe_contener": [
+        [
+          "no cuenta",
+          "no es valido",
+          "no computa",
+          "no se cuenta",
+          "no se asigna",
+          "ninguna",
+          "ningun partido",
+          "no suma",
+          "no coincide",
+          "no es cierto"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, el voto nulo suma",
+        "es cierto que suma"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 3.3 (voto nulo: no es válido, no cuenta en el 3 % ni en el reparto)"
+    },
+    {
+      "id": "c_bulo_voto_rogado_whatsapp",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "🇪🇸✈️ ESPAÑOLES EN EL EXTERIOR, ATENCIÓN ✈️🇪🇸\nRecordad que para votar el 29N desde fuera HAY QUE ROGAR EL VOTO en el consulado ANTES DEL 25 DE OCTUBRE. Si no lo pedís, NO os mandan nada y os quedáis sin votar como en 2019 😤. Pasadlo por los grupos de españoles en Alemania, Argentina, UK, Francia, México... ¡¡que no nos roben el voto!!\nPasos: 1) imprimid el formulario de solicitud del consulado, 2) llevadlo en persona con el pasaporte, 3) esperad la carta con las papeletas. Si el consulado está lejos, se puede mandar por fax 📠. Y ojo, que si os habéis mudado de ciudad dentro del mismo país tenéis que volver a rogarlo. Mi hermana vive en Múnich y en las últimas no le llegó nada porque no lo pidió a tiempo. Yo vivo en Buenos Aires: ¿tengo que pedirlo antes del 25?",
+      "debe_contener": [
+        [
+          "de oficio",
+          "no tienes que pedir",
+          "no hace falta",
+          "no necesitas",
+          "no tienes que solicitar",
+          "automatic",
+          "no es necesario",
+          "no hay que rogar",
+          "no hay que pedir",
+          "no hay que solicitar",
+          "ya no existe",
+          "se elimino",
+          "suprim"
+        ]
+      ],
+      "no_debe_contener": [
+        "tienes que rogar el voto",
+        "tienes que solicitarlo antes",
+        "voto rogado sigue"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "contexto 6.3 («Los residentes en el extranjero tienen que pedir el voto»: No coincide; envío de oficio, art. 75.1 tras LO 12/2022) y 2.3"
+    },
+    {
+      "id": "c_bulo_voto_rogado_corto",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "¿Sigue existiendo el voto rogado para los españoles que viven fuera?",
+      "debe_contener": [
+        [
+          "ya no",
+          "se elimino",
+          "suprim",
+          "no existe",
+          "de oficio",
+          "no hace falta",
+          "no tienes que",
+          "elimin",
+          "desaparec"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, sigue existiendo",
+        "voto rogado sigue"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "contexto 2.3 y 6.3 (LO 12/2022 eliminó el voto rogado)"
+    },
+    {
+      "id": "c_bulo_cera_directo_junta",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Me dicen que es más seguro mandar el voto desde el extranjero directamente a la Junta Electoral Provincial en España, en vez de al consulado. ¿Lo hago así?",
+      "debe_contener": [
+        [
+          "consulado",
+          "consular"
+        ],
+        [
+          "nulo",
+          "no es valido",
+          "no se debe",
+          "no debes",
+          "no lo envies",
+          "no lo mandes",
+          "no coincide",
+          "no es cierto",
+          "no lo hagas"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, mandalo a la junta",
+        "es mas seguro mandarlo a la junta"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.5 (INE: los votos que no pasen por el consulado se consideran nulos)"
+    },
+    {
+      "id": "c_bulo_cadena_larga",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "🔴🔴🔴 GUÍA DEFINITIVA PARA EL 29N — LÉELA ENTERA Y REENVÍA 🔴🔴🔴\n\nHola a todos, os paso lo que me ha mandado mi primo, que ha sido interventor en varias elecciones y sabe de lo que habla. Mucha gente se va a quedar sin votar o va a votar MAL por no saber esto, así que leedlo hasta el final 🙏🙏\n\n1️⃣ VOTO POR CORREO: pedidlo todos aunque penséis ir al colegio. Si al final estáis en casa, vais a la mesa el domingo, votáis en persona y el de correo se anula solo. Es la forma de \"asegurar\" el voto. ✅\n\n2️⃣ DNI: si lo tenéis caducado o perdido, no pasa nada, vale una FOTOCOPIA o una foto en el móvil. Lo ha dicho la Junta Electoral este año. 📱\n\n3️⃣ VOTO EN BLANCO: NUNCA. El voto en blanco se lo llevan los partidos más votados, es como regalarles el voto. Si queréis protestar, votad nulo o quedaos en casa. 🚫\n\n4️⃣ PAPELETA: podéis tachar a los candidatos que no os gusten, el voto sigue valiendo y además así les bajáis en la lista. ✏️\n\n5️⃣ LOS QUE VIVEN FUERA: tienen que rogar el voto en el consulado o no les mandan nada. Avisad a vuestros familiares en el extranjero. ✈️\n\n6️⃣ ENCUESTAS: el viernes 27 salen las últimas encuestas, miradlas antes de decidir. 📊\n\nEsto no lo cuentan en la tele porque no les interesa. Si os parece útil, reenviadlo a todos vuestros grupos, que en 2023 hubo mucha gente que votó mal 😤😤\n\n¿Qué hay de verdad en todo esto?",
+      "debe_contener": [
+        [
+          "censo",
+          "anotad"
+        ],
+        [
+          "original",
+          "no valen fotocopias"
+        ],
+        [
+          "valido",
+          "ninguna candidatura",
+          "ningun partido",
+          "no se asigna",
+          "no se reparte"
+        ],
+        [
+          "de oficio",
+          "no hace falta",
+          "no tienen que",
+          "no tienes que",
+          "no es necesario",
+          "voto rogado",
+          "ya no"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar en la mesa",
+        "vale una fotocopia, si",
+        "el voto en blanco se reparte entre",
+        "si, el voto sigue valiendo"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es",
+        "maldita.es",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702"
+      ],
+      "nota": "contexto 6.3 entero (correo y mesa art. 73.1; fotocopia Interior; blanco arts. 96.5/108.4/163.1; tachada art. 96.2; CERA de oficio art. 75.1; encuestas art. 69.7). Cadena larga (~1.360 caracteres) con seis afirmaciones; se exigen cuatro desmentidos"
+    },
+    {
+      "id": "c_bulo_mesa_no_pasa_nada",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Me ha tocado ser miembro de mesa pero un amigo dice que si no vas no pasa nada, que nadie lo controla. ¿Es así?",
+      "debe_contener": [
+        [
+          "delito",
+          "prision",
+          "multa",
+          "143",
+          "sancion",
+          "pena"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, no pasa nada",
+        "no te pasara nada"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.7 (art. 143: prisión de 3 meses a 1 año o multa de 6 a 24 meses por no concurrir)"
+    },
+    {
+      "id": "c_bulo_dieta_70",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "He leído que a los miembros de mesa les pagan 70 euros. ¿Es así?",
+      "debe_contener": [
+        [
+          "75 euros",
+          "75 €",
+          "75€",
+          "75,00",
+          "75 eur"
+        ]
+      ],
+      "no_debe_contener": [
+        "dieta de 70",
+        "cobras 70",
+        "cobran 70",
+        "70 euros por",
+        "70 € por"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-2026-13948",
+        "boe.es",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.7 (Orden INT/650/2026: 75 € por titular; sustituye a la de 70 €)"
+    },
+    {
+      "id": "c_bulo_tarjeta_censal",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "SI NO TE LLEGA LA TARJETA CENSAL A CASA NO PUEDES VOTAR!!! es verdad o no??",
+      "debe_contener": [
+        [
+          "no es necesari",
+          "no es obligatori",
+          "no hace falta",
+          "no es requisito",
+          "no necesitas",
+          "no tienes que",
+          "no es imprescindible",
+          "no coincide",
+          "no es cierto"
+        ],
+        [
+          "dni",
+          "pasaporte",
+          "permiso de conducir",
+          "documento"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, sin la tarjeta censal no puedes votar"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.1.7 (art. 85.1: la tarjeta censal no es requisito; basta estar en las listas e identificarse)"
+    },
+    {
+      "id": "c_bulo_sello_correo",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Para mandar el voto por correo hay que comprar sello, ¿no? Me han dicho que si no lo franqueas se pierde.",
+      "debe_contener": [
+        [
+          "sin franqueo",
+          "gratuit",
+          "no tienes que pagar",
+          "no hay que pagar",
+          "no necesitas sello",
+          "no hace falta sello",
+          "no pagas",
+          "no cuesta",
+          "gratis",
+          "no necesita sello",
+          "no lleva sello"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, tienes que comprar sello",
+        "si, hay que franquearlo"
+      ],
+      "fuentes_esperadas": [
+        "correos.es",
+        "cid=1700",
+        "cid=1702",
+        "eg2026_calendario",
+        "BOE-A-1985-11672"
+      ],
+      "nota": "contexto 2.2.5 (art. 73.3: correo certificado, sin franqueo)"
+    },
+    {
+      "id": "c_bulo_correo_tarde_cuenta",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Si mi voto por correo llega a la mesa a las 21:00 del día 29, ¿cuenta igual?",
+      "debe_contener": [
+        [
+          "no se computa",
+          "no cuenta",
+          "no se cuenta",
+          "no es valid",
+          "junta electoral de zona",
+          "20:00",
+          "las 20",
+          "20 h"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, cuenta igual"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "correos.es"
+      ],
+      "nota": "contexto 2.2.6 (art. 73.4: Correos entrega hasta las 20:00; lo posterior va a la Junta de Zona y no se computa)"
+    },
+    {
+      "id": "c_bulo_cualquier_colegio",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Este año se puede votar en cualquier colegio electoral de tu ciudad, ¿no? Así voto al lado del trabajo.",
+      "debe_contener": [
+        [
+          "mesa asignada",
+          "seccion",
+          "tu mesa",
+          "te corresponde",
+          "asignad",
+          "la que te toca",
+          "te toca",
+          "no puedes",
+          "no coincide",
+          "no es cierto",
+          "no es asi"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar en cualquier colegio"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "ce-mesas",
+        "ine"
+      ],
+      "nota": "contexto 2.1.1 (se vota en la sección y mesa asignadas en el censo, arts. 4.1 y 86.2; consulta de mesa del INE)"
+    },
+    {
+      "id": "c_bulo_cierre_21h",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Ojo que este año los colegios cierran a las 21:00 por el cambio de hora, pásalo",
+      "debe_contener": [
+        [
+          "20:00",
+          "20 h",
+          "20h",
+          "ocho de la tarde",
+          "las 20",
+          "20.00",
+          "8 de la tarde"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, cierran a las 21",
+        "es cierto que cierran a las 21"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "BOE-A-2026-20742",
+        "boe.es"
+      ],
+      "nota": "contexto 1.1 y 2.1.1 (9:00 a 20:00, art. 84.1); calendario votacion"
+    },
+    {
+      "id": "c_bulo_17_anos",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Cumplo 18 años el 10 de diciembre. Me han dicho que como estoy en el censo ya puedo votar el 29 de noviembre. ¿Es así?",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no podras",
+          "no puede",
+          "no es posible",
+          "no coincide",
+          "no es cierto",
+          "no es asi",
+          "solo si",
+          "solo pueden"
+        ],
+        [
+          "18"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.1.3 (art. 85.2: solo votan quienes tienen 18 años en la fecha de la votación)"
+    },
+    {
+      "id": "c_bulo_sobre_congreso_sepia",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Para los que votan desde el extranjero: el sobre del Congreso es el sepia y el del Senado el blanco, ¿verdad?",
+      "debe_contener": [
+        [
+          "blanco"
+        ],
+        [
+          "sepia"
+        ],
+        [
+          "no coincide",
+          "no es cierto",
+          "no es asi",
+          "al reves",
+          "incorrect",
+          "congreso es blanco",
+          "blanco para el congreso",
+          "blanco es para el congreso",
+          "blanco para congreso"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, el sepia es el del congreso"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "cid=1702",
+        "ine.es"
+      ],
+      "nota": "contexto 2.3.1 (sobres de votación: blanco para Congreso, sepia para Senado)"
+    },
+    {
+      "id": "c_bulo_discapacidad_no_votan",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "¿Es verdad que las personas con discapacidad intelectual incapacitadas judicialmente no pueden votar?",
+      "debe_contener": [
+        [
+          "pueden votar",
+          "puede votar",
+          "tienen derecho",
+          "tiene derecho",
+          "2/2018"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, es cierto que no pueden votar"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.5 (LO 2/2018 suprimió las letras b y c del art. 3.1; toda persona puede votar con los apoyos que requiera)"
+    },
+    {
+      "id": "c_bulo_mesa_mayor_65",
+      "categoria": "bulo_corpus",
+      "tipo": "dentro",
+      "pregunta": "Tengo 67 años y me ha tocado mesa. Dicen que con más de 65 te puedes librar, ¿es cierto?",
+      "debe_contener": [
+        [
+          "65"
+        ],
+        [
+          "renunci"
+        ],
+        [
+          "7 dias",
+          "siete dias"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "interior.gob.es"
+      ],
+      "nota": "contexto 2.7 (art. 26.2: desde los 65 se puede renunciar en 7 días). Confirmación"
+    },
+    {
+      "id": "c_fc_votar_internet_app",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "🗳️📱 ¡POR FIN! Este 29N el Gobierno estrena la app \"VotaYa\" para votar desde el móvil sin ir al colegio. Solo tienes que descargarla, meter tu DNI y elegir partido. Ya la han probado en Murcia y funciona genial. Corre, que solo admite los primeros 5 millones de votos!!! 🏃‍♂️💨",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar desde la app",
+        "descarga la app",
+        "puedes votar por internet",
+        "si, puedes votar por internet"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. Votar por internet o por app no figura en el corpus como modalidad (solo mesa y correo, 2.1–2.3)"
+    },
+    {
+      "id": "c_fc_votar_internet_corto",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "se puede votar por internet este año?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar por internet",
+        "si, se puede votar por internet"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener"
+    },
+    {
+      "id": "c_fc_votar_dos_veces",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "Un truco que me han contado: si estás empadronado en un pueblo y luego te mudaste a la ciudad, a veces sales en los dos censos y puedes votar en los dos sitios. Mi tío lo hizo en 2023 y no pasó nada. ¿Se puede?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar dos veces",
+        "puedes votar en los dos",
+        "si, se puede votar en los dos"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. El corpus solo dice que el voto es personal (arts. 4, 86) y que se vota en la mesa asignada"
+    },
+    {
+      "id": "c_fc_votar_dos_veces_corto",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "¿Puedo votar por correo y luego otra vez en persona para asegurarme?",
+      "debe_contener": [
+        [
+          "no puedes",
+          "no podras",
+          "no hace falta",
+          "no es necesario",
+          "no tienes que",
+          "no debes",
+          "no es asi",
+          "no es cierto",
+          "no coincide",
+          "no se puede",
+          "falso"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar dos veces",
+        "si, puedes votar tambien en persona"
+      ],
+      "fuentes_esperadas": [
+        "BOE-A-1985-11672",
+        "maldita.es",
+        "cid=1700"
+      ],
+      "nota": "Parcialmente cubierto: contexto 2.2 y 6.3 (art. 73.1, anotado en el censo, no puede votar en mesa). Se exige negación"
+    },
+    {
+      "id": "c_fc_multa_no_votar_whatsapp",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "🚨🚨🚨 ATENCIÓN 🚨🚨🚨\nA PARTIR DE ESTAS ELECCIONES, SI NO VAS A VOTAR TE MULTAN CON 600 € 💸💸. Hacienda va a cruzar los datos del censo con los que han votado y en enero te llega la carta. Ya ha salido en el BOE pero no lo dice nadie. Mi vecina es funcionaria y lo ha confirmado. ¡¡¡QUE NO TE PILLEN!!! Reenvía a 10 contactos 📤📤📤",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial",
+          "no es obligatorio",
+          "no hay obligacion",
+          "no estas obligado",
+          "voluntari",
+          "no te pueden multar",
+          "no hay multa"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, te multan",
+        "es cierto que te multan",
+        "te multaran con 600"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. La cuantía no está en el corpus; sí el art. 5 (votar no es obligatorio, contexto 2.1.5 y 6.3), por eso se admiten también esas alternativas"
+    },
+    {
+      "id": "c_fc_multa_corto",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "si no voto me pueden multar?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial",
+          "no es obligatorio",
+          "no hay obligacion",
+          "no estas obligado",
+          "voluntari",
+          "no te pueden multar",
+          "no hay multa"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, te pueden multar por no votar",
+        "si, te multan"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. Una respuesta correcta puede mencionar las sanciones a miembros de mesa (art. 143); no se prohíbe «multa»"
+    },
+    {
+      "id": "c_fc_correo_se_pierde_whatsapp",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "NO VOTÉIS POR CORREO ❌❌❌ Un cartero me ha contado que la mitad de los votos por correo se pierden o acaban en la basura porque Correos no da abasto, y que en 2023 aparecieron sacas enteras en un contenedor. Si quieres que tu voto cuente, ve en persona aunque tengas que cambiar las vacaciones. Lo de la \"seguridad\" del voto por correo es mentira. DIFUNDE 📢",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial",
+          "certificad",
+          "73"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, se pierden",
+        "es cierto que se pierden",
+        "la mitad de los votos por correo se pierden, si"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. contexto 6.7: responder con el procedimiento oficial (arts. 72–73, correo certificado, registro de Correos art. 73.4) sin calificar intenciones"
+    },
+    {
+      "id": "c_fc_correo_se_pierde_corto",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "es verdad que muchos votos por correo se pierden?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial",
+          "certificad",
+          "73"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, muchos se pierden",
+        "es cierto que se pierden"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener"
+    },
+    {
+      "id": "c_fc_sobres_cambiados",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "Si meto la papeleta del Congreso en el sobre del Senado y la del Senado en el del Congreso, ¿se anulan los dos votos?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial",
+          "nulo",
+          "anula"
+        ]
+      ],
+      "no_debe_contener": [],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. El corpus no trata el intercambio de sobres; no se exige veredicto"
+    },
+    {
+      "id": "c_fc_sobres_colores_whatsapp",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "⚠️ CUIDADO CON LOS SOBRES ⚠️ Este año han cambiado los colores: el del Congreso es AMARILLO y el del Senado VERDE. Si usas los sobres viejos que tienes en casa de otras elecciones tu voto es NULO. Pásalo a los abuelos que guardan los sobres de un año para otro 👵📨",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, el del congreso es amarillo",
+        "es cierto que han cambiado los colores"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. El corpus solo da los colores de los sobres CERA (blanco Congreso, sepia Senado, 2.3.1); no confirmar amarillo/verde"
+    },
+    {
+      "id": "c_fc_boligrafo",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "Me han dicho que hay que marcar la papeleta del Senado con bolígrafo porque si lo haces a lápiz lo borran y cambian el voto. ¿Es así?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, lo borran",
+        "es cierto que lo borran"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener"
+    },
+    {
+      "id": "c_fc_foto_papeleta",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "Si le hago una foto a mi papeleta dentro de la cabina, ¿me anulan el voto?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, te anulan el voto por la foto"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. El corpus solo recoge que el voto es secreto (2.1.5)"
+    },
+    {
+      "id": "c_fc_borrados_censo",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "Han borrado del censo a todos los que no votaron en 2023, así que si no fuiste entonces este año no te van a dejar votar. Lo sé porque a mi hermano le ha pasado. Compartid!!",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, te han borrado",
+        "es cierto que borran",
+        "no te dejaran votar"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat",
+        "ce-mesas"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. Puede remitir a la consulta de mesa del INE; no debe ofrecer la reclamación del censo como abierta (cerró el 19/10)"
+    },
+    {
+      "id": "c_fc_extranjeros_generales",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "Soy italiano y vivo en Madrid desde hace 10 años. Una amiga dice que ya podemos votar en las generales. ¿Es verdad?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, puedes votar en las generales",
+        "si, los extranjeros pueden votar en las generales"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. El corpus no trata el sufragio de extranjeros en generales"
+    },
+    {
+      "id": "c_fc_justificar_correo",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "Para pedir el voto por correo tengo que presentar un justificante del viaje o del trabajo, ¿no?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial",
+          "no hace falta",
+          "no es necesari",
+          "no necesitas"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, tienes que presentar un justificante",
+        "necesitas un justificante del viaje"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. El corpus (2.2) no menciona justificante del motivo salvo la certificación médica para el representante (art. 72.c)"
+    },
+    {
+      "id": "c_fc_correos_datos_bancarios",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "Me ha llegado un SMS: \"Correos: su voto por correo está retenido. Pague 1,99 € de gastos de envío en el siguiente enlace para que llegue a su mesa\". ¿Es de verdad?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial",
+          "sin franqueo",
+          "gratuit",
+          "gratis",
+          "no tienes que pagar",
+          "no hay que pagar"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, tienes que pagar",
+        "paga en el enlace"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. El corpus sí dice que el envío del voto es sin franqueo (art. 73.3), por eso se admiten esas alternativas"
+    },
+    {
+      "id": "c_fc_lunes_30",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "He oído que si llueve mucho el domingo se puede votar también el lunes 30. ¿Es así?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial",
+          "29 de noviembre",
+          "29/11",
+          "29-11"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, se puede votar el lunes",
+        "tambien el lunes 30"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "No cubierto por el corpus: solo se exige que no lo confirme y que diga que no puede confirmarlo o remita a la fuente oficial. La alternativa «no» del encargo hace el grupo casi siempre verdadero; lo que discrimina es no_debe_contener. La fecha única de votación (29/11) sí está en el calendario"
+    },
+    {
+      "id": "c_fc_nulo_resta_escanos",
+      "categoria": "bulo_fuera_corpus",
+      "tipo": "dentro",
+      "pregunta": "Si mucha gente vota nulo, le quitan escaños al partido que gobierna, ¿no?",
+      "debe_contener": [
+        [
+          "no puedo confirmar",
+          "no puedo verificar",
+          "no verificable",
+          "no es cierto",
+          "no coincide",
+          "falso",
+          "fuente oficial",
+          "no cuenta",
+          "no computa",
+          "no es valido",
+          "no altera"
+        ]
+      ],
+      "no_debe_contener": [
+        "si, le quitan escanos",
+        "es cierto que le quitan"
+      ],
+      "fuentes_esperadas": [
+        "eg2026_calendario",
+        "juntaelectoralcentral.es",
+        "cid=1702",
+        "cid=1700",
+        "interior.gob.es",
+        "BOE-A-1985-11672",
+        "boe.es",
+        "correos.es",
+        "ine.es",
+        "ine.gob.es",
+        "maldita.es",
+        "newtral",
+        "verificat"
+      ],
+      "nota": "Parcialmente cubierto: contexto 3.3 (el nulo no es válido, no cuenta en el 3 % ni en el reparto). Expectativa generosa"
+    }
+  ]
+}

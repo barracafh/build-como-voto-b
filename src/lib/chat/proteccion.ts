@@ -112,38 +112,111 @@ function esperaPorTasa(req: Request): number {
 
 // ── 4. Filtro previo ─────────────────────────────────────────────────────────
 // Rechaza lo que claramente no es una duda sobre cómo votar, sin gastar tokens.
-// Se compara sin tildes y en minúsculas. Ojo con los falsos positivos: solo
-// patrones de jailbreak o de encargo de tareas, nunca palabras sueltas.
-const normalizar = (t: string) => t.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+// PRIORIDAD: cero falsos positivos. Bloquear a un ciudadano es peor que dejar
+// pasar un ataque: detrás están la regla 8 del prompt y maxTokens. Por eso solo
+// patrones de jailbreak o de encargo de tareas, nunca palabras sueltas, y
+// cualquier cambio se mide contra todos los «dentro» de pruebas/banco-*.json.
+//
+// Normalización: NFKC pliega full-width y compatibles («Ｉｇｎｏｒａ» → «Ignora»);
+// luego se quitan los caracteres de formato (ancho cero, guion blando, bidi),
+// después NFD + quitar tildes y minúsculas.
+const normalizar = (t: string) =>
+  t
+    .normalize("NFKC")
+    .replace(/\p{Cf}/gu, "")
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "")
+    .toLowerCase();
+
+// Leet («1gn0r4 l4s 1nstrucc10n3s»). Solo se usa con los patrones de
+// manipulación de instrucciones, que son frases muy concretas.
+const desleet = (t: string) =>
+  t.replace(/[0134578@$]/g, (c) => ({ "0": "o", "1": "i", "3": "e", "4": "a", "5": "s", "7": "t", "8": "b", "@": "a", $: "s" })[c] ?? c);
 
 const VERBOS_ENCARGO =
-  "(?:escribe|escribeme|escribir|redacta|redactame|redactar|genera|generame|generar|haz|hazme|creame|programame|inventa|inventate|compon|componme|write|generate)";
-const ENCARGOS =
-  "(?:codigo|script|funcion|algoritmo|html|sql|python|javascript|poema|poesia|cancion|rap|versos?|ensayo|redaccion|cuento|relato|novela|chiste|articulo|tweet|tuit|receta|tfg|tfm|code|poem|essay|story|song|joke)";
+  "(?:escribe|escribeme|redacta|redactame|genera|generame|haz|hazme|haces|hacerme|creame|programame|inventa|inventate|compon|componme|write|generate)";
+// Sin infinitivos: «¿es nulo si escribir un poema en la papeleta…?».
+// «artículo» no está: «hazme un resumen del artículo de la LOREG» es legítimo.
+// «código» y «función» con excepciones: «escribir el código postal», «el
+// código de la solicitud», «hacer la función de vocal».
+const ENCARGOS = String.raw
+  `(?:codigo(?!\s+(?:postal|electoral|civil|penal|qr|csv|seguro|pin|de\s+(?!python|javascript|programacion)))|script|funcion(?!\s+de\b)|algoritmo|html|sql|python|javascript|poema|poesia|cancion|rap|versos?|ensayo|redaccion|cuento|relato|novela|chiste|tweet|tuit|receta|tfg|tfm|excel|code|poem|essay|story|song|joke)`;
 // Inicio de frase: «Actúa como…» es una orden; «¿Quién actúa como presidente?», no.
 const INICIO = String.raw`(?:^|[.!?¡¿,;:\n]\s*)`;
+const IA = String.raw`(?:una?\s+)?(?:ia|asistente|modelo|chatbot|bot|llm|ai|dan)\b`;
+
+// Manipulación de instrucciones: también se prueban sobre el texto «desleet».
+const PATRONES_JAILBREAK: RegExp[] = [
+  // «ignora/olvida TUS/LAS instrucciones/reglas» (no «olvida mi pregunta
+  // anterior; ¿qué reglas…?» ni «ignora mis faltas de ortografía»).
+  /\b(?:ignora|ignore|olvida|olvidate\s+de|forget|omite|disregard|saltate)\s+(?:de\s+)?(?:todas?\s+)?(?:tus|las|sus|your|all|the|any)\s+(?:\S+\s+){0,2}?(?:instrucci|regla|indicaci|prompt|restricci|directri|normas|instruction|rule|guideline)/,
+  // «ignora todo lo anterior», «olvida todas las instrucciones anteriores»
+  /\b(?:ignora|ignore|ignorar|olvida|olvidate\s+de|forget|disregard)\s+(?:todo\s+lo|todas?\s+las?|todos\s+los|all\s+(?:the\s+)?|everything)\s*(?:\S+\s+)?(?:anterior(?:es)?|previo|previous|above|before)/,
+  // Pedir el prompt o las instrucciones ocultas
+  /\b(?:system\s*prompt|prompt\s+(?:del?\s+sistema|inicial|original|oculto)|(?:tu|your|the)\s+prompt\b)/,
+  /\binstrucciones\s+(?:(?:del?\s+sistema)(?!\s+(?:electoral|de\s+voto|d'?hondt|proporcional))|iniciales|originales|ocultas|internas|secretas)/,
+  /\btus\s+(?:instrucciones|reglas|directrices|normas)\s+(?:exactas|completas|originales|literales|internas|ocultas|secretas|iniciales)\b/,
+  /\b(?:cuales|que)\s+son\s+tus\s+(?:instrucciones|reglas|directrices|normas)\b(?!\s+(?:para|de|sobre))/,
+  /\b(?:antes|anterior)\s+(?:a|de)\s+(?:la\s+palabra\s+)?contexto\b/,
+  /\btexto\s+(?:anterior|previo)\s+a\s+(?:esta|la|nuestra)\s+conversacion\b/,
+  /\bempezando\s+por\s+\W*eres\b/,
+  /\b(?:fragmentos|chunks)\s+(?:del|de\s+tu)\s+contexto\b/,
+];
 
 const PATRONES_FUERA: RegExp[] = [
-  // Jailbreak / manipulación de instrucciones
-  /\b(?:ignora|ignore|ignorar|olvida|olvidate|forget|omite|disregard)\s+(?:\S+\s+){0,4}(?:instrucci|regla|indicaci|prompt|restricci|instruction|rule|previous|above)/,
-  /\b(?:system\s*prompt|prompt\s+del?\s+sistema|instrucciones\s+(?:del\s+sistema|iniciales|originales|ocultas))/,
-  new RegExp(String.raw`${INICIO}(?:actua|comportate|responde)\s+como\b`),
-  /\b(?:act|behave)\s+as\b/,
-  /\b(?:finge|fingir|pretend|imagina\s+que\s+eres|haz\s+como\s+si|a\s+partir\s+de\s+ahora\s+(?:eres|seras|vas)|you\s+are\s+now|from\s+now\s+on|roleplay|juego\s+de\s+rol)\b/,
+  // Juego de rol / cambio de identidad
+  // No «actúa como si fuera mi primera vez…» ni «responde como un experto: …».
+  new RegExp(String.raw`${INICIO}(?:actua|comportate)\s+como\s+(?!si\b|(?:una?\s+)?(?:experto|experta|especialista|guia|asesora?|profesor|profesora)\b)`),
+  // Solo a inicio de frase: «¿Quién finge ser yo…?» o «who will act as…» son legítimas.
+  new RegExp(String.raw`${INICIO}(?:please\s+)?(?:act|behave|pretend)\s+(?:as|to\s+be|you)\b`),
+  new RegExp(String.raw`${INICIO}finge\b|\bquiero\s+que\s+finjas\b`),
+  /\b(?:you\s+are\s+now|from\s+now\s+on,?\s+you|roleplay|juego\s+de\s+rol)\b/,
+  /\bhaz\s+como\s+si\s+(?:fueras|fueses|tu\s+fueras|no\s+tuvieras|no\s+existieran)\b/,
+  new RegExp(String.raw`\bimagina\s+que\s+(?:eres|fueras)\s+${IA}`),
+  /\ba\s+partir\s+de\s+ahora\s+(?:(?:eres|seras|vas\s+a\s+ser)\s+(?!mi\b|mis\b|nuestr)|(?:ignora|olvida|responde|respondes|vas\s+a\s+(?:ignorar|olvidar|responder|actuar)))/,
+  new RegExp(String.raw`\b(?:olvidate\s+de\s+(?:ser|que\s+eres)|ya\s+no\s+eres|ahora\s+eres)\s+${IA}`),
   /\b(?:jailbreak|dan\s+mode|modo\s+dan|developer\s+mode|modo\s+desarrollador|unfiltered)\b/,
+  // Mensajes de «sistema» falsos al inicio de línea o de frase
+  /(?:^|\n|[.!?]\s+)\s*(?:\[\s*(?:system|sistema|admin)\s*\]|(?:system|developer)\s*:)/,
+  // Formatos de salida forzados y decodificación
+  /\b(?:en|con\s+(?:este|un|el))\s+(?:formato\s+)?json\b/,
+  /\b(?:decodifica|descodifica|decode|descifra|desencripta)\b[^\n]{0,60}\bbase\s*64\b/,
   // Encargos ajenos: «escríbeme un script en Python», «hazme un poema»…
   new RegExp(String.raw`\b${VERBOS_ENCARGO}\s+(?:\S+\s+){0,3}${ENCARGOS}\b`),
+  /\b(?:escribe|escribeme|redacta|redactame|write)\s+(?:me\s+)?(?:un|an?)\s+(?:\S+\s+)?(?:articulo|article)\b/,
+  /\bcover\s+letter\b/,
+  /\b(?:script|programa|funcion)\s+(?:en|de|in)\s+(?:python|javascript|typescript|php|bash)\b/,
+  /\b(?:pasa(?:me|lo)?|esto|convierte(?:lo)?)\s+(?:\S+\s+){0,2}(?:a|en)\s+(?:python|javascript|typescript|php)\b/,
+  /\b(?:consulta|query)\s+(?:en\s+)?sql\b/,
   new RegExp(String.raw`\b(?:traduceme|traducelo|traducemelo|translate)\b|${INICIO}traduce\b`),
-  // Código pegado
-  /\b(?:def|function|const|let|var|import|console\.log|print|return|select|#include|public\s+static)\b[^\n]*[({;=]/,
+  // Código pegado (patrones concretos, no palabras sueltas)
+  /\bdef\s+\w+\s*\(/,
+  /\bfunction\s+\w+\s*\(/,
+  /\b(?:const|let|var)\s+\w+\s*=/,
+  /(?:^|\n)\s*(?:import\s+[\w.*{}, ]+(?:\s+from\s|\s+as\s|\s*;|\s*$|\s*\n)|from\s+[\w.]+\s+import\s)/,
+  // SQL, no «select one candidate from each party».
+  /\bselect\s+(?:\*|distinct\b|count\s*\(|\w+(?:\s*,\s*\w+)+\s)[^\n]*?\bfrom\s+\w+|\bselect\s+\w+\s+from\s+\w+\s+(?:where|group|order|limit)\b/,
+  /\b(?:console\.log|system\.out\.print\w*|printf?)\s*\(/,
+  /#include\s*</,
+  /\bpublic\s+static\b/,
   /<\/?(?:script|html|div|body|\?php)\b/,
 ];
 
 export function fueraDeAlcance(texto: string): boolean {
-  if (texto.includes("```")) return true;
-  // Muchos símbolos de programación seguidos: casi seguro, código.
-  if ((texto.match(/[{};<>=$\\]/g) ?? []).length >= 8) return true;
   const t = normalizar(texto);
+  if (t.includes("```")) return true;
+  // Símbolos de programación por DENSIDAD: un mensaje largo con muchos «;» es
+  // prosa, no código. Las llaves, en cambio, no las escribe un ciudadano.
+  const simbolos = (t.match(/[{};<>=$\\]/g) ?? []).length;
+  if (simbolos >= 8 && simbolos / t.length > 0.03) return true;
+  if ((t.match(/[{}]/g) ?? []).length >= 6) return true;
+  // Bloques base64 largos (sin espacios).
+  if (/[a-z0-9+/=]{200,}/i.test(texto.replace(/\p{Cf}/gu, ""))) return true;
+  if (PATRONES_JAILBREAK.some((p) => p.test(t))) return true;
+  if (/\d/.test(t)) {
+    const l = desleet(t);
+    if (PATRONES_JAILBREAK.some((p) => p.test(l))) return true;
+  }
   return PATRONES_FUERA.some((p) => p.test(t));
 }
 
