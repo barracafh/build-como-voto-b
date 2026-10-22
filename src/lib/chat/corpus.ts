@@ -219,7 +219,8 @@ export const normalizar = (s: string) =>
 
 // Raíz tosca: los primeros 5 caracteres bastan para casar correo/correos.
 // Algunas familias cambian de raíz (disolución/disuelto): se unifican.
-const RAICES: Record<string, string> = { disue: "disol" };
+// Quien está en el hospital pregunta con otras palabras que «enfermedad».
+const RAICES: Record<string, string> = { disue: "disol", hospi: "enfer", ingre: "enfer" };
 const terminos = (s: string) =>
   normalizar(s)
     .split(/\s+/)
@@ -533,7 +534,7 @@ export async function recuperar(
 ): Promise<Fragmento[]> {
   // Mensajes largos (cadenas con varias afirmaciones) necesitan más fragmentos.
   const largo = pregunta.length > 800;
-  const { max = largo ? 12 : 8, caracteres = largo ? 9000 : 6000 } = opciones;
+  const { max = largo ? 10 : 8, caracteres = largo ? 7500 : 6000 } = opciones;
   // Variedad: como mucho unos pocos fragmentos del mismo apartado, para que una
   // tabla larga (p. ej. escaños por provincia) no tape el apartado que responde.
   const porApartado = largo ? 4 : 3;
