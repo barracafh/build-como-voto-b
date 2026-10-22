@@ -45,9 +45,8 @@ const GLOVES = {
   // Reposo: mano relajada vista por el dorso, dedos curvados hacia dentro; 3 pespuntes + asterisco.
   rest: { base: [['e', 14, 0, 11, 10.5], ['t', 20, -6.5, 29.5, -8.5, 30.5, -1.5, 9.6, 8.6], ['t', 21, 0, 30.5, 1.5, 28.5, 7.8, 9.6, 8.6],
                  ['t', 19.5, 6, 26, 10, 23.5, 13.2, 9, 8], ['t', 12, -7, 16, -14.5, 22.5, -12.5, 9.4, 8.4]],
-          lines: [['p', 'M25.2,-2.8Q28.6,-2,30.8,0.8'], ['p', 'M24.4,3.8Q27,6.2,27.4,9.4'],
-                  ['p', 'M14,-4.6Q16.6,-5.2,19.2,-4.8'], ['p', 'M14.4,-1.4Q17,-1.6,19.6,-1.2'], ['p', 'M14.6,1.8Q17,2,19.4,2.6']],
-          front: [cuff], ast: [14.2, 6.4, 2.6] },
+          lines: [['p', 'M25.2,-2.8Q28.6,-2,30.8,0.8'], ['p', 'M24.4,3.8Q27,6.2,27.4,9.4']],
+          front: [cuff], ast: [15.6, 0.6, 3.2] },
   open: null,
   // Hola: palma al frente, dedos juntos en abanico leve, ahusados.
   wave: { base: [['e', 14, 0, 11.5, 11], ['t', 19, -6.5, 27, -10, 33.5, -12.5, 9.8, 8.4], ['t', 20.5, -0.5, 29, -0.8, 36, -0.5, 10, 8.6],
@@ -74,11 +73,13 @@ const GLOVES = {
           lines: [['p', 'M30.4,-0.6Q28,0.4,25.6,-0.4'], ['p', 'M31,5.4Q28.6,6,26.2,5.4'], ['p', 'M29.6,11Q27.4,11.4,25.2,10.8'],
                   ['p', 'M11,-4.6Q15,-2.8,20,-4.6']],
           front: [cuff], ast: [15.5, 6] },
-  // Índice: dedo ahusado con curva leve y pliegue de nudillo; 3 dedos doblados debajo; pulgar corto recogido delante.
-  point: { base: [['e', 15, 4.5, 11.5, 11], ['c', 24.6, 3.6, 5.2], ['c', 25.4, 9, 5.2], ['c', 23.4, 13.8, 4.6],
-                  ['t', 19.5, -2, 23.5, -13, 19.5, -24, 10.5, 8]],
-          lines: [['p', 'M29.6,6.4Q27.4,6.8,25.2,6.2'], ['p', 'M28.8,11.6Q26.8,12,24.8,11.4'], ['p', 'M17.2,-11.6Q20.2,-10.2,23.4,-11.8']],
-          front: [[['t', 12.5, 7, 16.5, 10.5, 21.5, 7.8, 8.4, 7.4]], cuff], ast: [15.6, 0.6, 2.4] }
+  // Índice: puño redondo y compacto (como el de thumb) con nudillos curvos; encima, el índice ahusado.
+  // El pulgar va recogido dentro del contorno como una sola línea curva.
+  point: { base: [['e', 15, 4.5, 12, 11.5], ['c', 25.4, 3.4, 5.4], ['c', 25.6, 9, 5.2], ['c', 23.6, 13, 4.4],
+                  ['t', 20, -1, 23.5, -12.5, 19.5, -24, 10.5, 8]],
+          lines: [['p', 'M30.6,6.2Q28.2,6.8,25.8,6.2'], ['p', 'M29.6,11.4Q27.4,11.9,25.2,11.2'], ['p', 'M17.2,-11.6Q20.2,-10.2,23.4,-11.8'],
+                  ['p', 'M12,9.6Q17,12.6,22.4,10.2']],
+          front: [cuff], ast: [14.2, 2.4, 2.8] }
 };
 delete GLOVES.open;
 const GLOVE_NAMES = Object.keys(GLOVES);
