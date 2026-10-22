@@ -11,9 +11,10 @@ export type Mensaje = {
 };
 
 // Con { json: true } se pide al modelo que responda con un objeto JSON.
+// Con { maxTokens } se acota la salida (en glm5.3-flash incluye el razonamiento).
 export async function completar(
   messages: Mensaje[],
-  { json = false }: { json?: boolean } = {},
+  { json = false, maxTokens }: { json?: boolean; maxTokens?: number } = {},
 ): Promise<string> {
   const { HELMCODE_API_KEY, HELMCODE_BASE_URL, HELMCODE_MODEL } = process.env;
   if (!HELMCODE_API_KEY || !HELMCODE_MODEL)
@@ -32,6 +33,7 @@ export async function completar(
           model: HELMCODE_MODEL,
           messages,
           ...(json && { response_format: { type: "json_object" } }),
+          ...(maxTokens && { max_tokens: maxTokens }),
         }),
       },
     );
