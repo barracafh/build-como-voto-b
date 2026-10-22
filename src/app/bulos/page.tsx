@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
-import { BookOpen, CircleX, Scale } from "lucide-react";
+import { BookOpen, ChevronDown, CircleX, Scale } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { BotonAviso } from "@/components/BotonAviso";
@@ -30,59 +30,72 @@ const titular = "text-[clamp(28px,4vw,40px)] leading-[1.1] tracking-[-0.02em]";
 
 const miles = (n: number) => n.toLocaleString("es-ES");
 
+// Cada afirmación se lee de un vistazo (lo que se dice y la respuesta en una
+// frase); el porqué y la fuente se despliegan. <details> nativo: funciona sin
+// JavaScript y con teclado.
 function Contraste({ a }: { a: Afirmacion }) {
   return (
-    <Card
-      render={<article />}
-      aria-labelledby={`af-${a.id}`}
-      className="gap-0 px-5 py-5 text-base md:px-6"
-    >
-      <p className={etiqueta}>Lo que se dice</p>
-      <p id={`af-${a.id}`} className="mt-2 text-lg leading-[1.35] font-medium">
-        «{a.dice}»
-      </p>
-
-      <div className="mt-4 border-t border-border pt-4">
-        <p className="flex flex-wrap items-center gap-x-3 gap-y-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-muted px-3 py-1 font-mono text-xs">
-            <CircleX
+    <Card render={<article />} className="gap-0 p-0 text-base">
+      <details className="group">
+        <summary className="grid cursor-pointer list-none grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 rounded-xl px-5 py-5 outline-none transition-colors hover:bg-muted/60 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:ring-inset md:px-6 [&::-webkit-details-marker]:hidden">
+          <span className="min-w-0">
+            <span className="block text-lg leading-[1.35] text-(--text-secondary)">
+              «{a.dice}»
+            </span>
+            <span className="mt-3 flex items-start gap-2 font-medium">
+              <CircleX
+                aria-hidden="true"
+                className="mt-[0.2em] size-4.5 shrink-0 text-brand"
+                strokeWidth={1.75}
+              />
+              <span>
+                <span className="sr-only">Lo que dice la ley: </span>
+                {a.ley}
+              </span>
+            </span>
+          </span>
+          <span className="mt-1 inline-flex items-center gap-1 text-sm text-(--text-secondary)">
+            <span className="hidden sm:inline sm:group-open:hidden">Por qué</span>
+            <span className="hidden sm:group-open:inline">Cerrar</span>
+            <ChevronDown
               aria-hidden="true"
-              className="size-3.5 text-brand"
+              className="size-5 transition-transform group-open:rotate-180 motion-reduce:transition-none"
               strokeWidth={1.75}
             />
-            No coincide con la ley
           </span>
-          <span className="font-medium">{a.ley}</span>
-        </p>
-        <p className="mt-2 text-(--text-secondary)">{a.texto}</p>
-        {a.matiz && (
-          <p className="mt-3 border-l-2 border-brand/60 pl-3 text-[15px] text-(--text-secondary)">
-            <span className="font-medium text-foreground">Matiz: </span>
-            {a.matiz}
-          </p>
-        )}
-        <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
-          <a
-            href={a.fuente.url}
-            target="_blank"
-            rel="noreferrer"
-            className={`inline-flex min-h-11 items-center gap-1 font-mono text-sm ${enlace}`}
-          >
-            {a.fuente.nombre} <span aria-hidden="true">↗</span>
-          </a>
-          {a.verificacion && (
+        </summary>
+
+        <div className="mx-5 border-t border-border pt-4 pb-5 md:mx-6">
+          <p>{a.texto}</p>
+          {a.matiz && (
+            <p className="mt-3 border-l-2 border-brand/60 pl-3 text-[15px] text-(--text-secondary)">
+              <span className="font-medium text-foreground">Ojo: </span>
+              {a.matiz}
+            </p>
+          )}
+          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
             <a
-              href={a.verificacion.url}
+              href={a.fuente.url}
               target="_blank"
               rel="noreferrer"
-              className={`inline-flex min-h-11 items-center gap-1 text-sm text-(--text-secondary) ${enlace}`}
+              className={`inline-flex min-h-11 items-center gap-1 font-mono text-sm ${enlace}`}
             >
-              También lo verificó {a.verificacion.nombre} (
-              {a.verificacion.fecha}) <span aria-hidden="true">↗</span>
+              {a.fuente.nombre} <span aria-hidden="true">↗</span>
             </a>
-          )}
+            {a.verificacion && (
+              <a
+                href={a.verificacion.url}
+                target="_blank"
+                rel="noreferrer"
+                className={`inline-flex min-h-11 items-center gap-1 text-sm text-(--text-secondary) ${enlace}`}
+              >
+                También lo verificó {a.verificacion.nombre} (
+                {a.verificacion.fecha}) <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </div>
         </div>
-      </div>
+      </details>
     </Card>
   );
 }
@@ -176,9 +189,10 @@ export default function Bulos() {
             Lo que se dice sobre votar, frente a lo que dice la ley
           </h1>
           <p className="mt-6 text-lg text-(--text-secondary)">
-            {total} cosas que circulan sobre el voto en blanco, el nulo, la
-            papeleta o el voto por correo. Para cada una, lo que dice la ley
-            electoral y el artículo que lo sostiene.
+            ¿Te han dicho que el voto en blanco va al que gana? ¿Que puedes
+            votar con una fotocopia del DNI? Aquí tienes {total} cosas que se
+            oyen sobre votar, con la respuesta en una frase. Toca cualquiera
+            para ver el porqué y el artículo de la ley.
           </p>
           <VotonApartado className="mt-8" {...paradasBulos[0]} />
         </div>

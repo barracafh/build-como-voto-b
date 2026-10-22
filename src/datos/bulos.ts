@@ -63,7 +63,7 @@ export const temas: Tema[] = [
       {
         id: "blanco-reparte",
         dice: "El voto en blanco se lo lleva el partido más votado.",
-        ley: "No va a ninguna candidatura.",
+        ley: "No. El voto en blanco no va a ningún partido.",
         texto:
           "El voto en blanco es válido, pero no se asigna a nadie: no suma votos a ningún partido ni genera escaño. Lo que sí hace es contar en la base sobre la que se calcula el 3 % mínimo para entrar en el reparto, así que sube esa barrera para todos.",
         fuente: art("96.5, 108.4 y 163.1"),
@@ -71,7 +71,7 @@ export const temas: Tema[] = [
       {
         id: "blanco-abstencion",
         dice: "Votar en blanco es lo mismo que quedarse en casa.",
-        ley: "El blanco es voto válido; la abstención no es voto.",
+        ley: "No. El blanco cuenta como voto válido; no votar, no.",
         texto:
           "El voto en blanco se cuenta como válido y entra en el cálculo del 3 %. La abstención no computa como voto: los escaños se reparten solo con los votos válidos emitidos.",
         fuente: art("108.4 y 163.1.a"),
@@ -79,7 +79,7 @@ export const temas: Tema[] = [
       {
         id: "nulo-blanco",
         dice: "Un voto nulo cuenta como voto en blanco.",
-        ley: "El nulo no es válido; el blanco sí.",
+        ley: "No. El nulo no cuenta para nada; el blanco sí cuenta.",
         texto:
           "El voto nulo no cuenta en la base del 3 % ni en el reparto. Aparece aparte en el acta de la mesa, como «votos nulos».",
         fuente: art("96 y 108.1"),
@@ -87,7 +87,7 @@ export const temas: Tema[] = [
       {
         id: "sobre-vacio",
         dice: "Si metes el sobre vacío en la urna, tu voto es nulo.",
-        ley: "Un sobre sin papeleta es voto en blanco.",
+        ley: "No. El sobre vacío es justo el voto en blanco.",
         texto:
           "En el Congreso, el voto en blanco es precisamente eso: el sobre sin papeleta. En el Senado, también la papeleta sin ningún candidato marcado.",
         fuente: art("96.5"),
@@ -95,7 +95,7 @@ export const temas: Tema[] = [
       {
         id: "escanos-vacios",
         dice: "Si hay muchos votos en blanco, se quedan escaños vacíos.",
-        ley: "Todos los escaños se reparten entre candidaturas.",
+        ley: "No. Todos los escaños se reparten siempre.",
         texto:
           "Cada provincia reparte todos sus escaños, con la fórmula D'Hondt, entre las candidaturas que superan el 3 % de los votos válidos. El voto en blanco no genera escaño, ni ocupado ni vacío.",
         fuente: art("163.1"),
@@ -109,7 +109,7 @@ export const temas: Tema[] = [
       {
         id: "tachar",
         dice: "Si tachas un nombre de la lista, el voto sigue valiendo.",
-        ley: "Una papeleta tachada o con añadidos es nula.",
+        ley: "No. Si tachas o escribes algo, el voto es nulo.",
         texto:
           "Son nulas las papeletas en las que se han modificado, añadido o tachado nombres, cambiado su orden o escrito leyendas, y los sobres alterados.",
         matiz:
@@ -119,7 +119,7 @@ export const temas: Tema[] = [
       {
         id: "dos-papeletas",
         dice: "Si metes dos papeletas iguales en el sobre, el voto es nulo.",
-        ley: "Varias papeletas de la misma candidatura cuentan como un voto.",
+        ley: "No. Si son del mismo partido, cuenta como un voto.",
         texto:
           "Solo es nulo el sobre con papeletas de candidaturas distintas. Si todas son de la misma, se computa un solo voto válido.",
         fuente: art("96"),
@@ -127,7 +127,7 @@ export const temas: Tema[] = [
       {
         id: "senado-todos",
         dice: "En el Senado puedes marcar a todos los candidatos que quieras.",
-        ley: "Hay un máximo de cruces, y pasarse anula el voto.",
+        ley: "No. Hay un máximo, y si te pasas el voto es nulo.",
         texto:
           "Hasta 3 candidatos en las provincias; 2 en Gran Canaria, Mallorca, Tenerife, Ceuta y Melilla, y 1 en el resto de islas. Una papeleta con más nombres marcados es nula.",
         fuente: art("96 y 166.1"),
@@ -141,7 +141,7 @@ export const temas: Tema[] = [
       {
         id: "obligatorio",
         dice: "Votar es obligatorio.",
-        ley: "Votar es un derecho, no una obligación.",
+        ley: "No. Votar es un derecho, no una obligación.",
         texto:
           "Nadie puede ser obligado ni coaccionado a votar. Lo que sí es obligatorio es ser miembro de mesa si te toca en el sorteo.",
         fuente: art("5 y 27.1"),
@@ -149,7 +149,7 @@ export const temas: Tema[] = [
       {
         id: "revelar",
         dice: "En la mesa te pueden pedir que digas a quién votas.",
-        ley: "El voto es secreto.",
+        ley: "No. Tu voto es secreto y nadie puede pedírtelo.",
         texto:
           "El voto es personal y secreto, y nadie puede obligarte a revelarlo, ni dentro ni fuera del colegio.",
         fuente: art("5 y 86"),
@@ -157,7 +157,7 @@ export const temas: Tema[] = [
       {
         id: "fotocopia",
         dice: "Para votar basta con una fotocopia del DNI.",
-        ley: "Hace falta el documento original.",
+        ley: "No. Tienes que llevar el documento original.",
         texto:
           "Valen el DNI, el pasaporte o el permiso de conducir con fotografía, en original. Interior aclara que no valen fotocopias ni el resguardo del DNI en trámite.",
         fuente: INTERIOR_FAQ,
@@ -165,7 +165,7 @@ export const temas: Tema[] = [
       {
         id: "tarjeta-censal",
         dice: "Sin la tarjeta censal que llega a casa no puedes votar.",
-        ley: "La tarjeta censal no es requisito.",
+        ley: "No. Basta con tu DNI, pasaporte o carné de conducir.",
         texto:
           "Basta con estar inscrito en las listas del censo de tu mesa e identificarte con un documento válido. Tu mesa y tu colegio puedes consultarlos en la sede del INE.",
         fuente: art("85.1"),
@@ -173,7 +173,7 @@ export const temas: Tema[] = [
       {
         id: "trabajo",
         dice: "Si trabajas el día 29, tu empresa no tiene por qué dejarte ir a votar.",
-        ley: "Tienes permiso retribuido para votar.",
+        ley: "No. Tienes derecho a un permiso pagado para votar.",
         texto:
           "El Estatuto de los Trabajadores da permiso pagado por el tiempo indispensable para votar. El Real Decreto 605/1999 prevé hasta cuatro horas libres retribuidas dentro de tu horario.",
         matiz:
@@ -189,7 +189,7 @@ export const temas: Tema[] = [
       {
         id: "correo-y-mesa",
         dice: "Si pides el voto por correo y al final no lo envías, puedes votar en tu mesa.",
-        ley: "Si lo pides, ya no puedes votar en persona.",
+        ley: "No. Si lo pides, ya no puedes votar en persona.",
         texto:
           "Al aceptarse la solicitud quedas anotado en el censo para que no votes en la mesa, aunque no llegues a enviar el voto por correo.",
         fuente: art("73.1"),
@@ -202,7 +202,7 @@ export const temas: Tema[] = [
       {
         id: "correo-tarde",
         dice: "El voto por correo vale aunque llegue a la mesa después de las 20:00.",
-        ley: "Lo que llega después de las 20:00 no se cuenta.",
+        ley: "No. Lo que llega después de las 20:00 no se cuenta.",
         texto:
           `Correos entrega los votos a las mesas hasta las 20:00. Los sobres que llegan más tarde se envían a la Junta Electoral de Zona y no se computan. Por eso hay que enviarlo como tarde el ${fecha(plazos.correoRemision.fin)}.`,
         fuente: art("73.3 y 73.4"),
@@ -210,7 +210,7 @@ export const temas: Tema[] = [
       {
         id: "extranjero-rogado",
         dice: "Si vives en el extranjero, tienes que pedir el voto.",
-        ley: "Desde 2022, la documentación llega sin pedirla.",
+        ley: "No. Desde 2022 te llega a casa sin pedirlo.",
         texto:
           "La reforma de 2022 (LO 12/2022) eliminó el «voto rogado»: si estás inscrito en el censo de residentes ausentes (CERA), la Oficina del Censo Electoral te envía la documentación de oficio.",
         matiz:
