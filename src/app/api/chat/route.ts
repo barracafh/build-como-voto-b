@@ -47,8 +47,9 @@ const instrucciones = (contexto: string) => `Eres el asistente de «¿Cómo voto
 Reglas:
 1. Responde SOLO con lo que diga el CONTEXTO de abajo. No uses tu conocimiento propio para fechas, plazos, requisitos ni cifras. Las fechas salen del CALENDARIO OFICIAL. No añadas excepciones, alternativas ni consejos que no estén en el CONTEXTO.
 2. Si el contexto no permite responder con seguridad, dilo con claridad («No puedo confirmarlo con las fuentes oficiales que tengo») y pon "confirmado": false.
-3. Solo trata cómo se vota: voto presencial, por correo, desde el extranjero, mesas electorales, plazos, sistema electoral (D'Hondt, voto en blanco, nulo, abstención). Nunca hables de partidos, candidatos, programas, encuestas ni recomiendes el voto. Si te preguntan por eso, explica amablemente que queda fuera de esta herramienta, con "confirmado": false y "citas": [].
-4. Ten en cuenta la fecha de hoy: si un plazo ya ha terminado, dilo y no lo ofrezcas como trámite abierto. No ofrezcas ni sugieras trámites cuyo plazo ya terminó (p. ej., la consulta o reclamación del censo, cerrada el 19/10). La consulta de tu mesa y local electoral en la sede del INE sigue abierta: si preguntan si están en el censo o dónde votan, explica que el plazo de reclamación terminó y ofrece esa consulta de mesa y local. Las fechas de fin incluyen ese día: di "hasta el 25 de noviembre (incluido)", nunca "antes del 25". En los plazos pon el mes en las dos fechas: "del 21 de noviembre al 26 de noviembre (ambos incluidos)".
+3. Solo trata cómo se vota: voto presencial, por correo, desde el extranjero, mesas electorales, plazos, sistema electoral (D'Hondt, voto en blanco, nulo, abstención). Nunca hables de partidos, candidatos, programas, encuestas ni recomiendes el voto. Si te preguntan por eso, explica amablemente que queda fuera de esta herramienta, con "confirmado": false y "citas": []. Las normas de campaña sí entran (jornada de reflexión, propaganda, encuestas, permiso para votar en el trabajo): si alguien pregunta si puede hacer algo, explica lo que dice la norma del CONTEXTO, sin valorar a ningún partido. No repitas en tu respuesta las palabras de la pregunta que piden una recomendación (p. ej. «qué partido te conviene»).
+3b. Responde completo con lo que el CONTEXTO diga de lo preguntado: si explicas un concepto, añade sus consecuencias que figuren en el fragmento (p. ej., si cuenta como voto válido). Si el nombre del método o la norma aparece en el fragmento (p. ej. D'Hondt), dilo.
+4. Ten en cuenta la fecha de hoy: si un plazo ya ha terminado, dilo y no lo ofrezcas como trámite abierto. No ofrezcas ni sugieras trámites cuyo plazo ya terminó (p. ej., la consulta o reclamación del censo, cerrada el 19/10). La consulta de tu mesa y local electoral en la sede del INE sigue abierta: si preguntan si están en el censo o dónde votan, explica que el plazo de reclamación terminó y ofrece esa consulta de mesa y local. Las fechas de fin incluyen ese día: di "hasta el 25 de noviembre (incluido)", nunca "antes del 25". En los plazos pon el mes en las dos fechas: "del 21 de noviembre al 26 de noviembre (ambos incluidos)", nunca "del 21 al 26 de noviembre". Si preguntan si pueden hacer un trámite en una fecha concreta posterior al fin del plazo, di que en esa fecha ya no se puede y hasta cuándo pueden hacerlo.
 5. Nunca pidas datos personales (DNI, dirección, etc.). Si el usuario los escribe, no los repitas.
 6. Castellano llano, frases cortas, de tú. Máximo unas 150 palabras. Si hay pasos, ponlos numerados, uno por línea ("1. …"). Sin markdown: ni asteriscos, ni almohadillas, ni enlaces ni URL en el texto.
 7. Cada fragmento del CONTEXTO empieza con su id entre corchetes, p. ej. [2.7#10]. En "citas" pon de 1 a 4 fragmentos que sostienen tu respuesta, el más concreto primero: {"id": "2.7#10", "cita": "frase literal corta copiada del fragmento"}. La cita debe copiarse tal cual del fragmento (5 a 15 palabras). Cita solo fragmentos que has usado de verdad. No cites fragmentos del Real Decreto 806/2026 salvo si la pregunta trata de la convocatoria o de la fecha de la votación. Nunca escribas URL: los enlaces oficiales los pone la herramienta a partir de tus citas.
@@ -67,6 +68,34 @@ const sinMarkdown = (texto: string) =>
     .replace(/\(?https?:\/\/\S+\)?/g, "")
     .replace(/[ \t]{2,}/g, " ")
     .trim();
+
+// «del 9 al 22 de noviembre» → «del 9 de noviembre al 22 de noviembre» (regla 4:
+// el mes en las dos fechas, para que nadie lea mal el inicio del plazo).
+const MESES = "enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre";
+const RANGO = new RegExp(
+  `\\b(del|entre el|desde el)\\s+(\\d{1,2})\\s+(al|y el|hasta el)\\s+(\\d{1,2})\\s+de\\s+(${MESES})\\b`,
+  "gi",
+);
+const mesEnAmbas = (texto: string) =>
+  texto.replace(RANGO, (_m, a, d1, b, d2, mes) => `${a} ${d1} de ${mes} ${b} ${d2} de ${mes}`);
+
+// Si el modelo parte la respuesta en otros campos (p. ej. "pasos": […]),
+// se recuperan para no dejar el texto cortado en «…lo que tienes que saber:».
+function textoCompleto(salida: Record<string, unknown>): string | undefined {
+  if (typeof salida.respuesta !== "string") return undefined;
+  let texto = salida.respuesta;
+  if (!/:\s*$/.test(texto)) return texto;
+  for (const [clave, valor] of Object.entries(salida)) {
+    if (["respuesta", "citas", "confirmado"].includes(clave)) continue;
+    if (typeof valor === "string") texto += `\n${valor}`;
+    else if (Array.isArray(valor))
+      texto += valor
+        .filter((v) => typeof v === "string")
+        .map((v, i) => `\n${/^\d+\./.test(v) ? v : `${i + 1}. ${v}`}`)
+        .join("");
+  }
+  return texto;
+}
 
 // ¿La cita aparece en el fragmento? Literal (sin acentos, mayúsculas ni
 // espacios de más) o con al menos el 80 % de sus palabras presentes.
@@ -150,10 +179,10 @@ export async function POST(req: Request) {
     } satisfies RespuestaChat);
   }
 
-  const respuesta =
-    typeof salida.respuesta === "string" && salida.respuesta.trim()
-      ? sinMarkdown(salida.respuesta)
-      : "No puedo confirmarlo con las fuentes oficiales que tengo.";
+  const completo = textoCompleto(salida);
+  const respuesta = completo?.trim()
+    ? mesEnAmbas(sinMarkdown(completo))
+    : "No puedo confirmarlo con las fuentes oficiales que tengo.";
 
   // Citas comprobadas: el id tiene que estar en el contexto enviado y la frase,
   // en ese fragmento. Los enlaces salen de los fragmentos, nunca del modelo.
