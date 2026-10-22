@@ -34,27 +34,38 @@ const MOUTH = {
 
 // Guantes: primitivas en marco local (muñeca en 0,0; la mano avanza hacia +x; -y = lado del pulgar).
 // e=elipse, c=círculo, l=dedo recto, q=dedo curvo (x1 y1 cx cy x2 y2 w), f=forma rellena, p=línea de detalle
-const O = 2.5;
-const cuff = [['f', 'M -1.5 -6.2 L 6.5 -10.6 Q 10.2 0 6.5 10.6 L -1.5 6.2 Q -3 0 -1.5 -6.2 Z']];
-const cuffLine = ['p', 'M 2.6 -7.6 Q 5 0 2.6 7.6'];
-const stitches = [['p', 'M 10.5 -2.6 L 16.5 -3.2'], ['p', 'M 10.5 0.6 L 16.5 0.6'], ['p', 'M 10.5 3.8 L 16.5 4.4']];
+const O = 2.5, GS = 1.45;   // grosor de contorno (local) y escala del guante
+// Puño de manga enrollado en campana (pieza propia, delante de la mano) con 2 pliegues.
+const cuff = [['f', 'M 8.5 -7.6 C 5 -8.2 1.8 -9.4 -1.2 -10.4 C -5.6 -11.2 -5.6 11.2 -1.2 10.4 C 1.8 9.4 5 8.2 8.5 7.6 C 10 3.8 10 -3.8 8.5 -7.6 Z']];
+const cuffLines = [['p', 'M 1.2 -9 Q -1.2 0 1.2 9']];
+const stitches = [['p', 'M 13 -3.4 L 17.5 -3.8'], ['p', 'M 13 0 L 17.5 0'], ['p', 'M 13 3.4 L 17.5 3.8']];
+// Cada guante: "base" se funde en UNA silueta (contorno de tinta común), "lines" son pliegues interiores,
+// "front" son piezas por delante con contorno propio (pulgar cruzado, manga).
 const GLOVES = {
-  open: { base: [['e', 15, 0, 10.5, 9.6], ['q', 19, -5, 27, -11, 31.5, -8, 7.4], ['q', 20, 0, 29, -0.5, 33.5, 2, 7.6], ['q', 19, 5, 26.5, 11, 30.5, 9.5, 7.2]],
-          lines: [['p', 'M 24.5 -3 Q 28 -4.2 31 -3.4'], ['p', 'M 24 3.4 Q 27.5 5 30 5.6'], ...stitches],
-          front: [[['q', 12, -6, 13.5, -13, 19, -14.5, 7.2]], cuff], cuffLine },
-  wave: { base: [['e', 14, 0, 10, 9.6], ['q', 18, -6, 22.5, -14, 28.5, -16, 7.2], ['q', 20, -1, 28, -3.5, 33.5, -1.5, 7.4], ['q', 19, 5, 26, 9, 30, 11.5, 7.2]],
-          lines: stitches,
-          front: [[['q', 11, -6, 9.5, -12, 12.5, -18, 7.2]], cuff], cuffLine },
-  thumb: { base: [['e', 15, 3, 10.6, 11], ['l', 12.5, -6, 13, -19.5, 9]], lines: [],
-          front: [[['l', 11, -1.6, 23.5, -1.6, 7.2]], [['l', 11, 4.6, 24, 4.6, 7.2]], [['l', 11, 10.8, 22.5, 10.8, 6.8]], cuff], cuffLine },
-  point: { base: [['e', 14, 2, 10.6, 10.2], ['q', 19.5, -3, 20.5, -15, 19, -25, 7.4]], lines: stitches,
-          front: [[['c', 22.6, 11, 4.3]], [['c', 23.8, 5, 4.6]], [['l', 10, 0, 19.5, 2.4, 6.6]], cuff], cuffLine },
-  palm: { base: [['e', 14, 0, 10.2, 8.8], ['q', 19, -3.2, 27, -7, 32.5, -5, 7.4], ['q', 19, 2.6, 27, 3.6, 32.5, 3.5, 7.4]],
-          lines: [['p', 'M 24 -0.4 Q 28 -1.2 31.5 -0.8'], ...stitches],
-          front: [[['q', 12, -5, 13, -11.5, 17.5, -14.5, 7]], cuff], cuffLine },
-  fist: { base: [['e', 13, 0, 10.2, 10.2]], lines: stitches,
-          front: [[['c', 22, 6.4, 4.5]], [['c', 23.2, 0.2, 4.8]], [['c', 22, -6, 4.5]], [['l', 10.5, -8.4, 19.5, -8.6, 6.4]], cuff], cuffLine }
+  rest: { base: [['e', 14, 0, 11, 10.5], ['q', 20, -6.5, 29, -8, 30, -1.5, 8.6], ['q', 21, 0, 30, 1.5, 28.5, 7.5, 8.6], ['q', 19.5, 6, 26, 10, 23.5, 13, 8], ['q', 12, -7, 16, -14, 22, -12.5, 8.4]],
+          lines: [['p', 'M 25 -2.8 Q 28.5 -2 30.6 0.8'], ['p', 'M 24.2 3.8 Q 26.8 6.2 27.2 9.4'], ['p', 'M 11.5 -2.6 L 16.5 -3'], ['p', 'M 11.5 1.4 L 16.5 1.6']],
+          front: [cuff] },
+  open: null,
+  wave: { base: [['e', 14, 0, 11.5, 11], ['q', 20, -7, 27, -10, 34, -12, 8.8], ['q', 21, -0.5, 29, -0.5, 36, -0.5, 9], ['q', 20, 6.5, 27, 9, 33.5, 11, 8.6], ['q', 11, -7, 9, -14, 13, -19.5, 8.6]],
+          lines: [['p', 'M 27.5 -4.8 L 35 -6.3'], ['p', 'M 27.5 4 L 34.5 5.6'], ['p', 'M 9.5 -6.4 Q 12.5 -8.6 16 -8']],
+          front: [cuff] },
+  spread: { base: [['e', 14, 0, 11.5, 11], ['q', 19, -7.5, 25, -13, 30, -19, 8.6], ['q', 21, -1, 29, -3, 36.5, -4, 9], ['q', 20, 6.5, 27, 10, 32, 15, 8.6], ['q', 10, -7, 6, -13, 7, -20, 8.6]],
+          lines: [['p', 'M 24.5 -5.8 L 26.8 -7.8'], ['p', 'M 25 4.6 L 27.4 6.8'], ['p', 'M 8.6 -6.4 Q 11.5 -8.4 14.5 -8']],
+          front: [cuff] },
+  palm: { base: [['e', 14, 0, 11.5, 10], ['q', 20, -5, 28, -6.5, 35, -5, 8.8], ['q', 20, 1.5, 28, 2, 35, 3, 8.8], ['q', 19, 6.5, 26, 8.5, 32, 9.5, 8], ['q', 12, -6, 13, -13, 18, -16.5, 8.6]],
+          lines: [['p', 'M 27.5 -1.8 L 34.6 -1'], ['p', 'M 26.5 5.2 L 32.6 6.4'], ['p', 'M 11 -5 Q 14 -7.4 17 -7.2']],
+          front: [cuff] },
+  fist: { base: [['e', 15, 0, 12, 12.5], ['c', 26, -7.5, 5.6], ['c', 27.5, 0, 6], ['c', 26, 7.5, 5.6]],
+          lines: [['p', 'M 30.5 -3.8 L 26 -3.8'], ['p', 'M 30.5 3.8 L 26 3.8']],
+          front: [[['q', 12, -9, 18, -10.5, 23.5, -9, 8.4]], cuff] },
+  thumb: { base: [['e', 15, 3, 12, 12], ['c', 25.5, -3.5, 5.8], ['c', 26.5, 3.5, 6], ['c', 25, 10.5, 5.6], ['q', 13, -6, 12.5, -15, 15, -23, 10]],
+          lines: [['p', 'M 30 0 L 24.5 0'], ['p', 'M 30 7 L 24.5 7'], ['p', 'M 9.5 -6.4 Q 13.5 -4.6 18 -6.6']],
+          front: [cuff] },
+  point: { base: [['e', 15, 3, 11.5, 11.5], ['c', 25, 5, 5.6], ['c', 24, 11.5, 5.4], ['q', 20, -3, 21, -14, 20.5, -25, 10]],
+          lines: [['p', 'M 28.8 8.4 L 23.8 8.4'], ['p', 'M 16 -4.5 Q 19.5 -2.6 24 -4']],
+          front: [[['q', 10, 1, 16, 0, 22, 3, 8]], cuff] }
 };
+delete GLOVES.open;
 const GLOVE_NAMES = Object.keys(GLOVES);
 
 function prim(p, outline) {
@@ -67,13 +78,13 @@ function prim(p, outline) {
   if (t === 'q') return `<path d="M ${p[1]} ${p[2]} Q ${p[3]} ${p[4]} ${p[5]} ${p[6]}" fill="none" stroke="${fill}" stroke-width="${outline ? p[7] + 2 * O : p[7]}" stroke-linecap="round"/>`;
   return '';
 }
-const detail = (p) => `<path d="${p[1]}" fill="none" stroke="${INK}" stroke-width="1.5" stroke-linecap="round"/>`;
+const detail = (p) => `<path d="${p[1]}" fill="none" stroke="${INK}" stroke-width="1.7" stroke-linecap="round"/>`;
 function gloveSVG(name) {
   const g = GLOVES[name];
   let s = g.base.map(p => prim(p, true)).join('') + g.base.map(p => prim(p, false)).join('');
   s += g.lines.map(detail).join('');
   g.front.forEach(f => { s += f.map(p => prim(p, true)).join('') + f.map(p => prim(p, false)).join(''); });
-  s += detail(g.cuffLine);
+  s += cuffLines.map(detail).join('');
   return `<g data-g="${name}" style="display:none">${s}</g>`;
 }
 
@@ -173,20 +184,20 @@ const DEF = {
   armR: 50, armL: 50, sR: 0, sL: 0, minSag: 0.1, tfR: 0.3,
   lookX: 0, lookY: 0, faceX: 0, faceY: 0, lid: 0, pupilS: 1, browLy: 0, browRy: 0, browLr: 0, browRr: 0,
   happy: 0, tilt: 0, bob: 1, walk: 0, footRdir: 1, footLdir: -1, gazeW: 1, gfR: -1, gfL: -1,
-  gR: 'open', gL: 'open', mouth: 'smile'
+  gR: 'rest', gL: 'rest', mouth: 'smile'
 };
 const DISCRETE = ['gR', 'gL', 'gfR', 'gfL'];
 const ADD = { aRx: 0, aRy: 0, aLx: 0, aLy: 0, aRrot: 0, aLrot: 0, tapR: 0, tapL: 0, antic: 0, jy: 0, st: 0, shrug: 0, tremble: 0, b1: 0, b2: 0, b3: 0 };
 const POSES = {
   idle: {},
-  hola: { hRx: 74, hRy: -50, armR: 70, sR: 0.75, minSag: 0.16, fR: 0, gRotR: -78, oRy: 1, gfR: 1, gR: 'wave', mouth: 'big', browLy: 4, browRy: 4, tilt: -5, lookX: 0.25, faceX: 1.5, gazeW: 0 },
-  piensa: { hRx: 4, hRy: 63, armR: 80, tfR: 0.12, fR: 0, gRotR: -96, oRy: 1, frontR: 1, gfR: 1, gR: 'fist', hLx: -66, hLy: 50, mouth: 'hmm',
+  hola: { hRx: 70, hRy: -32, armR: 70, sR: 0.75, minSag: 0.16, fR: 0, gRotR: -78, oRy: 1, gfR: 1, gR: 'wave', mouth: 'big', browLy: 4, browRy: 4, tilt: -5, lookX: 0.25, faceX: 1.5, gazeW: 0 },
+  piensa: { hRx: 2, hRy: 84, armR: 96, tfR: 0.12, fR: 0, gRotR: -96, oRy: 1, frontR: 1, gfR: 1, gR: 'fist', hLx: -66, hLy: 50, mouth: 'hmm',
             lookX: -0.9, lookY: -1, faceX: -3, faceY: -4, browLy: 6, browRy: -1, browRr: -8, tilt: 5, bob: 0.4, gazeW: 0 },
-  ok: { hRx: 82, hRy: -6, fR: 0, gRotR: -6, oRy: 0.9, gfR: 1, gR: 'thumb', mouth: 'big', browLy: 4, browRy: 4, happy: 1, tilt: -4, lookX: 0.35, faceX: 2, gazeW: 0 },
-  no: { hRx: 79, hRy: -16, fR: 0, gRotR: -4, oRy: 0.9, gfR: 1, gR: 'point', mouth: 'flat', browRy: 5, browLy: -1, browLr: 6, lid: 0.32, tilt: 5, lookX: 0.4, faceX: 2, bob: 0.6, gazeW: 0 },
-  fuera: { hRx: 75, hRy: 0, hLx: -75, hLy: 0, fR: 0, fL: 0, gRotR: -18, gRotL: -18, oRy: 1, oLy: 1, gfR: 1, gfL: 1, gR: 'palm', gL: 'palm', mouth: 'wavy',
+  ok: { hRx: 66, hRy: -10, fR: 0, gRotR: -6, oRy: 0.9, gfR: 1, gR: 'thumb', mouth: 'big', browLy: 4, browRy: 4, happy: 1, tilt: -4, lookX: 0.35, faceX: 2, gazeW: 0 },
+  no: { hRx: 64, hRy: -20, fR: 0, gRotR: -4, oRy: 0.9, gfR: 1, gR: 'point', mouth: 'flat', browRy: 5, browLy: -1, browLr: 6, lid: 0.32, tilt: 5, lookX: 0.4, faceX: 2, bob: 0.6, gazeW: 0 },
+  fuera: { hRx: 56, hRy: -2, hLx: -56, hLy: -2, fR: 0, fL: 0, gRotR: -14, gRotL: -14, oRy: 1, oLy: 1, gfR: 1, gfL: 1, gR: 'palm', gL: 'palm', mouth: 'wavy',
            browLy: 4, browRy: 4, browLr: 10, browRr: 10, lid: 0.2, tilt: -6, lookX: -0.5, lookY: -0.4, faceX: -1.5, gazeW: 0 },
-  aviso: { hRx: 66, hRy: -44, hLx: -66, hLy: -44, fR: 0, fL: 0, gRotR: -84, gRotL: -84, oRy: 1, oLy: 1, gfR: 1, gfL: 1, gR: 'wave', gL: 'wave', mouth: 'zig',
+  aviso: { hRx: 70, hRy: -24, hLx: -70, hLy: -24, fR: 0, fL: 0, gRotR: -84, gRotL: -84, oRy: 1, oLy: 1, gfR: 1, gfL: 1, gR: 'spread', gL: 'spread', mouth: 'zig',
            browLy: 7, browRy: 7, browLr: 6, browRr: 6, pupilS: 1.14, faceY: -2, gazeW: 0, bob: 0.3 },
   camina: { walk: 1, bob: 0, footLdir: 1, faceX: 4, lookX: 0.8, tilt: 4, gazeW: 0, hRy: 46, hLy: 46 }
 };
@@ -352,7 +363,7 @@ export function createVoton(el, {
     const mech = bw * 9 * Math.cos(2 * Math.PI * mod(p - 0.2, 1)) + walk * 7 * Math.sin(2 * Math.PI * 2 * q) + r.tremble * M0 * 8 * Math.sin(c * 50) + rot * -0.8;
     const gloveT = (h, arm, f, rotv, mirror, fy) => {
       const ang = Math.atan2(arm.ty, mirror ? -arm.tx : arm.tx) * 180 / Math.PI;
-      return `translate(${f2(h.x)} ${f2(h.y)})${mirror ? ' scale(-1 1)' : ''} rotate(${f2(ang * clamp(f, 0, 1) + rotv)}) scale(1 ${fy < 0 ? -1 : 1})`;
+      return `translate(${f2(h.x)} ${f2(h.y)})${mirror ? ' scale(-1 1)' : ''} rotate(${f2(ang * clamp(f, 0, 1) + rotv)}) scale(${GS} ${fy < 0 ? -GS : GS})`;
     };
     const jumpH = -Math.min(0, r.jy);
 
