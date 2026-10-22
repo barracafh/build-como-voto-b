@@ -13,6 +13,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { BotonAviso } from "@/components/BotonAviso";
+import { FormularioCaso } from "@/components/ComoVotoWizard";
 import { Fuentes } from "@/components/Fuentes";
 import { ficha } from "@/lib/ficha";
 import { GuiaVoton } from "@/components/voton/GuiaVoton";
@@ -213,6 +214,10 @@ export default function ComoVotar() {
             con necesidad de apoyo. Cada paso lleva su fecha del calendario
             oficial y la fuente que la sostiene.
           </p>
+
+          <div className="mt-8 max-w-[560px]">
+            <FormularioCaso />
+          </div>
           <VotonApartado className="mt-8" {...paradasComoVotar[0]} />
         </div>
 

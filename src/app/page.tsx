@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { BotonAviso } from "@/components/BotonAviso";
-import { ComoVotoWizard } from "@/components/ComoVotoWizard";
+import { FormularioCaso } from "@/components/ComoVotoWizard";
 import { Fuentes } from "@/components/Fuentes";
 import { Recorrido } from "@/components/voton/Recorrido";
 import { ficha } from "@/lib/ficha";
@@ -77,14 +77,15 @@ export default function Home() {
           programas ni recomendaciones: solo cómo se vota.
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center gap-3">
-          <ComoVotoWizard />
-          <Link
-            href="/como-votar"
-            className={buttonVariants({ variant: "outline", size: "lg" })}
-          >
-            Prefiero leerlo todo
-          </Link>
+        <div className="mt-10 max-w-[560px]">
+          <FormularioCaso />
+          <p className="mt-4 text-[15px] text-(--text-secondary)">
+            ¿Prefieres leerlo todo?{" "}
+            <Link href="/como-votar" className={enlace}>
+              Abre la guía completa
+            </Link>
+            .
+          </p>
         </div>
         <section aria-labelledby="casos" className="mt-14">
           <h2 id="casos" className="sr-only">

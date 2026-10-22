@@ -1,22 +1,12 @@
 "use client";
 
-// Asistente «¿Cómo voto?»: dos preguntas para averiguar la situación y
-// llevar a la guía del caso. Es un formulario estático, sin IA: las respuestas
-// solo escogen entre los casos de src/datos/como-votar.ts y las fechas que
-// muestra el resultado salen de ese módulo, no de aquí.
+// Formulario «¿Cómo voto?»: dos preguntas con opciones claras y un botón que
+// lleva al bloque de la guía que explica ese caso. Es HTML de toda la vida
+// (radio buttons), sin IA ni diálogo; las fechas del remate salen de
+// src/datos/como-votar.ts, no de aquí.
 
 import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { ArrowRight, Check, RotateCcw, Vote } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { ArrowRight, RotateCcw } from "lucide-react";
 import { fecha, hitos, plazos, type Caso } from "@/datos/como-votar";
 
 type Respuesta = { caso: Caso["id"]; titulo: string };
@@ -27,6 +17,7 @@ type Pregunta = {
   ayuda: string;
   opciones: { texto: string; detalle: string; lleva: Respuesta | "siguiente" }[];
 };
+
 // Dos preguntas bastan: dónde vives y dónde estarás el 29. El caso de dudas
 // queda en la portada, junto al botón, y el de accesibilidad, en la guía.
 const arbol: Pregunta[] = [
@@ -51,7 +42,8 @@ const arbol: Pregunta[] = [
   {
     id: "donde-estaras",
     pregunta: "¿Dónde estarás el 29 de noviembre, día de la votación?",
-    ayuda: "Solo importa el día de la votación: si esos días estás en otra ciudad, también cuenta.",
+    ayuda:
+      "Solo importa ese día: si esos días estás en otra ciudad, también cuenta.",
     opciones: [
       {
         texto: "En mi municipio",
@@ -61,10 +53,7 @@ const arbol: Pregunta[] = [
       {
         texto: "Fuera de mi municipio, en España",
         detalle: "Estaré en otra ciudad o no podré acudir a la mesa",
-        lleva: {
-          caso: "correo",
-          titulo: "Voto por correo desde España",
-        },
+        lleva: { caso: "correo", titulo: "Voto por correo desde España" },
       },
       {
         texto: "En el extranjero",
@@ -114,158 +103,115 @@ const remate: Record<Caso["id"], { plazo: string; aviso: string }> = {
   },
 };
 
-export function ComoVotoWizard() {
-  const [abierto, setAbierto] = useState(false);
-  const [pasoActual, setPasoActual] = useState(0);
+export function FormularioCaso({ destino = "" }: { destino?: string }) {
+  const [paso, setPaso] = useState<number>(0);
   const [resultado, setResultado] = useState<Respuesta | null>(null);
-  const [camino, setCamino] = useState<string[]>([]);
-  const router = useRouter();
 
-  const reiniciar = () => {
-    setPasoActual(0);
-    setResultado(null);
-    setCamino([]);
-  };
+  const pregunta = arbol[paso];
 
-  const elegir = (opcion: (typeof arbol)[0]["opciones"][0]) => {
-    setCamino((c) => [...c, opcion.texto]);
+  const alCambiar = (opcion: (typeof arbol)[0]["opciones"][0]) => {
     if (opcion.lleva === "siguiente") {
-      setPasoActual((p) => p + 1);
+      setPaso((p) => Math.min(p + 1, arbol.length - 1));
+      setResultado(null);
     } else {
       setResultado(opcion.lleva);
     }
   };
 
-  const irALaGuia = (casoId: string) => {
-    setAbierto(false);
-    router.push(`/como-votar#caso-${casoId}`);
+  const reiniciar = () => {
+    setPaso(0);
+    setResultado(null);
   };
 
-  const casoId = resultado?.caso;
-
-  const pregunta = arbol[pasoActual];
+  const irAlCaso = (casoId: string) => {
+    const destinoFinal = `${destino}#caso-${casoId}`;
+    const ancla = document.getElementById(`caso-${casoId}`);
+    if (ancla) {
+      ancla.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.href = destinoFinal;
+    }
+  };
 
   return (
-    <Dialog
-      open={abierto}
-      onOpenChange={(nuevo) => {
-        setAbierto(nuevo);
-        if (!nuevo) reiniciar();
-      }}
+    <form
+      onSubmit={(e) => e.preventDefault()}
+      className="rounded-2xl ring-1 ring-border bg-background px-(--page-gutter) py-6 text-base md:px-8 md:py-8"
     >
-      <DialogTrigger
-        render={
-          <button
-            type="button"
-            className="group inline-flex min-h-14 w-full items-center justify-between gap-4 rounded-2xl bg-foreground px-6 py-4 text-left text-lg font-medium text-background outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/60 hover:bg-foreground/90 sm:w-auto sm:min-w-[320px]"
-          />
-        }
-      >
-        <span className="flex items-center gap-3">
-          <Vote aria-hidden="true" className="size-6 shrink-0" strokeWidth={1.75} />
-          ¿Cómo voto?
-        </span>
-        <ArrowRight
-          aria-hidden="true"
-          className="size-5 motion-safe:transition-transform group-hover:translate-x-1"
-        />
-      </DialogTrigger>
-
-      <DialogContent className="sm:max-w-lg">
-        <DialogHeader>
-          <DialogTitle className="text-xl leading-snug">
-            {resultado ? "Tu caso" : `Paso ${pasoActual + 1} de ${arbol.length}`}
-          </DialogTitle>
-          <DialogDescription className="text-[15px]">
-            {resultado
-              ? "Por tu respuesta, esto es lo que te toca. En la guía tienes el paso a paso con fechas y fuentes."
-              : pregunta.ayuda}
-          </DialogDescription>
-        </DialogHeader>
-
-        {resultado ? (
-          <div className="grid gap-4">
-            <div className="rounded-xl bg-muted px-5 py-5">
-              <p className="font-mono text-xs tracking-[0.06em] text-(--text-secondary) uppercase">
-                Caso: {resultado.titulo}
-              </p>
-              <p className="mt-2 font-heading text-2xl leading-tight">
-                {remate[resultado.caso as keyof typeof remate].plazo}
-              </p>
-              <p className="mt-3 text-[15px] text-(--text-secondary)">
-                {remate[resultado.caso as keyof typeof remate].aviso}
-              </p>
-            </div>
-
-            <div className="grid gap-2">
-              <button
-                type="button"
-                onClick={() => irALaGuia(resultado.caso)}
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground outline-none transition-all focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px"
-              >
-                Ver mi guía paso a paso
-                <ArrowRight aria-hidden="true" className="size-4" />
-              </button>
-              <button
-                type="button"
-                onClick={reiniciar}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 text-sm font-medium text-(--text-secondary) outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
-              >
-                <RotateCcw aria-hidden="true" className="size-4" />
-                No es mi caso, empezar de nuevo
-              </button>
-            </div>
+      {resultado ? (
+        <div className="grid gap-4">
+          <p className="font-mono text-xs tracking-[0.06em] text-(--text-secondary) uppercase">
+            Tu caso: {resultado.titulo}
+          </p>
+          <p className="font-heading text-[clamp(24px,3vw,32px)] leading-tight">
+            {remate[resultado.caso].plazo}
+          </p>
+          <p className="text-[15px] text-(--text-secondary)">
+            {remate[resultado.caso].aviso}
+          </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={() => irAlCaso(resultado.caso)}
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground outline-none transition-all focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px"
+            >
+              Ver mi caso paso a paso
+              <ArrowRight aria-hidden="true" className="size-4" />
+            </button>
+            <button
+              type="button"
+              onClick={reiniciar}
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 text-sm font-medium text-(--text-secondary) outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+            >
+              <RotateCcw aria-hidden="true" className="size-4" />
+              No es mi caso
+            </button>
           </div>
-        ) : (
-          <div className="grid gap-2">
-            {pregunta.opciones.map((opcion) => (
-              <button
-                key={opcion.texto}
-                type="button"
-                onClick={() => elegir(opcion)}
-                className="flex min-h-14 items-start gap-3 rounded-xl bg-muted px-4 py-3 text-left outline-none transition-colors hover:bg-(--surface) focus-visible:ring-3 focus-visible:ring-ring/50"
-              >
-                <Check
-                  aria-hidden="true"
-                  className="mt-0.5 size-5 shrink-0 text-brand"
-                  strokeWidth={2}
-                />
-                <span className="min-w-0">
-                  <span className="block font-medium">{opcion.texto}</span>
-                  <span className="mt-0.5 block text-sm text-(--text-secondary)">
-                    {opcion.detalle}
-                  </span>
+        </div>
+      ) : (
+        <fieldset className="grid gap-3">
+          <legend className="font-mono text-xs tracking-[0.06em] text-(--text-secondary) uppercase">
+            {`Pregunta ${paso + 1} de ${arbol.length}`}
+          </legend>
+          <p className="text-lg font-medium">{pregunta.pregunta}</p>
+          <p className="text-[15px] text-(--text-secondary)">{pregunta.ayuda}</p>
+
+          {pregunta.opciones.map((opcion) => (
+            <label
+              key={opcion.texto}
+              className="flex min-h-14 cursor-pointer items-start gap-3 rounded-xl bg-muted px-4 py-3 transition-colors has-[input:checked]:ring-2 has-[input:checked]:ring-foreground/60 hover:bg-(--surface) focus-within:ring-3 focus-within:ring-ring/50"
+            >
+              <input
+                type="radio"
+                name={pregunta.id}
+                value={opcion.texto}
+                onChange={() => alCambiar(opcion)}
+                className="mt-1 size-4 accent-(--brand)"
+              />
+              <span className="min-w-0">
+                <span className="block font-medium">{opcion.texto}</span>
+                <span className="mt-0.5 block text-sm text-(--text-secondary)">
+                  {opcion.detalle}
                 </span>
-              </button>
-            ))}
-            {pasoActual > 0 && (
-              <button
-                type="button"
-                onClick={() => {
-                  setPasoActual((p) => p - 1);
-                  setCamino((c) => c.slice(0, -1));
-                }}
-                className="mt-2 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 text-sm font-medium text-(--text-secondary) outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
-              >
-                <RotateCcw aria-hidden="true" className="size-4" />
-                Volver a la pregunta anterior
-              </button>
-            )}
-          </div>
-        )}
-
-        <p className="text-[13px] text-(--text-secondary)">
-          ¿Prefieres leerlo todo de golpe?{" "}
-          <Link
-            href="/como-votar"
-            onClick={() => setAbierto(false)}
-            className={`${"underline underline-offset-4 outline-none focus-visible:ring-3 focus-visible:ring-ring/50 rounded-sm"}`}
-          >
-            Abre la guía completa
-          </Link>{" "}
-          o pregúntale al chat de la esquina.
-        </p>
-      </DialogContent>
-    </Dialog>
+              </span>
+            </label>
+          ))}
+          {paso > 0 && (
+            <button
+              type="button"
+              onClick={() => {
+                setPaso((p) => Math.max(p - 1, 0));
+                setResultado(null);
+              }}
+              className="mt-2 inline-flex min-h-11 items-center justify-center gap-2 self-start rounded-lg px-4 text-sm font-medium text-(--text-secondary) outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+            >
+              <RotateCcw aria-hidden="true" className="size-4" />
+              Volver a la pregunta anterior
+            </button>
+          )}
+        </fieldset>
+      )}
+    </form>
   );
 }
+
