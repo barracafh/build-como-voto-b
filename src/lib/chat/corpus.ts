@@ -20,7 +20,7 @@ const EXCLUIDOS = /^(1\.2|4\.|4 |6\.[24-8]|Fuentes|BOE|Junta Electoral Central|M
 const SINONIMOS: Record<string, string> = {
   "2.1": "presencial colegio dni documento identidad pasaporte papeleta sobre urna votar dia domingo horario hora",
   "2.2": "correo correos postal fuera ausente viaje viajo estoy solicitar solicitud certificado oficina",
-  "2.3": "extranjero cera consulado embajada vivo fuera residente pais berlin paris londres alemania francia",
+  "2.3": "extranjero cera consulado embajada fuera residente pais berlin paris londres alemania francia",
   "2.4": "erasmus temporal temporalmente erta viaje trabajo extranjero estudios fuera",
   "2.5": "braille discapacidad accesible ciego ciega visual lengua signos",
   "2.6": "trabajo permiso horas laboral empresa jornada",
@@ -32,6 +32,19 @@ const SINONIMOS: Record<string, string> = {
   "5": "campana encuestas debate propaganda reflexion",
   "6.1": "bulo verdad falso verificar comprobar",
   "6.3": "bulo verdad falso verificar comprobar",
+};
+
+// Apartados sin URL concreta en contexto.md: la fuente oficial que los respalda
+// (ambas URL figuran en contexto.md, en «1.2 Calendario oficial» y «Fuentes»).
+const INE_PLAZOS = "https://www.ine.es/dyngs/CEL/index.htm?cid=1702";
+const LOREG = "https://www.boe.es/buscar/act.php?id=BOE-A-1985-11672";
+const URLS_EXTRA: Record<string, string> = {
+  "2.3": INE_PLAZOS,
+  "2.4": INE_PLAZOS,
+  "3.1": LOREG,
+  "3.2": LOREG,
+  "3.3": LOREG,
+  "3.4": LOREG,
 };
 
 const VACIAS = new Set(
@@ -86,7 +99,16 @@ function cargar() {
     ];
     for (const [texto, peso] of pesos)
       for (const t of terminos(texto)) tf.set(t, (tf.get(t) ?? 0) + peso);
-    apartados.push({ titulo, texto: cuerpo, urls: urlsDe(cuerpo), terminos: tf });
+    const urls = urlsDe(cuerpo);
+    let texto = cuerpo;
+    const extra = URLS_EXTRA[numero];
+    if (extra && !urls.includes(extra)) {
+      urls.unshift(extra);
+      texto += `
+
+Fuente: ${extra}`;
+    }
+    apartados.push({ titulo, texto, urls, terminos: tf });
   }
 
   const df = new Map<string, number>();
@@ -121,10 +143,14 @@ export function buscar(pregunta: string, max = 4): Apartado[] {
   if (puntuados.length === 0 || puntuados[0].puntos < 1.5)
     return apartados.filter((a) => /^2\.[123] /.test(a.titulo));
 
+  // Solo los que se acercan al mejor, y sin pasar de ~10.000 caracteres
+  // (el primero entra siempre, aunque lo supere).
+  const minimo = puntuados[0].puntos * 0.35;
   const elegidos: Apartado[] = [];
   let tamano = 0;
-  for (const { a } of puntuados) {
-    if (elegidos.length >= max || tamano + a.texto.length > 18000) break;
+  for (const { a, puntos } of puntuados) {
+    if (puntos < minimo || elegidos.length >= max) break;
+    if (elegidos.length > 0 && tamano + a.texto.length > 10000) break;
     elegidos.push(a);
     tamano += a.texto.length;
   }
@@ -138,7 +164,7 @@ export function calendarioTexto(): string {
       const cuando =
         "fecha" in f && f.fecha
           ? f.fecha
-          : `del ${f.fecha_inicio} al ${f.fecha_fin}`;
+          : `del ${f.fecha_inicio} al ${f.fecha_fin}, ambos incluidos`;
       const nota = "nota" in f && f.nota ? ` (${f.nota})` : "";
       return `- ${cuando}: ${f.evento}${nota}. Fuente: ${f.fuente}`;
     })
