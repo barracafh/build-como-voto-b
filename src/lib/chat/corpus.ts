@@ -521,7 +521,7 @@ const SIN_INDICE = ({ terminos: _t, ...f }: Indexado): Fragmento => f;
 // de palabras clave y embeddings. Si los embeddings fallan, solo palabras clave.
 export async function recuperar(
   pregunta: string,
-  { max = 12, caracteres = 8000 }: { max?: number; caracteres?: number } = {},
+  { max = 8, caracteres = 6000 }: { max?: number; caracteres?: number } = {},
 ): Promise<Fragmento[]> {
   const lex = lexico(pregunta).slice(0, 30);
   let sem: Indexado[] = [];
