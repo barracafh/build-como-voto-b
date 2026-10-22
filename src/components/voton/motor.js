@@ -46,40 +46,36 @@ const GLOVES = {
   rest: { base: [['e', 14, 0, 11, 10.5], ['t', 20, -6.5, 29.5, -8.5, 30.5, -1.5, 9.6, 8.6], ['t', 21, 0, 30.5, 1.5, 28.5, 7.8, 9.6, 8.6],
                  ['t', 19.5, 6, 26, 10, 23.5, 13.2, 9, 8], ['t', 12, -7, 16, -14.5, 22.5, -12.5, 9.4, 8.4]],
           lines: [['p', 'M25.2,-2.8Q28.6,-2,30.8,0.8'], ['p', 'M24.4,3.8Q27,6.2,27.4,9.4']],
-          front: [cuff], ast: [15.6, 0.6, 3.2] },
+          front: [cuff], ast: [16.5, 0.2, 3.2, -8, 0.78] },
   open: null,
   // Hola: palma al frente, dedos juntos en abanico leve, ahusados.
-  wave: { base: [['e', 14, 0, 11.5, 11], ['t', 19, -6.5, 27, -10, 33.5, -12.5, 9.8, 8.4], ['t', 20.5, -0.5, 29, -0.8, 36, -0.5, 10, 8.6],
-                 ['t', 20, 6, 27, 9, 33, 11, 9.6, 8.2], ['t', 11, -6, 8.5, -13, 12.5, -19.5, 9.8, 8.4]],
-          lines: [['p', 'M27.8,-4.8Q31.2,-5.4,34.4,-6.8'], ['p', 'M27.8,4Q31,5,34,5.8'], ['p', 'M9.6,-6.2Q12.6,-8.6,16,-8']],
-          front: [cuff], ast: [16, 1] },
+  wave: { base: [['e', 14, 0, 11.5, 11], ['t', 19, -6, 25.58, -8.39, 32.16, -10.79, 9.8, 9], ['t', 20.5, 0, 28.25, 0.27, 35.99, 0.54, 10, 9.2], ['t', 19.5, 6, 25.45, 7.93, 31.39, 9.86, 9.6, 8.8], ['t', 11, -7, 12.43, -12.31, 13.85, -17.63, 10.8, 9.8]],
+          lines: [],
+          front: [cuff], ast: [17, 0.5, 3.4, -6, 0.92] },
   // Aviso: abiertas, dedos separados.
-  spread: { base: [['e', 14, 0, 11.5, 11], ['t', 19, -7.5, 25, -13, 30, -19, 9.6, 8.2], ['t', 21, -1, 29, -3, 36.5, -4, 9.8, 8.4],
-                   ['t', 20, 6.5, 27, 10, 32, 15, 9.6, 8.2], ['t', 10, -7, 6, -13, 7, -20, 9.6, 8.2]],
-          lines: [['p', 'M24.4,-5.6Q25.8,-6.4,26.8,-7.8'], ['p', 'M25,4.6Q26.4,5.4,27.4,6.8'], ['p', 'M8.6,-6.4Q11.5,-8.4,14.5,-8']],
-          front: [cuff], ast: [16, 1] },
+  spread: { base: [['e', 14, 0, 11.5, 11], ['t', 19, -7, 24.36, -11.5, 29.72, -16.0, 9.6, 8.8], ['t', 21, -1, 28.68, -2.08, 36.35, -3.16, 9.8, 9], ['t', 20, 6, 25.51, 9.45, 31.02, 12.89, 9.4, 8.6], ['t', 10, -7, 9.04, -12.41, 8.09, -17.83, 10.6, 9.6]],
+          lines: [],
+          front: [cuff], ast: [17, 0.5, 3.4, -6, 0.92] },
   // Fuera: palma arriba, dedos juntos.
-  palm: { base: [['e', 14, 0, 11.5, 10], ['t', 20, -5, 28, -7, 35, -5.5, 9.8, 8.4], ['t', 20, 1.5, 28, 2, 35.5, 3, 9.8, 8.4],
-                 ['t', 19, 6.5, 26, 8.5, 32, 9.5, 9, 7.8], ['t', 12, -6, 13, -13, 18, -16.5, 9.6, 8.2]],
-          lines: [['p', 'M27.4,-1.6Q31,-1.8,34.8,-0.8'], ['p', 'M26.4,5.2Q29.6,5.4,32.6,6.6'], ['p', 'M11,-5Q14,-7.4,17,-7.2']],
-          front: [cuff], ast: [16, 1.5] },
+  palm: { base: [['e', 14, 0, 11.5, 10], ['t', 20, -5, 26.84, -6.46, 33.69, -7.91, 9.8, 9], ['t', 20.5, 1, 28.25, 1.27, 35.99, 1.54, 9.8, 9], ['t', 19.5, 6.5, 25.56, 8.01, 31.63, 9.52, 9.4, 8.6], ['t', 12, -6, 14.22, -10.76, 16.44, -15.52, 10.6, 9.6]],
+          lines: [],
+          front: [cuff], ast: [17, 0.4, 3.3, 0, 0.86] },
   // Piensa: puño redondo, nudillos apilados, pulgar por delante; 3 pespuntes en el dorso.
   fist: { base: [['e', 15, 0, 12, 12.5], ['c', 26, -7.5, 5.6], ['c', 27.5, 0, 6], ['c', 26, 7.5, 5.6]],
           lines: [['p', 'M31,-3.6Q28.6,-3,26.4,-3.8'], ['p', 'M31,3.8Q28.6,4.4,26.4,3.6']],
-          front: [[['t', 11.5, -8.5, 18, -11.5, 24, -8.6, 9, 8]], cuff], ast: [16.5, 3, 2.8] },
+          front: [[['t', 11.5, -8.5, 18, -11.5, 24, -8.6, 9, 8]], cuff], ast: [16.8, 2.6, 3.1, 8, 0.6] },
   // Pulgar arriba: puño compacto con 4 nudillos apilados y pulgar corto, gordo, curvado hacia atrás.
   thumb: { base: [['e', 15, 4, 12, 11.5], ['c', 24.5, -3, 5.4], ['c', 26, 2.6, 5.6], ['c', 25.8, 8.4, 5.4], ['c', 23.8, 13.4, 4.8],
-                  ['t', 16.5, -3, 18, -11.5, 12.5, -18.5, 11, 8.6]],
+                  ['t', 16.5, -3, 15.42, -10.68, 14.34, -18.35, 11.4, 10]],
           lines: [['p', 'M30.4,-0.6Q28,0.4,25.6,-0.4'], ['p', 'M31,5.4Q28.6,6,26.2,5.4'], ['p', 'M29.6,11Q27.4,11.4,25.2,10.8'],
                   ['p', 'M11,-4.6Q15,-2.8,20,-4.6']],
-          front: [cuff], ast: [15.5, 6] },
+          front: [cuff], ast: [17.2, 5, 3.2, 6, 0.62] },
   // Índice: puño redondo y compacto (como el de thumb) con nudillos curvos; encima, el índice ahusado.
   // El pulgar va recogido dentro del contorno como una sola línea curva.
   point: { base: [['e', 15, 4.5, 12, 11.5], ['c', 25.4, 3.4, 5.4], ['c', 25.6, 9, 5.2], ['c', 23.6, 13, 4.4],
-                  ['t', 20, -1, 23.5, -12.5, 19.5, -24, 10.5, 8]],
-          lines: [['p', 'M30.6,6.2Q28.2,6.8,25.8,6.2'], ['p', 'M29.6,11.4Q27.4,11.9,25.2,11.2'], ['p', 'M17.2,-11.6Q20.2,-10.2,23.4,-11.8'],
-                  ['p', 'M12,9.6Q17,12.6,22.4,10.2']],
-          front: [cuff], ast: [14.2, 2.4, 2.8] }
+                  ['t', 20, -1, 19.8, -12.5, 19.6, -24.0, 10.6, 9.4]],
+          lines: [['p', 'M30.6,6.2Q28.2,6.8,25.8,6.2'], ['p', 'M29.6,11.4Q27.4,11.9,25.2,11.2'], ['p', 'M12,9.6Q17,12.6,22.4,10.2']],
+          front: [cuff], ast: [16.4, 3, 3, 6, 0.62] }
 };
 delete GLOVES.open;
 const GLOVE_NAMES = Object.keys(GLOVES);
@@ -109,11 +105,12 @@ function prim(p, outline) {
   return '';
 }
 // Asterisco rojo en el dorso, el icono de la herramienta: seis brazos.
-function asterisco([x, y, r = 3.4]) {
-  const brazo = (a) => {
-    const dx = (r * Math.sin(a)).toFixed(2), dy = (r * Math.cos(a)).toFixed(2);
-    return `M${(x - dx).toFixed(2)},${(y - dy).toFixed(2)}L${(x + +dx).toFixed(2)},${(y + +dy).toFixed(2)}`;
-  };
+// Asterisco rojo bordado en el dorso: [x, y, r, rot, sx]. sx < 1 lo aplana en el eje que se aleja
+// de la cámara (escorzo sobre la superficie curva del guante) y rot lo orienta con el dorso.
+function asterisco([x, y, r = 3.4, rot = 0, sx = 1]) {
+  const cr = Math.cos(rot * Math.PI / 180), sr = Math.sin(rot * Math.PI / 180);
+  const pt = (u, v) => { const px = u * sx, py = v; return [(x + px * cr - py * sr).toFixed(2), (y + px * sr + py * cr).toFixed(2)].join(','); };
+  const brazo = (a) => { const u = r * Math.sin(a), v = r * Math.cos(a); return 'M' + pt(-u, -v) + 'L' + pt(u, v); };
   const d = [0, Math.PI / 3, (2 * Math.PI) / 3].map(brazo).join('');
   return `<path d="${d}" fill="none" stroke="${RED}" stroke-width="2" stroke-linecap="round"/>`;
 }
