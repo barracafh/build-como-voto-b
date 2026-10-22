@@ -197,7 +197,7 @@ const SINONIMOS: Record<string, string> = {
   "2.7": "mesa miembro presidente vocal sorteo excusa toca tocado librarme saltarme dieta multa cobra cobro pagan",
   "3.1": "escanos diputados congreso circunscripcion provincia reparto",
   "3.2": "dhondt hondt reparto reparten reparte partidos candidaturas escanos formula barrera umbral porcentaje",
-  "3.3": "blanco nulo abstencion abstenerse",
+  "3.3": "blanco nulo abstencion abstenerse vacio vacia tachada tachado valido cuenta",
   "3.4": "senado senadores listas abiertas",
   "5": "campana encuestas sondeos debate propaganda reflexion sabado pedir puerta colegio carteles mitin actos",
   "6.1": "bulo verdad falso verificar comprobar",
@@ -218,11 +218,13 @@ export const normalizar = (s: string) =>
     .replace(/[^a-z0-9ñ\s]/g, " ");
 
 // Raíz tosca: los primeros 5 caracteres bastan para casar correo/correos.
+// Algunas familias cambian de raíz (disolución/disuelto): se unifican.
+const RAICES: Record<string, string> = { disue: "disol" };
 const terminos = (s: string) =>
   normalizar(s)
     .split(/\s+/)
     .filter((t) => t.length > 2 && !VACIAS.has(t))
-    .map((t) => t.slice(0, 5));
+    .map((t) => RAICES[t.slice(0, 5)] ?? t.slice(0, 5));
 
 const urlsDe = (s: string) =>
   [...s.matchAll(/https?:\/\/[^\s<>()|\]`]+/g)].map((m) => m[0].replace(/[.,;:]+$/, ""));
