@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight, Map as MapIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { BotonAviso } from "@/components/BotonAviso";
 import { Fuentes } from "@/components/Fuentes";
@@ -92,12 +93,33 @@ export default function Escanos() {
         <p className="mt-6 text-lg text-(--text-secondary)">
           En las elecciones generales no gana «el más votado» y ya está: cada
           provincia reparte sus escaños con una fórmula. Así funciona, con un
-          ejemplo y con los resultados oficiales de 2023.{" "}
-          <Link href="/mapa" className="underline underline-offset-4">
-            Verlo en un mapa
-          </Link>
-          .
+          ejemplo y con los resultados oficiales de 2023.
         </p>
+
+        <Link
+          href="/mapa"
+          className="group mt-8 flex items-center gap-4 rounded-2xl border-2 border-brand bg-brand/5 p-5 transition-colors outline-none hover:bg-brand/10 focus-visible:ring-3 focus-visible:ring-ring/50 md:gap-5 md:p-6"
+        >
+          <span
+            aria-hidden="true"
+            className="grid size-12 shrink-0 place-items-center rounded-xl bg-brand text-white"
+          >
+            <MapIcon className="size-6" />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-lg font-medium">
+              Verlo en un mapa, provincia a provincia
+            </span>
+            <span className="mt-1 block text-base text-(--text-secondary)">
+              Cómo quedó el Congreso en 2023, de qué provincia sale cada escaño y
+              qué habría pasado con otras reglas.
+            </span>
+          </span>
+          <ArrowRight
+            aria-hidden="true"
+            className="size-6 shrink-0 text-brand transition-transform group-hover:translate-x-1"
+          />
+        </Link>
 
         <section aria-labelledby="pasos" className="mt-16 text-lg [&>*+*]:mt-8">
           <h2
