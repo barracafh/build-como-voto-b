@@ -15,6 +15,13 @@ import { Card } from "@/components/ui/card";
 import { BotonAviso } from "@/components/BotonAviso";
 import { Fuentes } from "@/components/Fuentes";
 import { ficha } from "@/lib/ficha";
+import { GuiaVoton } from "@/components/voton/GuiaVoton";
+import { VotonApartado } from "@/components/voton/VotonApartado";
+import {
+  cierreComoVotar,
+  guiaCasos,
+  paradasComoVotar,
+} from "@/components/voton/guias";
 import {
   casos,
   fecha,
@@ -144,6 +151,10 @@ function SeccionCaso({ caso }: { caso: Caso }) {
         </div>
       </div>
 
+      {guiaCasos[caso.id] && (
+        <VotonApartado className="mt-5" {...guiaCasos[caso.id]} />
+      )}
+
       <p className="mt-5 max-w-[760px] text-lg">{caso.resumen}</p>
 
       <PasoLista pasos={caso.pasos} />
@@ -202,6 +213,7 @@ export default function ComoVotar() {
             con necesidad de apoyo. Cada paso lleva su fecha del calendario
             oficial y la fuente que la sostiene.
           </p>
+          <VotonApartado className="mt-8" {...paradasComoVotar[0]} />
         </div>
 
         {/* Fechas que ordenan todo el proceso. Una sola tarjeta con el sol. */}
@@ -334,6 +346,8 @@ export default function ComoVotar() {
           </ul>
         </section>
 
+        <VotonApartado id="voton-cierre" className="mt-16" {...cierreComoVotar} />
+
         <div className="mt-16 max-w-[760px]">
           <Fuentes fuentes={fuentesGuia} />
           <p className="mt-4 text-sm text-(--text-secondary)">
@@ -342,6 +356,8 @@ export default function ComoVotar() {
           </p>
         </div>
       </main>
+
+      <GuiaVoton paradas={paradasComoVotar} />
 
       <footer className="p-2">
         <div className="flex flex-wrap items-center justify-between gap-6 rounded-[28px] px-(--page-gutter) py-12 [background:radial-gradient(80%_70%_at_50%_-12%,#ffe58f_0%,rgba(255,229,143,0)_70%),linear-gradient(180deg,#ffd34d_0%,var(--brand-yellow)_46%,var(--brand-orange)_100%)] md:px-12">
