@@ -100,6 +100,32 @@ const CAPITULOS: Capitulo[] = [
     ),
   },
   {
+    id: "bulos",
+    pose: "aviso",
+    dice: "¿Te han dicho que el voto en blanco va al que gana? Lo miramos con la ley.",
+    etiqueta: "Lo que se dice",
+    titulo: "Lo que circula sobre votar, frente a la ley",
+    texto:
+      "Voto en blanco, nulo, abstención, papeletas tachadas o voto por correo: cada afirmación con el artículo que la contradice.",
+    escena: (
+      <div className="grid gap-2 text-[15px]" aria-hidden="true">
+        <p className="rounded-xl bg-muted px-4 py-3 font-medium">
+          «El voto en blanco se lo lleva el más votado.»
+        </p>
+        <p className="rounded-xl px-4 py-3 ring-1 ring-border">
+          <span className="font-mono text-xs text-brand">No coincide · </span>
+          No va a ninguna candidatura (art. 96.5 LOREG).
+        </p>
+      </div>
+    ),
+    accion: (
+      <Link href="/bulos" className={boton}>
+        Ver lo que se dice
+        <ArrowRight data-icon="inline-end" aria-hidden="true" />
+      </Link>
+    ),
+  },
+  {
     id: "escrutinio",
     pose: "no",
     dice: "¿Y después de votar? Te cuento qué pasa con tu voto.",

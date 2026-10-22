@@ -173,6 +173,28 @@ export default function Home() {
                 </a>
               </Card>
             </li>
+            <li>
+              <Card
+                render={<article />}
+                className="gap-0 px-5 py-4 text-base ring-0 bg-muted"
+              >
+                <Link
+                  href="/bulos"
+                  className="flex items-center justify-between gap-3 rounded-lg outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                >
+                  <span>
+                    <span className="block font-medium">
+                      Lo que se dice sobre votar, frente a la ley
+                    </span>
+                    <span className="mt-0.5 block text-[15px] text-(--text-secondary)">
+                      Voto en blanco, nulo, abstención, voto por correo: lo que
+                      circula y el artículo que lo contradice.
+                    </span>
+                  </span>
+                  <ArrowRight aria-hidden="true" className="size-4 shrink-0 text-(--text-secondary)" />
+                </Link>
+              </Card>
+            </li>
           </ul>
           <p className="mt-4 text-[15px] text-(--text-secondary)">
             ¿Una duda concreta? Pregúntale al chat de la esquina: responde con

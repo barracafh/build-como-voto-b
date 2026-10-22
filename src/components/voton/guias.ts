@@ -107,6 +107,45 @@ export const cierreEscrutinio: Omit<ParadaGuia, "ancla"> = {
   pregunta: "¿Qué pasa con mi voto después de cerrar el colegio?",
 };
 
+export const guiaBulos: Record<string, Omit<ParadaGuia, "ancla">> = {
+  blanco: {
+    pose: "piensa",
+    dice: "¿Blanco, nulo o quedarse en casa? No es lo mismo. Mira.",
+  },
+  umbral: {
+    pose: "aviso",
+    dice: "El blanco no va a nadie, pero sube la barrera del 3 %.",
+  },
+  papeleta: {
+    pose: "no",
+    dice: "Una cruz junto a un nombre vale. Tachar, no.",
+  },
+  dia: {
+    pose: "ok",
+    dice: "Votar es un derecho, no una obligación. Y es secreto.",
+  },
+  correo: {
+    pose: "aviso",
+    dice: "Si pides el voto por correo, ya no puedes votar en la mesa.",
+  },
+};
+
+export const cierreBulos: Omit<ParadaGuia, "ancla"> = {
+  pose: "hola",
+  dice: "¿Te ha llegado otra cosa por WhatsApp? Pregúntame y la miramos con la ley.",
+  pregunta: "Me han dicho que… ¿es así como se vota?",
+};
+
+export const paradasBulos: ParadaGuia[] = [
+  {
+    ancla: "contenido",
+    pose: "hola",
+    dice: "¡Hola! Te cuento lo que se oye sobre votar y lo que dice la ley.",
+  },
+  ...Object.entries(guiaBulos).map(([id, g]) => ({ ancla: `tema-${id}`, ...g })),
+  { ancla: "voton-cierre", ...cierreBulos },
+];
+
 export const paradasEscrutinio: ParadaGuia[] = [
   {
     ancla: "contenido",
