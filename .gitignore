@@ -7,3 +7,6 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+
+# Resultados del banco de pruebas del chat
+pruebas/resultados-*.json
