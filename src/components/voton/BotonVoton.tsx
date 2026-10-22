@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type Ref } from "react";
+import { usePie } from "./usePie";
 import { Voton, type EstadoVoton } from "./Voton";
 
 // Botón flotante que abre el chat: Votón con su bocadillo. Saluda al
@@ -16,6 +17,8 @@ export function BotonVoton({
   controla: string;
 }) {
   const [estado, setEstado] = useState<EstadoVoton>("hola");
+  // Al llegar al pie sube con él y se queda justo encima del banner.
+  const alzado = usePie();
 
   useEffect(() => {
     let vuelta = window.setTimeout(() => setEstado("idle"), 2000);
@@ -44,6 +47,7 @@ export function BotonVoton({
       onBlur={reposa}
       aria-expanded={false}
       aria-controls={controla}
+      style={alzado ? { translate: `0 ${-alzado}px` } : undefined}
       className="group fixed right-2 bottom-2 z-40 flex cursor-pointer items-end rounded-2xl outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:right-4 sm:bottom-3"
     >
       <span className="sr-only">Pregunta tus dudas sobre cómo votar</span>
