@@ -37,15 +37,15 @@ function Contraste({ a }: { a: Afirmacion }) {
   return (
     <Card render={<article />} className="gap-0 p-0 text-base">
       <details className="group">
-        <summary className="grid cursor-pointer list-none grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 rounded-xl px-5 py-5 outline-none transition-colors hover:bg-muted/60 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:ring-inset md:px-6 [&::-webkit-details-marker]:hidden">
+        <summary className="grid cursor-pointer list-none grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 bg-brand px-5 py-5 text-white outline-none transition-colors hover:bg-brand/90 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:ring-inset md:px-6 [&::-webkit-details-marker]:hidden">
           <span className="min-w-0">
-            <span className="block text-lg leading-[1.35] text-(--text-secondary)">
+            <span className="block text-lg leading-[1.35] text-white/90">
               «{a.dice}»
             </span>
             <span className="mt-3 flex items-start gap-2 font-medium">
               <CircleX
                 aria-hidden="true"
-                className="mt-[0.2em] size-4.5 shrink-0 text-brand"
+                className="mt-[0.2em] size-4.5 shrink-0 text-white"
                 strokeWidth={1.75}
               />
               <span>
@@ -54,7 +54,7 @@ function Contraste({ a }: { a: Afirmacion }) {
               </span>
             </span>
           </span>
-          <span className="mt-1 inline-flex items-center gap-1 text-sm text-(--text-secondary)">
+          <span className="mt-1 inline-flex items-center gap-1 text-sm text-white">
             <span className="hidden sm:inline sm:group-open:hidden">Por qué</span>
             <span className="hidden sm:group-open:inline">Cerrar</span>
             <ChevronDown
@@ -65,7 +65,7 @@ function Contraste({ a }: { a: Afirmacion }) {
           </span>
         </summary>
 
-        <div className="mx-5 border-t border-border pt-4 pb-5 md:mx-6">
+        <div className="bg-background px-5 pt-4 pb-5 md:px-6">
           <p>{a.texto}</p>
           {a.matiz && (
             <p className="mt-3 border-l-2 border-brand/60 pl-3 text-[15px] text-(--text-secondary)">
