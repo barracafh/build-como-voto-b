@@ -1,6 +1,6 @@
 "use client";
 
-import { LoaderCircle, RotateCcw, SendHorizontal, X } from "lucide-react";
+import { RotateCcw, SendHorizontal, X } from "lucide-react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { MensajeChat, RespuestaChat } from "@/app/api/chat/route";
 import type { Source } from "@/components/Fuentes";
@@ -262,12 +262,6 @@ export function ChatLateral() {
       className="fixed inset-x-2 bottom-2 z-40 flex h-[min(560px,calc(100dvh-16px))] flex-col overflow-hidden rounded-2xl bg-background shadow-(--shadow-overlay) sm:inset-x-auto sm:right-4 sm:bottom-4 sm:w-[380px]"
     >
       <header className="flex items-center justify-between gap-2 border-b px-4 py-3">
-        {mensajes.length > 0 && (
-          <Voton
-            estado={enviando ? "piensa" : "idle"}
-            className="-my-1 h-[47px] w-11 shrink-0"
-          />
-        )}
         <div className="min-w-0 flex-1">
           <h2 id="chat-titulo" className="font-sans text-base font-medium">
             Dudas sobre cómo votar
@@ -389,12 +383,11 @@ export function ChatLateral() {
               </li>
             ))}
             {enviando && (
-              <li className="mr-8 inline-flex items-center gap-2 rounded-xl bg-muted px-3 py-2 text-[15px] text-(--text-secondary)">
-                <LoaderCircle
-                  aria-hidden="true"
-                  className="size-4 animate-spin motion-reduce:animate-none"
-                />
-                Buscando en las fuentes oficiales…
+              <li className="mr-8 inline-flex items-center gap-2 text-[15px] text-(--text-secondary)">
+                <Voton estado="piensa" className="h-[60px] w-14 shrink-0" />
+                <span className="rounded-xl bg-muted px-3 py-2">
+                  Buscando en las fuentes oficiales…
+                </span>
               </li>
             )}
           </ol>
