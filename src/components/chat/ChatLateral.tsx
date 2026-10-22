@@ -6,6 +6,7 @@ import type { MensajeChat, RespuestaChat } from "@/app/api/chat/route";
 import type { Source } from "@/components/Fuentes";
 import { Button } from "@/components/ui/button";
 import { BotonVoton } from "@/components/voton/BotonVoton";
+import { ABRIR_CHAT, type AbrirChat } from "@/components/voton/eventos";
 import { Voton, useSaludo } from "@/components/voton/Voton";
 import { ruta } from "@/config/sitio";
 
@@ -175,6 +176,17 @@ export function ChatLateral() {
   useEffect(() => {
     lista.current?.lastElementChild?.scrollIntoView({ block: "end" });
   }, [mensajes, enviando]);
+
+  // Otras partes de la página (el recorrido de la portada) abren el chat.
+  useEffect(() => {
+    const abrir = (e: Event) => {
+      const { pregunta } = (e as CustomEvent<AbrirChat>).detail ?? {};
+      if (pregunta) setTexto(pregunta);
+      setAbierto(true);
+    };
+    window.addEventListener(ABRIR_CHAT, abrir);
+    return () => window.removeEventListener(ABRIR_CHAT, abrir);
+  }, []);
 
   function cerrar() {
     const el = panel.current;

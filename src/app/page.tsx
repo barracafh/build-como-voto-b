@@ -15,6 +15,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { BotonAviso } from "@/components/BotonAviso";
 import { Fuentes } from "@/components/Fuentes";
+import { Recorrido } from "@/components/voton/Recorrido";
 import { ficha } from "@/lib/ficha";
 import { casos, fecha, fuentesGuia, plazos, type Caso } from "@/datos/como-votar";
 
@@ -55,6 +56,8 @@ export default function Home() {
           {ficha.datos === "reales" ? "Datos públicos" : "Datos simulados"}
         </Badge>
       </header>
+
+      <Recorrido />
 
       <main
         id="contenido"

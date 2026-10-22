@@ -46,9 +46,13 @@ export function BotonVoton({
       aria-controls={controla}
       className="group fixed right-2 bottom-2 z-40 flex cursor-pointer items-end rounded-2xl outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:right-4 sm:bottom-3"
     >
-      <span className="mb-16 rounded-xl rounded-br-sm bg-background px-3 py-2 text-[15px] font-medium shadow-(--shadow-overlay) transition-transform duration-200 group-hover:-translate-y-0.5 motion-reduce:transition-none">
+      <span className="sr-only">Pregunta tus dudas sobre cómo votar</span>
+      {/* En móvil solo Votón: el bocadillo taparía el contenido. */}
+      <span
+        aria-hidden="true"
+        className="mb-16 hidden rounded-xl rounded-br-sm bg-background px-3 py-2 text-[15px] font-medium shadow-(--shadow-overlay) transition-transform duration-200 group-hover:-translate-y-0.5 motion-reduce:transition-none sm:inline-block"
+      >
         ¿Dudas? Pregúntame
-        <span className="sr-only"> sobre cómo votar</span>
       </span>
       <Voton
         estado={estado}
