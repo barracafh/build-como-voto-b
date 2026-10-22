@@ -128,13 +128,18 @@ const CAPITULOS: Capitulo[] = [
   },
   {
     id: "escanos",
-    pose: "fuera",
-    dice: "Esto aún lo estamos preparando. ¡Vuelve pronto!",
+    pose: "aviso",
+    dice: "¡Ojo! No gana «el más votado» y ya está. Te enseño la fórmula.",
     etiqueta: "Los escaños",
-    titulo: "Cómo se reparten los escaños",
-    proximamente: true,
+    titulo: "La ley D'Hondt, explicada",
     texto:
-      "La ley D'Hondt aplicada a una provincia con los resultados oficiales de 2023, sin cambiar un solo voto.",
+      "Cada provincia reparte sus escaños con una fórmula. Así funciona, con un ejemplo y con los resultados oficiales de 2023.",
+    accion: (
+      <Link href="/escanos" className={boton}>
+        Ver cómo se reparten
+        <ArrowRight data-icon="inline-end" aria-hidden="true" />
+      </Link>
+    ),
     // Candidaturas genéricas: el reparto es ilustrativo.
     escena: (
       <div className="grid gap-2" aria-hidden="true">
@@ -156,10 +161,52 @@ const CAPITULOS: Capitulo[] = [
       </div>
     ),
   },
+  {
+    id: "mapa",
+    pose: "hola",
+    dice: "Y ahora, provincia a provincia: así quedó el Congreso en 2023.",
+    etiqueta: "El mapa",
+    titulo: "Del hemiciclo a cada provincia",
+    texto:
+      "Cómo quedó el Congreso en 2023, de dónde sale cada escaño y qué habría pasado con otras reglas.",
+    escena: <Hemiciclo />,
+    accion: (
+      <Link href="/mapa" className={boton}>
+        Ver el mapa
+        <ArrowRight data-icon="inline-end" aria-hidden="true" />
+      </Link>
+    ),
+  },
 ];
 
+// Hemiciclo ilustrativo: filas de escaños en arco, sin datos.
+function Hemiciclo() {
+  const filas = [9, 13, 17, 21];
+  return (
+    <svg viewBox="0 0 240 128" className="w-full max-w-[360px]" aria-hidden="true">
+      <g>
+        {filas.flatMap((n, f) => {
+          const r = 50 + f * 20;
+          return Array.from({ length: n }, (_, k) => {
+            const a = Math.PI - (Math.PI * k) / (n - 1);
+            return (
+              <circle
+                key={`${f}-${k}`}
+                cx={(120 + r * Math.cos(a)).toFixed(1)}
+                cy={(118 - r * Math.sin(a)).toFixed(1)}
+                r={4.6}
+                className="fill-foreground"
+              />
+            );
+          });
+        })}
+      </g>
+    </svg>
+  );
+}
+
 // Posición de Votón en cada capítulo: camina de un sitio a otro.
-const PASOS_X = [0, 56, -36, 28];
+const PASOS_X = [0, 56, -36, 28, -12];
 
 function Bocadillo({ children, className = "bg-muted" }: { children: ReactNode; className?: string }) {
   return (
