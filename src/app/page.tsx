@@ -1,19 +1,42 @@
-import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
+import Link from "next/link";
+import {
+  Accessibility,
+  ArrowRight,
+  Globe,
+  IdCard,
+  Mail,
+  Plane,
+  Vote,
+  type LucideIcon,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { BotonAviso } from "@/components/BotonAviso";
 import { Fuentes } from "@/components/Fuentes";
-import ficha from "../../ficha.json";
+import { ficha } from "@/lib/ficha";
+import { casos, fecha, fuentesGuia, plazos, type Caso } from "@/datos/como-votar";
 
-// Ejemplo de respuesta compuesta con Sol. Sustitúyelo por vuestra herramienta y
-// conserva las piezas: pasos, tarjetas, dónde se hace y fuentes.
-const pasos = [
-  "Responde a lo que se pregunta, en pocas frases y con pasos.",
-  "Cita la página oficial que sostiene cada respuesta.",
-  "Si no puede confirmarlo, lo dice y enlaza la sede oficial.",
-];
-const sede = ficha.fuentes[0];
+export const metadata: Metadata = {
+  title: `${ficha.nombre} · ${ficha.frase}`,
+  description:
+    "Cómo votar en las generales del 29 de noviembre de 2026: en persona, por correo, desde el extranjero o con apoyo. Pasos, plazos y fuentes oficiales.",
+};
+
+type IconoCaso = Caso["icono"];
+
+const iconos: Record<IconoCaso, LucideIcon> = {
+  urna: Vote,
+  correo: Mail,
+  mundo: Globe,
+  maleta: Plane,
+  braille: Accessibility,
+  sobre: IdCard,
+};
+
+const enlace =
+  "underline underline-offset-4 outline-none focus-visible:ring-3 focus-visible:ring-ring/50 rounded-sm";
 
 export default function Home() {
   return (
@@ -39,104 +62,124 @@ export default function Home() {
         className="mx-auto max-w-[760px] px-(--page-gutter) pt-12 pb-20 outline-none md:pt-20"
       >
         <p className="font-mono text-xs tracking-[0.06em] text-(--text-secondary) uppercase">
-          Página de ejemplo
+          Elecciones generales · 29 de noviembre de 2026
         </p>
         <h1 className="mt-4 text-[clamp(36px,4.5vw,60px)] leading-[1.1] tracking-[-0.02em]">
-          Tu siguiente paso, con su fuente.
+          Dime tu situación; te digo cómo votar.
         </h1>
         <p className="mt-6 text-lg text-(--text-secondary)">
-          Elige un caso pequeño y resuélvelo de principio a fin. Así se compone
-          una respuesta en esta plataforma.
+          Pasos y plazos del 29-N con su fuente oficial: en tu ciudad, fuera de
+          ella, desde el extranjero o con apoyo para votar. Sin candidaturas,
+          programas ni recomendaciones: solo cómo se vota.
         </p>
 
-        <section
-          aria-labelledby="pregunta"
-          className="mt-16 text-lg [&>*+*]:mt-8"
-        >
-          <div>
-            <h2
-              id="pregunta"
-              className="font-sans text-[clamp(30px,5vw,44px)] leading-[1.08] tracking-[-0.03em]"
-            >
-              ¿Cómo responde esta herramienta?
-            </h2>
-            <p className="mt-3 text-[15px] text-(--text-secondary)">
-              Respuesta de ejemplo con {ficha.fuentes.length}{" "}
-              {ficha.fuentes.length === 1
-                ? "fuente oficial"
-                : "fuentes oficiales"}
-            </p>
+        <section aria-labelledby="casos" className="mt-14">
+          <h2 id="casos" className="sr-only">
+            Elige tu caso
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {casos.map((caso) => {
+              const Icon = iconos[caso.icono];
+              return (
+                <Card
+                  key={caso.id}
+                  render={<article />}
+                  className="gap-0 px-5 py-4 text-base ring-0 bg-muted transition-colors hover:bg-(--surface)"
+                >
+                  <Link
+                    href={`/como-votar#caso-${caso.id}`}
+                    className="flex items-start gap-3 rounded-lg outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-lg bg-background text-brand ring-1 ring-border"
+                    >
+                      <Icon className="size-4.5" strokeWidth={1.75} />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block font-medium">{caso.pregunta}</span>
+                      <span className="mt-0.5 block text-[15px] text-(--text-secondary)">
+                        {caso.quien}
+                      </span>
+                    </span>
+                  </Link>
+                </Card>
+              );
+            })}
           </div>
 
-          <ol className="grid gap-5">
-            {pasos.map((paso, i) => (
-              <li
-                key={paso}
-                className="grid grid-cols-[24px_minmax(0,1fr)] gap-x-3 md:grid-cols-[32px_minmax(0,1fr)] md:gap-x-4"
-              >
-                <span className="text-[22px] leading-[1.1] font-light text-brand tabular-nums md:text-[26px]">
-                  {i + 1}
-                </span>
-                <p>{paso}</p>
-              </li>
-            ))}
-          </ol>
+          <Link
+            href="/como-votar"
+            className={buttonVariants({ variant: "sunset", size: "lg" })}
+          >
+            Ver la guía completa
+            <ArrowRight data-icon="inline-end" aria-hidden="true" />
+          </Link>
+        </section>
 
-          {/* Una sola tarjeta con el sol por vista: la del dato que más importa. */}
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(190px,1fr))] gap-3">
-            <Card
-              render={<section />}
-              className="gap-2 bg-muted px-6 py-6 text-base ring-0"
-            >
-              <h3 className="text-sm font-medium text-(--text-secondary)">
-                Requisitos
-              </h3>
-              <p>Solo los que diga la fuente oficial.</p>
-            </Card>
-            <Card
-              render={<section />}
-              className="gap-2 px-6 py-6 text-base ring-0 [background:radial-gradient(120%_90%_at_100%_0%,#ffd34d_0%,rgba(255,211,77,0)_60%),var(--brand-yellow)]"
-            >
-              <h3 className="text-sm font-medium">Plazo</h3>
-              <p>Con su fecha y la publicación que lo fija.</p>
-            </Card>
-            <Card
-              render={<section />}
-              className="gap-2 bg-muted px-6 py-6 text-base ring-0"
-            >
-              <h3 className="text-sm font-medium text-(--text-secondary)">
-                Coste
-              </h3>
-              <p>La cifra tal como la publica el organismo.</p>
-            </Card>
-          </div>
-
+        {/* El plazo que más apremia. Una sola tarjeta con el sol por vista. */}
+        <section aria-labelledby="plazos" className="mt-14">
+          <h2 id="plazos" className="sr-only">
+            Plazos abiertos
+          </h2>
           <Card
             render={<section />}
-            className="flex-row flex-wrap items-center justify-between gap-x-6 gap-y-4 px-6 py-6 text-base"
+            className="gap-2 px-6 py-6 text-base ring-0 [background:radial-gradient(120%_90%_at_100%_0%,#ffd34d_0%,rgba(255,211,77,0)_60%),var(--brand-yellow)]"
           >
-            <div className="min-w-0 flex-[1_1_260px]">
-              <p className="text-sm text-(--text-secondary)">Dónde se hace</p>
-              <h3 className="mt-1 text-lg leading-[1.35] font-medium">
-                En la sede oficial del organismo
-              </h3>
-              <p className="mt-1 font-mono text-sm text-(--text-secondary)">
-                {new URL(sede.url).hostname}
-              </p>
-            </div>
-            <a
-              href={sede.url}
-              className={cn(
-                buttonVariants({ variant: "sunset", size: "lg" }),
-                "max-md:w-full",
-              )}
-            >
-              Abrir la web oficial <span aria-hidden="true">↗</span>
-            </a>
+            <p className="font-mono text-xs tracking-[0.06em] uppercase">
+              Si vas a votar por correo
+            </p>
+            <p className="font-heading text-[clamp(30px,4vw,44px)] leading-none">
+              Pide el voto hasta el {fecha(plazos.correoSolicitud.fin)}
+            </p>
+            <p>
+              Y devuélvelo por correo certificado hasta el{" "}
+              {fecha(plazos.correoRemision.fin)}. Gratis, en cualquier oficina
+              de Correos.
+            </p>
           </Card>
-
-          <Fuentes fuentes={ficha.fuentes} />
         </section>
+
+        <section aria-labelledby="otras" className="mt-14">
+          <h2 id="otras" className="text-[clamp(28px,4vw,40px)] leading-[1.1] tracking-[-0.02em]">
+            Otras piezas de la herramienta
+          </h2>
+          <ul className="mt-6 grid gap-3">
+            <li>
+              <Card
+                render={<article />}
+                className="gap-0 px-5 py-4 text-base ring-0 bg-muted"
+              >
+                <a
+                  href="escrutinio"
+                  className="flex items-center justify-between gap-3 rounded-lg outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                >
+                  <span>
+                    <span className="block font-medium">
+                      ¿Qué pasa con tu voto al cerrar el colegio?
+                    </span>
+                    <span className="mt-0.5 block text-[15px] text-(--text-secondary)">
+                      Del recuento en la mesa a los resultados oficiales en el
+                      BOE, artículo a artículo.
+                    </span>
+                  </span>
+                  <ArrowRight aria-hidden="true" className="size-4 shrink-0 text-(--text-secondary)" />
+                </a>
+              </Card>
+            </li>
+          </ul>
+          <p className="mt-4 text-[15px] text-(--text-secondary)">
+            ¿Una duda concreta? Pregúntale al chat de la esquina: responde con
+            el calendario oficial y enlaza la fuente.
+          </p>
+        </section>
+
+        <div className="mt-14">
+          <Fuentes fuentes={fuentesGuia} />
+          <p className="mt-4 text-sm text-(--text-secondary)">
+            Origen de los datos: Ministerio del Interior.
+          </p>
+        </div>
       </main>
 
       <footer className="p-2">
