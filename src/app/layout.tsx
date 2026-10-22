@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
+import { ChatLateral } from "@/components/chat/ChatLateral";
 import ficha from "../../ficha.json";
 import "./globals.css";
 
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Herramienta experimental. No es un servicio oficial.
         </p>
         {children}
+        <ChatLateral />
       </body>
     </html>
   );
