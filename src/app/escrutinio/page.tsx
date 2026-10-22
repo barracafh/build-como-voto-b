@@ -32,6 +32,13 @@ import {
   type Icono,
 } from "@/datos/escrutinio";
 import ficha from "../../../ficha.json";
+import { GuiaVoton } from "@/components/voton/GuiaVoton";
+import { VotonApartado } from "@/components/voton/VotonApartado";
+import {
+  cierreEscrutinio,
+  guiaEscrutinio,
+  paradasEscrutinio,
+} from "@/components/voton/guias";
 
 export const metadata: Metadata = {
   title: `¿Qué pasa con tu voto al cerrar el colegio? · ${ficha.nombre}`,
@@ -95,6 +102,7 @@ export default function Escrutinio() {
             Del recuento en la mesa a los resultados oficiales en el BOE, paso a
             paso y con el artículo de la ley que lo regula.
           </p>
+          <VotonApartado className="mt-8" {...paradasEscrutinio[0]} />
         </div>
 
         {/* El recorrido de un voto */}
@@ -102,6 +110,7 @@ export default function Escrutinio() {
           <h2 id="recorrido" className="sr-only">
             El recorrido de tu voto
           </h2>
+          <VotonApartado className="mb-6" {...guiaEscrutinio.recorrido} />
           <ol className="relative grid gap-6 md:grid-cols-5 md:gap-4">
             {/* Línea que une las estaciones */}
             <span
@@ -231,6 +240,10 @@ export default function Escrutinio() {
                 </p>
               </div>
 
+              {guiaEscrutinio.fases[f] && (
+                <VotonApartado className="mt-6" {...guiaEscrutinio.fases[f]} />
+              )}
+
               <ol className="relative mt-8 grid gap-4">
                 <span
                   aria-hidden="true"
@@ -319,6 +332,7 @@ export default function Escrutinio() {
               Art. 96 LOREG
             </a>
           </div>
+          <VotonApartado className="mt-6" {...guiaEscrutinio.tipos} />
           <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3">
             {tiposDeVoto.map((t, i) => {
               const Icon = iconosVoto[i];
@@ -337,10 +351,14 @@ export default function Escrutinio() {
           </div>
         </section>
 
+        <VotonApartado id="voton-cierre" className="mt-16" {...cierreEscrutinio} />
+
         <div className="mt-16 max-w-[760px]">
           <Fuentes fuentes={fuentesEscrutinio} />
         </div>
       </main>
+
+      <GuiaVoton paradas={paradasEscrutinio} />
 
       <footer className="p-2">
         <div className="flex flex-wrap items-center justify-between gap-6 rounded-[28px] px-(--page-gutter) py-12 [background:radial-gradient(80%_70%_at_50%_-12%,#ffe58f_0%,rgba(255,229,143,0)_70%),linear-gradient(180deg,#ffd34d_0%,var(--brand-yellow)_46%,var(--brand-orange)_100%)] md:px-12">
