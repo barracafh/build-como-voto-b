@@ -119,19 +119,23 @@ export function desglosar(res: ResumenProvincia) {
   };
 }
 
-// Un color por partido, sacado de la paleta categórica validada (scripts/validate_palette.js).
-// El reparto se eligió para que los partidos que coinciden en más provincias queden lo más
-// distinguibles posible; no son los colores reales. Solo hay 8 colores fiables: los partidos con
-// un solo escaño (BNG, CCa, UPN) van en gris y siempre se nombran en texto.
+// Los colores con los que se identifica a cada partido (aproximados: no son los hexadecimales de
+// sus manuales de marca). Se distinguen peor entre sí que una paleta pensada para ello (el rojo
+// del PSOE y el rosa de Sumar, los verdes, los amarillos…), así que el nombre del partido va
+// siempre escrito, y las bolitas llevan un contorno fino para separarlas. Para cambiar un color,
+// basta con tocar esta tabla.
 export const COLOR_PARTIDO: Record<string, string> = {
-  PP: "#2a78d6",
-  PSOE: "#008300",
-  VOX: "#e87ba4",
-  SUMAR: "#eda100",
-  ERC: "#e34948",
-  "JxCAT - JUNTS": "#6250d6",
-  "EH Bildu": "#1baf7a",
-  "EAJ-PNV": "#eb6834",
+  PP: "#1D84CE",
+  PSOE: "#EF1C27",
+  VOX: "#63BE21",
+  SUMAR: "#D81B8A",
+  ERC: "#FFB232",
+  "JxCAT - JUNTS": "#00C3B2",
+  "EH Bildu": "#A6CE39",
+  "EAJ-PNV": "#1F8A3B",
+  "B.N.G.": "#7FB9E6",
+  CCa: "#FFD60A",
+  "U.P.N.": "#1B3A7A",
 };
 export const GRIS_OTROS = "#898781";
 export const SIN_ESCANO = "#c3c2b7";

@@ -252,7 +252,7 @@ export function EscenaHemiciclo() {
         ctx.fillStyle = hexGrupo(ASIENTOS[i]);
         ctx.fill();
         ctx.lineWidth = Math.min(0.8, r * 0.22);
-        ctx.strokeStyle = "rgba(255,255,255,0.9)";
+        ctx.strokeStyle = "rgba(11,11,11,0.3)";
         ctx.stroke();
       }
     };

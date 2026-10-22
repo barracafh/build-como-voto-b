@@ -167,7 +167,12 @@ export function QueSiPasara() {
               <p className="mb-2 text-center text-sm font-medium text-(--text-secondary)">
                 {esLoReal ? "Con estas reglas: exactamente lo que pasó en 2023" : "Con estas reglas"}
               </p>
-              <Hemiciclo partidos={resultado.partidos} titulo={`Hemiciclo con ${resumen}`} />
+              <Hemiciclo
+                animar
+                clave={`${sub}|${metodo}`}
+                partidos={resultado.partidos}
+                titulo={`Hemiciclo con ${resumen}`}
+              />
             </div>
             <div>
               <p className="mb-2 text-center text-sm font-medium text-(--text-secondary)">Así quedó en 2023</p>
