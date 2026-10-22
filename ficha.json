@@ -7,20 +7,32 @@
   "url": "https://build.barraca.house/como-voto-b",
   "fuentes": [
     {
-      "nombre": "www.juntaelectoralcentral.es",
-      "url": "https://www.juntaelectoralcentral.es/"
+      "nombre": "Junta Electoral Central · Calendario electoral EG 2026",
+      "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/eg2026_calendario.pdf"
     },
     {
-      "nombre": "www.ine.es",
-      "url": "https://www.ine.es/"
+      "nombre": "INE · Oficina del Censo Electoral · Plazos para electores",
+      "url": "https://www.ine.es/dyngs/CEL/index.htm?cid=1702"
     },
     {
-      "nombre": "www.boe.es",
-      "url": "https://www.boe.es/"
+      "nombre": "Correos · Voto por correo",
+      "url": "https://www.correos.es/es/es/particulares/para-el-ciudadano/voto-por-correo"
     },
     {
-      "nombre": "www.correos.es",
-      "url": "https://www.correos.es/"
+      "nombre": "Ministerio del Interior · Miembros de mesa: sustitución y recurso",
+      "url": "https://infoelectoral.interior.gob.es/es/proceso-electoral/miembros-de-mesa/informacion-general/sustitucion-y-recurso-contra-la-designacion/"
+    },
+    {
+      "nombre": "BOE · Real Decreto 806/2026 de convocatoria",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-20742"
+    },
+    {
+      "nombre": "BOE · LOREG (Ley Orgánica 5/1985), texto consolidado",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1985-11672"
+    },
+    {
+      "nombre": "Infoelectoral · Ministerio del Interior",
+      "url": "https://infoelectoral.interior.gob.es/"
     }
   ],
   "datos": "simulados"
