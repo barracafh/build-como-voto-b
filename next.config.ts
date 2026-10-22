@@ -8,5 +8,7 @@ const basePath = `/${ficha.equipo}`;
 const config: NextConfig = {
   basePath,
   env: { NEXT_PUBLIC_BASE_PATH: basePath },
+  // El chat lee contexto.md del disco: que viaje con la función publicada.
+  outputFileTracingIncludes: { "/api/chat": ["./contexto.md"] },
 };
 export default config;
