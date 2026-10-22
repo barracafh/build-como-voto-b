@@ -36,9 +36,9 @@ const miles = (n: number) => n.toLocaleString("es-ES");
 function Contraste({ a }: { a: Afirmacion }) {
   return (
     <Card render={<article />} className="gap-0 p-0 text-base">
-      <details className="group">
+      <details open className="group">
         <summary className="block cursor-pointer list-none outline-none focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:ring-inset [&::-webkit-details-marker]:hidden">
-          <span className="flex items-start justify-between gap-4 bg-brand px-5 py-5 text-white md:px-6">
+          <span className="flex items-start justify-between gap-4 bg-brand/15 px-5 py-5 text-foreground md:px-6">
             <span className="min-w-0 text-lg leading-[1.35]">«{a.dice}»</span>
             <span className="mt-1 inline-flex shrink-0 items-center gap-1 text-sm">
               <span className="hidden sm:inline sm:group-open:hidden">Por qué</span>
