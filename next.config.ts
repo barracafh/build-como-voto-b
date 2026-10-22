@@ -10,5 +10,6 @@ const config: NextConfig = {
   env: { NEXT_PUBLIC_BASE_PATH: basePath },
   // El chat lee contexto.md del disco: que viaje con la función publicada.
   outputFileTracingIncludes: { "/api/chat": ["./contexto.md"] },
+  experimental: { agentUpgrade: "security" },
 };
 export default config;
