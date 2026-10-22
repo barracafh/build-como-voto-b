@@ -130,7 +130,7 @@ export async function POST(req: Request) {
     ...historial.map(
       (m): Mensaje => ({
         role: m.rol === "usuario" ? "user" : "assistant",
-        content: m.texto.slice(0, 2000),
+        content: m.texto,
       }),
     ),
   ];

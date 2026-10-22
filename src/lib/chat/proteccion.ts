@@ -21,11 +21,12 @@ const LIMITES = {
   porMinutoGlobal: 120,
   // El cliente manda todo el historial; solo se usan los 6 últimos mensajes.
   mensajes: 6,
-  caracteresUsuario: 600,
+  // Sin límite de longitud en las preguntas (decisión del equipo): el gasto
+  // lo acotan la tasa por IP, el tamaño del cuerpo y maxTokens.
   caracteresAsistente: 500,
   // El cliente manda solo los 6 últimos mensajes (~1 KB por respuesta).
-  bytesCuerpo: 12 * 1024,
-  lineas: 8,
+  // Cerca del máximo que acepta una función de Vercel (4,5 MB).
+  bytesCuerpo: 4 * 1024 * 1024,
 };
 
 const MINUTO = 60_000;
@@ -138,7 +139,6 @@ const PATRONES_FUERA: RegExp[] = [
 
 export function fueraDeAlcance(texto: string): boolean {
   if (texto.includes("```")) return true;
-  if (texto.split("\n").length > LIMITES.lineas) return true;
   // Muchos símbolos de programación seguidos: casi seguro, código.
   if ((texto.match(/[{};<>=$\\]/g) ?? []).length >= 8) return true;
   const t = normalizar(texto);
@@ -190,11 +190,6 @@ export async function protegerChat(
   const ultimo = validos.at(-1);
   if (!ultimo || ultimo.rol !== "usuario" || !ultimo.texto.trim())
     return error("Escribe una pregunta.", 400);
-  if (ultimo.texto.length > LIMITES.caracteresUsuario)
-    return error(
-      `Tu pregunta es muy larga. Escríbela en menos de ${LIMITES.caracteresUsuario} caracteres.`,
-      400,
-    );
 
   if (fueraDeAlcance(ultimo.texto))
     return Response.json({
@@ -210,9 +205,6 @@ export async function protegerChat(
     .filter((m, i, todos) => i === todos.length - 1 || m.rol === "asistente" || !fueraDeAlcance(m.texto))
     .map((m) => ({
       rol: m.rol,
-      texto: m.texto.slice(
-        0,
-        m.rol === "usuario" ? LIMITES.caracteresUsuario : LIMITES.caracteresAsistente,
-      ),
+      texto: m.rol === "usuario" ? m.texto : m.texto.slice(0, LIMITES.caracteresAsistente),
     }));
 }

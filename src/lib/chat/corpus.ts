@@ -502,7 +502,7 @@ async function semantico(pregunta: string): Promise<Indexado[]> {
   const { fragmentos } = corpus();
   const conVector = fragmentos.filter((f) => EMB.vectores[f.id]?.h === hashTexto(textoEmbebible(f)));
   if (conVector.length === 0) return [];
-  const [bruto] = await embeber([INSTRUCCION_CONSULTA + pregunta.slice(0, 1500)], { timeoutMs: 5000 });
+  const [bruto] = await embeber([INSTRUCCION_CONSULTA + recorte(pregunta)], { timeoutMs: 5000 });
   const q = recorteVector(bruto, EMB.dims);
   return conVector
     .map((f) => {
@@ -519,6 +519,11 @@ const SIN_INDICE = ({ terminos: _t, ...f }: Indexado): Fragmento => f;
 
 // Los fragmentos más útiles para la pregunta: fusión (Reciprocal Rank Fusion)
 // de palabras clave y embeddings. Si los embeddings fallan, solo palabras clave.
+// Para el embedding basta un extracto: en mensajes largos la duda suele ir al
+// final, así que se toma el principio y el final.
+const recorte = (t: string) =>
+  t.length <= 1500 ? t : `${t.slice(0, 500)} … ${t.slice(-1000)}`;
+
 export async function recuperar(
   pregunta: string,
   { max = 8, caracteres = 6000 }: { max?: number; caracteres?: number } = {},
