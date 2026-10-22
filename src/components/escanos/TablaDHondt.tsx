@@ -3,6 +3,7 @@
 import { useRef, type PointerEvent } from "react";
 import { BARRERA_PCT, repartir } from "@/lib/dhondt";
 import { hexGrupo, type Provincia } from "@/lib/mapa";
+import { nombreLegible } from "@/lib/nombres";
 
 const numero = new Intl.NumberFormat("es-ES", { useGrouping: "always" });
 const n = (v: number) => numero.format(Math.round(v));
@@ -31,7 +32,11 @@ export function TablaDHondt({
 }) {
   const reparto = repartir(provincia.candidaturas, provincia.votosBlanco, provincia.escanos, barreraPct);
   const filas = reparto.filas
-    .map((f, i) => ({ ...f, grupo: provincia.candidaturas[i].grupo }))
+    .map((f, i) => ({
+      ...f,
+      grupo: provincia.candidaturas[i].grupo,
+      completo: nombreLegible(provincia.candidaturas[i].denominacion),
+    }))
     .sort((a, b) => b.votos - a.votos);
   const dentro = filas.filter((f) => f.supera);
   const fuera = filas.filter((f) => !f.supera);
@@ -52,14 +57,15 @@ export function TablaDHondt({
   const mover = (e: PointerEvent<HTMLTableElement>) => {
     const a = aviso.current;
     if (!a) return;
-    const celdaBajo = (e.target as HTMLElement).closest<HTMLElement>("[data-exacto]");
+    const celdaBajo = (e.target as HTMLElement).closest<HTMLElement>("[data-l1]");
     if (!celdaBajo) {
       a.style.opacity = "0";
       return;
     }
     const [cifra, detalle] = a.children as unknown as HTMLElement[];
-    cifra.textContent = `${celdaBajo.dataset.exacto} votos`;
-    detalle.textContent = celdaBajo.dataset.detalle ?? "";
+    cifra.textContent = celdaBajo.dataset.l1 ?? "";
+    detalle.textContent = celdaBajo.dataset.l2 ?? "";
+    detalle.style.display = celdaBajo.dataset.l2 ? "" : "none";
     a.style.opacity = "1";
     a.style.left = `${Math.min(e.clientX + 14, window.innerWidth - 230)}px`;
     a.style.top = `${e.clientY + 18}px`;
@@ -71,9 +77,7 @@ export function TablaDHondt({
   const nombre = (f: (typeof filas)[number]) => (
     <span className="flex items-center gap-2">
       <span aria-hidden="true" className="size-3 shrink-0 rounded-full" style={{ background: hexGrupo(f.grupo) }} />
-      <span className="truncate" title={f.nombre}>
-        {f.nombre}
-      </span>
+      <span className="truncate">{f.nombre}</span>
     </span>
   );
 
@@ -127,7 +131,7 @@ export function TablaDHondt({
           <tbody>
             {dentro.map((f) => (
               <tr key={f.nombre} className="border-t">
-                <th scope="row" className={`max-w-[15rem] px-3 ${py} font-medium`}>
+                <th scope="row" data-l1={f.completo} className={`max-w-[15rem] px-3 ${py} font-medium`}>
                   {nombre(f)}
                 </th>
                 <td className={`px-3 ${py} text-right`}>{n(f.votos)}</td>
@@ -136,8 +140,8 @@ export function TablaDHondt({
                 {f.cocientes.slice(0, columnas).map((c) => (
                   <td
                     key={c.divisor}
-                    data-exacto={n(c.valor)}
-                    data-detalle={`${f.nombre} ÷ ${c.divisor}`}
+                    data-l1={`${n(c.valor)} votos`}
+                    data-l2={`${f.nombre} ÷ ${c.divisor}`}
                     aria-label={`${n(c.valor)} votos`}
                     className={
                       c.orden
@@ -166,7 +170,7 @@ export function TablaDHondt({
 
             {fuera.map((f) => (
               <tr key={f.nombre} className="border-t text-(--text-secondary)">
-                <th scope="row" className={`max-w-[15rem] px-3 ${py} font-normal`}>
+                <th scope="row" data-l1={f.completo} className={`max-w-[15rem] px-3 ${py} font-normal`}>
                   {nombre(f)}
                 </th>
                 <td className={`px-3 ${py} text-right`}>{n(f.votos)}</td>
@@ -180,16 +184,15 @@ export function TablaDHondt({
           </tbody>
         </table>
       </div>
-      {compacto && (
-        <p className="mt-2 text-xs text-(--text-secondary)">
-          Con el cursor encima de un cociente sale la cifra exacta.
-        </p>
-      )}
+      <p className="mt-2 text-xs text-(--text-secondary)">
+        Con el cursor encima del nombre de un partido sale su nombre completo
+        {compacto ? ", y encima de un cociente, su cifra exacta" : ""}.
+      </p>
       {/* Aviso flotante de la cifra exacta (fijo en pantalla, para que no lo recorte ningún panel) */}
       <div
         ref={aviso}
         aria-hidden="true"
-        className="pointer-events-none fixed z-50 w-max max-w-[220px] rounded-lg bg-foreground px-3 py-1.5 text-xs text-background opacity-0 shadow-md"
+        className="pointer-events-none fixed z-50 w-max max-w-[260px] rounded-lg bg-foreground px-3 py-1.5 text-xs text-background opacity-0 shadow-md"
       >
         <p className="text-sm font-semibold tabular-nums" />
         <p className="opacity-80" />

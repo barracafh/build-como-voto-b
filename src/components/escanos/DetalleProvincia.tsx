@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { BARRERA_PCT, repartir } from "@/lib/dhondt";
 import { hexGrupo, type Provincia } from "@/lib/mapa";
+import { nombreLegible } from "@/lib/nombres";
 import { IconoProvincia } from "./IconoProvincia";
 import { TablaCocientes } from "./TablaCocientes";
 
@@ -32,6 +33,7 @@ export function DetalleProvincia({
       ...f,
       oficial: provincia.candidaturas[i].escanosOficiales,
       grupo: provincia.candidaturas[i].grupo,
+      completo: nombreLegible(provincia.candidaturas[i].denominacion),
     }))
     .sort((a, b) => b.votos - a.votos);
   const coincide = filas.every((f) => f.escanos === f.oficial);
@@ -100,7 +102,7 @@ export function DetalleProvincia({
               const dif = f.escanos - f.oficial;
               return (
                 <tr key={f.nombre}>
-                  <th scope="row" className="max-w-[16rem] px-4 py-3 font-medium [overflow-wrap:anywhere]">
+                  <th scope="row" title={f.completo} className="max-w-[16rem] px-4 py-3 font-medium [overflow-wrap:anywhere]">
                     <span className="flex items-center gap-2">
                       <span
                         aria-hidden="true"

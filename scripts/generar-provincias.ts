@@ -46,6 +46,7 @@ for (const f of datos) {
     });
   provincias.get(cod).candidaturas.push({
     nombre: col(f, "partido"),
+    denominacion: col(f, "denominacion"), // nombre completo, en mayúsculas
     grupo: col(f, "partido_agrupado"),
     votos: +col(f, "votos"),
     escanosOficiales: +col(f, "escanos_obtenidos"),
