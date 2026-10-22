@@ -532,9 +532,11 @@ export async function recuperar(
   pregunta: string,
   opciones: { max?: number; caracteres?: number } = {},
 ): Promise<Fragmento[]> {
-  // Mensajes largos (cadenas con varias afirmaciones) necesitan más fragmentos.
+  // Mensajes largos (cadenas con varias afirmaciones): más variedad de apartados,
+  // sin agrandar el contexto (más fragmentos alargaban la respuesta del modelo
+  // hasta el tiempo límite).
   const largo = pregunta.length > 800;
-  const { max = largo ? 10 : 8, caracteres = largo ? 7500 : 6000 } = opciones;
+  const { max = 8, caracteres = 6000 } = opciones;
   // Variedad: como mucho unos pocos fragmentos del mismo apartado, para que una
   // tabla larga (p. ej. escaños por provincia) no tape el apartado que responde.
   const porApartado = largo ? 4 : 3;

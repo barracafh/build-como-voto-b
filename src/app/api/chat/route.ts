@@ -125,6 +125,20 @@ function fuentesDeCitas(citados: Fragmento[]): Source[] {
   return fuera;
 }
 
+function rescatarRespuesta(bruto: string): string | undefined {
+  const m = bruto.match(/"respuesta"\s*:\s*"((?:[^"\\]|\\.)*)/);
+  if (!m) return undefined;
+  let texto: string;
+  try {
+    texto = JSON.parse(`"${m[1].replace(/\\u[0-9a-fA-F]{0,3}$|\\$/, "")}"`);
+  } catch {
+    return undefined;
+  }
+  const fin = Math.max(texto.lastIndexOf(". "), texto.lastIndexOf(".\n"), texto.endsWith(".") ? texto.length - 1 : -1);
+  if (fin < 80) return undefined;
+  return texto.slice(0, fin + 1);
+}
+
 export async function POST(req: Request) {
   // Anti-abuso (origen, tasa, tamaño, filtro previo): ver src/lib/chat/proteccion.ts.
   const historial = await protegerChat(req, FUENTES_GENERALES);
@@ -167,7 +181,16 @@ export async function POST(req: Request) {
   let salida: { respuesta?: unknown; citas?: unknown; confirmado?: unknown };
   try {
     const bruto = await completar(conversacion, { json: true, maxTokens: MAX_TOKENS_CHAT });
-    salida = JSON.parse(bruto.slice(bruto.indexOf("{"), bruto.lastIndexOf("}") + 1));
+    try {
+      salida = JSON.parse(bruto.slice(bruto.indexOf("{"), bruto.lastIndexOf("}") + 1));
+    } catch (e) {
+      // JSON cortado por el límite de tokens (mensajes largos con muchas
+      // afirmaciones): se rescata la respuesta hasta la última frase completa,
+      // sin citas, así que se enlazan las fuentes generales.
+      const rescatada = rescatarRespuesta(bruto);
+      if (!rescatada) throw e;
+      salida = { respuesta: rescatada, citas: [], confirmado: false };
+    }
   } catch (e) {
     // Solo el tipo de error: nunca el texto del ciudadano.
     console.error("chat:", e instanceof Error ? e.message : "error");
