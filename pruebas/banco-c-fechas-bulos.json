@@ -194,7 +194,7 @@
       "no_debe_contener": [
         "si, puedes pedirlo el 3",
         "aun estas a tiempo",
-        "todavia estas a tiempo"
+        "el 3 de noviembre todavia estas a tiempo"
       ],
       "fuentes_esperadas": [
         "eg2026_calendario",
@@ -202,7 +202,7 @@
         "cid=1702",
         "BOE-A-1985-11672"
       ],
-      "nota": "calendario erta_solicitud: cerrado tras el 31/10; el 3/11 está fuera de plazo"
+      "nota": "calendario erta_solicitud: cerrado tras el 31/10; el 3/11 está fuera de plazo [Revisado 22/10: alternativa o texto prohibido ajustado a una respuesta correcta según contexto.md]"
     },
     {
       "id": "c_cal_braille",
@@ -260,7 +260,9 @@
           "si, puedes",
           "si puedes",
           "aun hay tiempo",
-          "todavia hay tiempo"
+          "todavia hay tiempo",
+          "esta a tiempo",
+          "todavia puede"
         ]
       ],
       "no_debe_contener": [
@@ -277,7 +279,7 @@
         "cid=1702",
         "interior.gob.es"
       ],
-      "nota": "calendario braille_solicitud: abierto el 22/10 (hasta 2/11). Sin tildes"
+      "nota": "calendario braille_solicitud: abierto el 22/10 (hasta 2/11). Sin tildes [Revisado 22/10: alternativa o texto prohibido ajustado a una respuesta correcta según contexto.md]"
     },
     {
       "id": "c_atiempo_braille_tarde",
@@ -2275,7 +2277,9 @@
           "incorrect",
           "en realidad",
           "se confunde",
-          "confund"
+          "confund",
+          "han mezclado",
+          "no es el limite para solicitar"
         ]
       ],
       "no_debe_contener": [
@@ -2290,7 +2294,7 @@
         "eg2026_calendario",
         "BOE-A-1985-11672"
       ],
-      "nota": "contexto 6.1 (ejemplo tipo a) y 6.3: la solicitud acaba el 19/11; el 25/11 es el último día para enviarlo (art. 73.3)"
+      "nota": "contexto 6.1 (ejemplo tipo a) y 6.3: la solicitud acaba el 19/11; el 25/11 es el último día para enviarlo (art. 73.3) [Revisado 22/10: alternativa o texto prohibido ajustado a una respuesta correcta según contexto.md]"
     },
     {
       "id": "c_bulo_correo_hasta_dia_29",
@@ -2996,7 +3000,9 @@
           "no tienes que",
           "no es imprescindible",
           "no coincide",
-          "no es cierto"
+          "no es cierto",
+          "no es un requisito",
+          "no es requisito"
         ],
         [
           "dni",
@@ -3012,7 +3018,7 @@
         "BOE-A-1985-11672",
         "interior.gob.es"
       ],
-      "nota": "contexto 2.1.7 (art. 85.1: la tarjeta censal no es requisito; basta estar en las listas e identificarse)"
+      "nota": "contexto 2.1.7 (art. 85.1: la tarjeta censal no es requisito; basta estar en las listas e identificarse) [Revisado 22/10: alternativa o texto prohibido ajustado a una respuesta correcta según contexto.md]"
     },
     {
       "id": "c_bulo_sello_correo",

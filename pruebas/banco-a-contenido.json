@@ -690,7 +690,9 @@
           "si, puedes",
           "tienes derecho",
           "podras hacerlo",
-          "puedes hacerlo"
+          "puedes hacerlo",
+          "pueden votar",
+          "estas dentro"
         ]
       ],
       "no_debe_contener": [
@@ -701,7 +703,7 @@
         "interior.gob.es",
         "ine.es"
       ],
-      "nota": "contexto 2.1.3 (art. 85.2: votan los inscritos como menores que cumplen 18 a la fecha de votación)"
+      "nota": "contexto 2.1.3 (art. 85.2: votan los inscritos como menores que cumplen 18 a la fecha de votación) [Revisado 22/10: alternativa o texto prohibido ajustado a una respuesta correcta según contexto.md]"
     },
     {
       "id": "a_pres_no_censo",
@@ -1702,7 +1704,7 @@
       ],
       "no_debe_contener": [
         "puedes descargar solo la papeleta",
-        "puedes bajarte solo la"
+        "si, puedes bajarte solo la"
       ],
       "fuentes_esperadas": [
         "BOE-A-1985-11672",
@@ -1711,7 +1713,7 @@
         "eg2026_calendario",
         "ine.es"
       ],
-      "nota": "contexto 2.3.2 (art. 75.2: solo se puede descargar el juego completo para garantizar el secreto)"
+      "nota": "contexto 2.3.2 (art. 75.2: solo se puede descargar el juego completo para garantizar el secreto) [Revisado 22/10: alternativa o texto prohibido ajustado a una respuesta correcta según contexto.md]"
     },
     {
       "id": "a_cera_descarga_cierre",
