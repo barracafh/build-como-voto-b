@@ -186,19 +186,20 @@ const articuloLoreg = (n: number) => `${U.loreg}#a${enLetras(n)}`;
 // ── Texto y términos ─────────────────────────────────────────────────────────
 // Palabras con las que pregunta la gente y que no siempre salen en el apartado.
 const SINONIMOS: Record<string, string> = {
+  "1.1": "disolucion disuelto disueltas disuelven cortes convocatoria convocado publico publicacion boe decreto",
   "1.2": "fecha fechas plazo plazos cuando calendario dia",
-  "2.1": "presencial colegio dni documento identidad pasaporte papeleta sobre urna votar dia domingo horario hora censo consultar estoy inscrito donde",
+  "2.1": "presencial colegio dni documento identidad pasaporte llevar llevo necesito papeleta sobre urna votar dia domingo horario hora censo consultar estoy inscrito donde",
   "2.2": "correo correos postal fuera ausente viaje viajo estoy solicitar solicitud certificado oficina",
   "2.3": "extranjero cera consulado embajada fuera residente pais berlin paris londres alemania francia vivo",
   "2.4": "erasmus temporal temporalmente erta viaje trabajo extranjero estudios fuera",
   "2.5": "braille discapacidad accesible ciego ciega visual lengua signos",
-  "2.6": "trabajo permiso horas laboral empresa jornada jefe",
+  "2.6": "trabajo trabajar curro curro sueldo salario descontar descuento retribuido pagado permiso horas laboral empresa jornada jefe turno",
   "2.7": "mesa miembro presidente vocal sorteo excusa toca tocado librarme saltarme dieta multa cobra cobro pagan",
   "3.1": "escanos diputados congreso circunscripcion provincia reparto",
-  "3.2": "dhondt hondt reparto escanos formula barrera umbral porcentaje",
-  "3.3": "blanco nulo abstencion abstenerse",
+  "3.2": "dhondt hondt reparto reparten reparte partidos candidaturas escanos formula barrera umbral porcentaje",
+  "3.3": "blanco nulo abstencion abstenerse vacio vacia tachada tachado valido cuenta",
   "3.4": "senado senadores listas abiertas",
-  "5": "campana encuestas debate propaganda reflexion",
+  "5": "campana encuestas sondeos debate propaganda reflexion sabado pedir puerta colegio carteles mitin actos",
   "6.1": "bulo verdad falso verificar comprobar",
   "6.3": "bulo verdad falso verificar comprobar",
 };
@@ -217,11 +218,14 @@ export const normalizar = (s: string) =>
     .replace(/[^a-z0-9ñ\s]/g, " ");
 
 // Raíz tosca: los primeros 5 caracteres bastan para casar correo/correos.
+// Algunas familias cambian de raíz (disolución/disuelto): se unifican.
+// Quien está en el hospital pregunta con otras palabras que «enfermedad».
+const RAICES: Record<string, string> = { disue: "disol", hospi: "enfer", ingre: "enfer" };
 const terminos = (s: string) =>
   normalizar(s)
     .split(/\s+/)
     .filter((t) => t.length > 2 && !VACIAS.has(t))
-    .map((t) => t.slice(0, 5));
+    .map((t) => RAICES[t.slice(0, 5)] ?? t.slice(0, 5));
 
 const urlsDe = (s: string) =>
   [...s.matchAll(/https?:\/\/[^\s<>()|\]`]+/g)].map((m) => m[0].replace(/[.,;:]+$/, ""));
@@ -526,8 +530,16 @@ const recorte = (t: string) =>
 
 export async function recuperar(
   pregunta: string,
-  { max = 8, caracteres = 6000 }: { max?: number; caracteres?: number } = {},
+  opciones: { max?: number; caracteres?: number } = {},
 ): Promise<Fragmento[]> {
+  // Mensajes largos (cadenas con varias afirmaciones): más variedad de apartados,
+  // sin agrandar el contexto (más fragmentos alargaban la respuesta del modelo
+  // hasta el tiempo límite).
+  const largo = pregunta.length > 800;
+  const { max = 8, caracteres = 6000 } = opciones;
+  // Variedad: como mucho unos pocos fragmentos del mismo apartado, para que una
+  // tabla larga (p. ej. escaños por provincia) no tape el apartado que responde.
+  const porApartado = largo ? 4 : 3;
   const lex = lexico(pregunta).slice(0, 30);
   let sem: Indexado[] = [];
   try {
@@ -551,10 +563,25 @@ export async function recuperar(
     orden = corpus().fragmentos.filter((f) => /^2\.[12]#/.test(f.id));
 
   const elegidos: Fragmento[] = [];
+  const cuenta = new Map<string, number>();
+  const sobrantes: Indexado[] = [];
   let tamano = 0;
   for (const f of orden) {
     if (elegidos.length >= max) break;
     if (elegidos.length > 0 && tamano + f.texto.length > caracteres) continue;
+    const n = cuenta.get(f.apartado) ?? 0;
+    if (n >= porApartado) {
+      sobrantes.push(f);
+      continue;
+    }
+    cuenta.set(f.apartado, n + 1);
+    elegidos.push(SIN_INDICE(f));
+    tamano += f.texto.length;
+  }
+  // Si sobra hueco, se completa con los descartados por variedad, en su orden.
+  for (const f of sobrantes) {
+    if (elegidos.length >= max) break;
+    if (tamano + f.texto.length > caracteres) continue;
     elegidos.push(SIN_INDICE(f));
     tamano += f.texto.length;
   }
