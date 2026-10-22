@@ -217,7 +217,7 @@ export const fases: Fase[] = [
 export const calendario = [
   { cuando: "29 nov", titulo: "Votación y recuento", texto: "De 9:00 a 20:00; después, escrutinio en cada mesa y resultados provisionales.", fuente: "Arts. 84.1 y 95", url: `${LOREG}#aochentaycuatro` },
   { cuando: "+10 h", titulo: "Actas a la Junta", texto: "El juez lleva los sobres 1 a la Junta en las 10 horas siguientes a la última entrega.", fuente: "Art. 101.3", url: `${LOREG}#acientouno` },
-  { cuando: "30 nov", titulo: "Correos envía el sobre 3", texto: "Al día siguiente de la elección, a la Junta que hace el escrutinio.", fuente: "Art. 102.2", url: `${LOREG}#acientodos` },
+  { cuando: "30 nov", titulo: "Correos envía el ‘sobre 3’", texto: "Al día siguiente de la elección, a la Junta que hace el escrutinio.", fuente: "Art. 102.2", url: `${LOREG}#acientodos` },
   { cuando: "4 dic", titulo: "Escrutinio general", texto: "El quinto día tras la votación, en cada Junta Electoral Provincial.", fuente: "Art. 103.1 y calendario JEC", url: CALENDARIO_JEC },
   { cuando: "7 dic", titulo: "Fin del escrutinio", texto: "No puede acabar después del octavo día tras la votación.", fuente: "Art. 107.2 y calendario JEC", url: CALENDARIO_JEC },
   { cuando: "Después", titulo: "Reclamaciones y proclamación", texto: "Un día para reclamar, uno para resolver, posible recurso ante la JEC y proclamación al día siguiente.", fuente: "Art. 108.2-4", url: `${LOREG}#acientoocho` },
@@ -243,7 +243,26 @@ export const provisional = {
     { icono: "junta" as Icono, titulo: "Ministerio del Interior", texto: "Los difunde desde las 20:00", fuente: "Interior", url: FAQ_RESULTADOS },
   ],
   // Lo que los resultados definitivos incluyen y los provisionales no.
-  diferencias: ["Voto CERA", "Reclamaciones resueltas", "Correcciones de las Juntas"],
+  diferencias: [
+    {
+      titulo: "Voto CERA",
+      texto: "Es el voto de los españoles residentes en el extranjero. Cada Junta Electoral lo mete en la urna a las 8:00 del día del escrutinio general, así que no está en los datos de esa noche.",
+      fuente: "Art. 75.10-11 LOREG",
+      url: `${LOREG}#asetentaycinco`,
+    },
+    {
+      titulo: "Reclamaciones resueltas",
+      texto: "Tras el escrutinio general, las candidaturas tienen un día para reclamar por incidencias que consten en las actas. La Junta resuelve en un día y su decisión se puede recurrir ante la Junta Electoral Central.",
+      fuente: "Art. 108.2-3 LOREG",
+      url: `${LOREG}#acientoocho`,
+    },
+    {
+      titulo: "Correcciones de las Juntas",
+      texto: "Al revisar las actas, la Junta solo puede subsanar errores materiales, de hecho o aritméticos; no puede anular actas ni votos. No computa las actas dobles y diferentes ni las que tengan más votos que electores.",
+      fuente: "Arts. 105.4 y 106.1 LOREG",
+      url: `${LOREG}#acientoseis`,
+    },
+  ],
   fuenteDiferencias: FAQ_RESULTADOS,
 };
 

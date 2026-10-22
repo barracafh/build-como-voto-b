@@ -21,6 +21,13 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { BotonAviso } from "@/components/BotonAviso";
 import { Fuentes } from "@/components/Fuentes";
 import {
@@ -442,15 +449,38 @@ function Provisionales() {
       <p className="mt-6 flex flex-wrap items-center gap-2 text-[15px]">
         <span className="font-medium">El resultado oficial añade:</span>
         {provisional.diferencias.map((d) => (
-          <span
-            key={d}
-            className="rounded-full bg-background px-3 py-1 ring-1 ring-border"
-          >
-            <span aria-hidden="true" className="text-brand">
-              +{" "}
-            </span>
-            {d}
-          </span>
+          <Popover key={d.titulo}>
+            <PopoverTrigger
+              openOnHover
+              delay={100}
+              className="inline-flex min-h-9 cursor-help items-center gap-1 rounded-full bg-background px-3 py-1 ring-1 ring-border outline-none hover:ring-foreground/40 focus-visible:ring-3 focus-visible:ring-ring/50 data-[popup-open]:ring-foreground/40"
+            >
+              <span aria-hidden="true" className="text-brand">
+                +
+              </span>
+              {d.titulo}
+              <CircleHelp
+                aria-hidden="true"
+                className="size-3.5 text-(--text-secondary)"
+                strokeWidth={2}
+              />
+            </PopoverTrigger>
+            <PopoverContent
+              side="top"
+              className="w-[min(18rem,calc(100vw-32px))] gap-2 p-4 text-[15px]"
+            >
+              <PopoverTitle className="font-sans text-base">{d.titulo}</PopoverTitle>
+              <PopoverDescription className="text-(--text-secondary)">
+                {d.texto}
+              </PopoverDescription>
+              <a
+                href={d.url}
+                className={`font-mono text-xs text-(--text-secondary) ${enlace}`}
+              >
+                {d.fuente} <span aria-hidden="true">↗</span>
+              </a>
+            </PopoverContent>
+          </Popover>
         ))}
         <a
           href={provisional.fuenteDiferencias}
