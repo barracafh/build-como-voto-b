@@ -48,22 +48,35 @@ export const cierreComoVotar: Omit<ParadaGuia, "ancla"> = {
   pregunta: "Tengo una duda sobre cómo votar en mi caso",
 };
 
-export const paradasComoVotar: ParadaGuia[] = [
+// Índice de la guía: ya no hay secciones de caso en la página, solo el
+// titular, las fechas y el índice de tarjetas.
+export const paradasIndice: ParadaGuia[] = [
   {
     ancla: "contenido",
     pose: "hola",
-    dice: "¡Hola! Busca tu caso y te acompaño paso a paso.",
+    dice: "¡Hola! Elige tu caso y te cuento cómo votar.",
   },
   {
     ancla: "fechas",
     pose: "aviso",
     dice: "Estas fechas mandan. Apúntatelas antes de seguir.",
   },
-  ...Object.entries(guiaCasos).map(([id, g]) => ({ ancla: `caso-${id}`, ...g })),
   {
     ancla: "calendario",
     pose: "ok",
     dice: "Aquí tienes el calendario completo, tal como lo publica la JEC.",
+  },
+  { ancla: "voton-cierre", ...cierreComoVotar },
+];
+
+// Página de cada caso (/como-votar/[caso]): saluda con lo que dice Votón de
+// ese caso y remata ofreciendo el chat. Sin anclas de caso: ya no hay
+// secciones, sino páginas.
+export const paradasCaso = (id: keyof typeof guiaCasos): ParadaGuia[] => [
+  {
+    ancla: "contenido",
+    pose: "hola",
+    dice: guiaCasos[id].dice,
   },
   { ancla: "voton-cierre", ...cierreComoVotar },
 ];

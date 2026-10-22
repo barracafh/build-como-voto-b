@@ -18,7 +18,8 @@ import { FormularioCaso } from "@/components/ComoVotoWizard";
 import { Fuentes } from "@/components/Fuentes";
 import { Recorrido } from "@/components/voton/Recorrido";
 import { ficha } from "@/lib/ficha";
-import { casos, fecha, fuentesGuia, plazos, type Caso } from "@/datos/como-votar";
+import { casos, fecha, fuentesGuia, plazos } from "@/datos/como-votar";
+import { iconosCaso, rutaCaso } from "@/lib/iconos-casos";
 
 export const metadata: Metadata = {
   title: `${ficha.nombre} · ${ficha.frase}`,
@@ -26,16 +27,7 @@ export const metadata: Metadata = {
     "Cómo votar en las generales del 29 de noviembre de 2026: en persona, por correo, desde el extranjero o con apoyo. Pasos, plazos y fuentes oficiales.",
 };
 
-type IconoCaso = Caso["icono"];
 
-const iconos: Record<IconoCaso, LucideIcon> = {
-  urna: Vote,
-  correo: Mail,
-  mundo: Globe,
-  maleta: Plane,
-  braille: Accessibility,
-  sobre: IdCard,
-};
 
 const enlace =
   "underline underline-offset-4 outline-none focus-visible:ring-3 focus-visible:ring-ring/50 rounded-sm";
@@ -93,7 +85,7 @@ export default function Home() {
           </h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {casos.map((caso) => {
-              const Icon = iconos[caso.icono];
+              const Icon = iconosCaso[caso.icono];
               return (
                 <Card
                   key={caso.id}
@@ -101,7 +93,7 @@ export default function Home() {
                   className="gap-0 px-5 py-4 text-base ring-0 bg-muted transition-colors hover:bg-(--surface)"
                 >
                   <Link
-                    href={`/como-votar#caso-${caso.id}`}
+                    href={rutaCaso(caso.id)}
                     className="flex items-start gap-3 rounded-lg outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
                   >
                     <span

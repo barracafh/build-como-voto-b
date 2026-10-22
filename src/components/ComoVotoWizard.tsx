@@ -1,11 +1,12 @@
 "use client";
 
 // Formulario «¿Cómo voto?»: dos preguntas con opciones claras y un botón que
-// lleva al bloque de la guía que explica ese caso. Es HTML de toda la vida
+// lleva a la página de ese caso (/como-votar/[caso]). Es HTML de toda la vida
 // (radio buttons), sin IA ni diálogo; las fechas del remate salen de
 // src/datos/como-votar.ts, no de aquí.
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { ArrowRight, RotateCcw } from "lucide-react";
 import { fecha, hitos, plazos, type Caso } from "@/datos/como-votar";
 
@@ -72,7 +73,7 @@ const arbol: Pregunta[] = [
 // abra la guía sepa si aún está a tiempo.
 const remate: Record<Caso["id"], { plazo: string; aviso: string }> = {
   presencial: {
-    plazo: `Votación el ${hitos.votacion.fechas.toLowerCase()}, de 9:00 a 20:00`,
+    plazo: `Votación el ${hitos.votacion.fechas.replace("El ", "").toLowerCase()}, de 9:00 a 20:00`,
     aviso:
       "No hay trámite previo: consulta dónde te toca votar y acude con tu documento. Si quieres estar seguro de tu mesa, el INE lo consulta en línea.",
   },
@@ -103,7 +104,8 @@ const remate: Record<Caso["id"], { plazo: string; aviso: string }> = {
   },
 };
 
-export function FormularioCaso({ destino = "" }: { destino?: string }) {
+export function FormularioCaso() {
+  const router = useRouter();
   const [paso, setPaso] = useState<number>(0);
   const [resultado, setResultado] = useState<Respuesta | null>(null);
 
@@ -124,13 +126,7 @@ export function FormularioCaso({ destino = "" }: { destino?: string }) {
   };
 
   const irAlCaso = (casoId: string) => {
-    const destinoFinal = `${destino}#caso-${casoId}`;
-    const ancla = document.getElementById(`caso-${casoId}`);
-    if (ancla) {
-      ancla.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      window.location.href = destinoFinal;
-    }
+    router.push(`/como-votar/${casoId}`);
   };
 
   return (

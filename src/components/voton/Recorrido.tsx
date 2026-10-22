@@ -49,7 +49,12 @@ const CAPITULOS: Capitulo[] = [
       <ul className="grid gap-2">
         {casos.slice(0, 4).map((caso) => (
           <li key={caso.id} className="rounded-xl bg-muted px-4 py-3 text-[15px] font-medium">
-            {caso.pregunta}
+            <Link
+              href={`/como-votar/${caso.id}`}
+              className="outline-none focus-visible:ring-3 focus-visible:ring-ring/50 rounded-sm"
+            >
+              {caso.pregunta}
+            </Link>
           </li>
         ))}
       </ul>
