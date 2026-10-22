@@ -12,3 +12,5 @@ next-env.d.ts
 pruebas/resultados-*.json
 .claude/worktrees/
 pruebas/informe-*.md
+# Casos de prueba con datos personales ficticios: solo en local
+pruebas/banco-b-privado.json
