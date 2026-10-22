@@ -156,8 +156,8 @@ export default function Home() {
                 render={<article />}
                 className="gap-0 px-5 py-4 text-base ring-0 bg-muted"
               >
-                <a
-                  href="escrutinio"
+                <Link
+                  href="/escrutinio"
                   className="flex items-center justify-between gap-3 rounded-lg outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
                 >
                   <span>
@@ -170,7 +170,7 @@ export default function Home() {
                     </span>
                   </span>
                   <ArrowRight aria-hidden="true" className="size-4 shrink-0 text-(--text-secondary)" />
-                </a>
+                </Link>
               </Card>
             </li>
             <li>
