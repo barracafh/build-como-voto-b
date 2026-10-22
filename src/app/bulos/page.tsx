@@ -37,31 +37,29 @@ function Contraste({ a }: { a: Afirmacion }) {
   return (
     <Card render={<article />} className="gap-0 p-0 text-base">
       <details className="group">
-        <summary className="grid cursor-pointer list-none grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 bg-brand px-5 py-5 text-white outline-none transition-colors hover:bg-brand/90 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:ring-inset md:px-6 [&::-webkit-details-marker]:hidden">
-          <span className="min-w-0">
-            <span className="block text-lg leading-[1.35] text-white/90">
-              «{a.dice}»
-            </span>
-            <span className="mt-3 flex items-start gap-2 font-medium">
-              <CircleX
+        <summary className="block cursor-pointer list-none outline-none focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:ring-inset [&::-webkit-details-marker]:hidden">
+          <span className="flex items-start justify-between gap-4 bg-brand px-5 py-5 text-white md:px-6">
+            <span className="min-w-0 text-lg leading-[1.35]">«{a.dice}»</span>
+            <span className="mt-1 inline-flex shrink-0 items-center gap-1 text-sm">
+              <span className="hidden sm:inline sm:group-open:hidden">Por qué</span>
+              <span className="hidden sm:group-open:inline">Cerrar</span>
+              <ChevronDown
                 aria-hidden="true"
-                className="mt-[0.2em] size-4.5 shrink-0 text-white"
+                className="size-5 transition-transform group-open:rotate-180 motion-reduce:transition-none"
                 strokeWidth={1.75}
               />
-              <span>
-                <span className="sr-only">Lo que dice la ley: </span>
-                {a.ley}
-              </span>
             </span>
           </span>
-          <span className="mt-1 inline-flex items-center gap-1 text-sm text-white">
-            <span className="hidden sm:inline sm:group-open:hidden">Por qué</span>
-            <span className="hidden sm:group-open:inline">Cerrar</span>
-            <ChevronDown
+          <span className="flex items-start gap-2 bg-background px-5 py-4 font-medium md:px-6">
+            <CircleX
               aria-hidden="true"
-              className="size-5 transition-transform group-open:rotate-180 motion-reduce:transition-none"
+              className="mt-[0.2em] size-4.5 shrink-0 text-brand"
               strokeWidth={1.75}
             />
+            <span>
+              <span className="sr-only">Lo que dice la ley: </span>
+              {a.ley}
+            </span>
           </span>
         </summary>
 
