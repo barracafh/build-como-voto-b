@@ -43,27 +43,27 @@ const stitches = [['p', 'M 13 -3.4 L 17.5 -3.8'], ['p', 'M 13 0 L 17.5 0'], ['p'
 // "front" son piezas por delante con contorno propio (pulgar cruzado, manga).
 const GLOVES = {
   rest: { base: [['e', 14, 0, 11, 10.5], ['q', 20, -6.5, 29, -8, 30, -1.5, 8.6], ['q', 21, 0, 30, 1.5, 28.5, 7.5, 8.6], ['q', 19.5, 6, 26, 10, 23.5, 13, 8], ['q', 12, -7, 16, -14, 22, -12.5, 8.4]],
-          lines: [['p', 'M 25 -2.8 Q 28.5 -2 30.6 0.8'], ['p', 'M 24.2 3.8 Q 26.8 6.2 27.2 9.4'], ['p', 'M 11.5 -2.6 L 16.5 -3'], ['p', 'M 11.5 1.4 L 16.5 1.6']],
-          front: [cuff] },
+          lines: [['p', 'M 25 -2.8 Q 28.5 -2 30.6 0.8'], ['p', 'M 24.2 3.8 Q 26.8 6.2 27.2 9.4']],
+          front: [cuff], ast: [15, 0] },
   open: null,
   wave: { base: [['e', 14, 0, 11.5, 11], ['q', 20, -7, 27, -10, 34, -12, 8.8], ['q', 21, -0.5, 29, -0.5, 36, -0.5, 9], ['q', 20, 6.5, 27, 9, 33.5, 11, 8.6], ['q', 11, -7, 9, -14, 13, -19.5, 8.6]],
           lines: [['p', 'M 27.5 -4.8 L 35 -6.3'], ['p', 'M 27.5 4 L 34.5 5.6'], ['p', 'M 9.5 -6.4 Q 12.5 -8.6 16 -8']],
-          front: [cuff] },
+          front: [cuff], ast: [16, 1] },
   spread: { base: [['e', 14, 0, 11.5, 11], ['q', 19, -7.5, 25, -13, 30, -19, 8.6], ['q', 21, -1, 29, -3, 36.5, -4, 9], ['q', 20, 6.5, 27, 10, 32, 15, 8.6], ['q', 10, -7, 6, -13, 7, -20, 8.6]],
           lines: [['p', 'M 24.5 -5.8 L 26.8 -7.8'], ['p', 'M 25 4.6 L 27.4 6.8'], ['p', 'M 8.6 -6.4 Q 11.5 -8.4 14.5 -8']],
-          front: [cuff] },
+          front: [cuff], ast: [16, 1] },
   palm: { base: [['e', 14, 0, 11.5, 10], ['q', 20, -5, 28, -6.5, 35, -5, 8.8], ['q', 20, 1.5, 28, 2, 35, 3, 8.8], ['q', 19, 6.5, 26, 8.5, 32, 9.5, 8], ['q', 12, -6, 13, -13, 18, -16.5, 8.6]],
           lines: [['p', 'M 27.5 -1.8 L 34.6 -1'], ['p', 'M 26.5 5.2 L 32.6 6.4'], ['p', 'M 11 -5 Q 14 -7.4 17 -7.2']],
-          front: [cuff] },
+          front: [cuff], ast: [16, 1.5] },
   fist: { base: [['e', 15, 0, 12, 12.5], ['c', 26, -7.5, 5.6], ['c', 27.5, 0, 6], ['c', 26, 7.5, 5.6]],
           lines: [['p', 'M 30.5 -3.8 L 26 -3.8'], ['p', 'M 30.5 3.8 L 26 3.8']],
-          front: [[['q', 12, -9, 18, -10.5, 23.5, -9, 8.4]], cuff] },
+          front: [[['q', 12, -9, 18, -10.5, 23.5, -9, 8.4]], cuff], ast: [15, 2.5] },
   thumb: { base: [['e', 15, 3, 12, 12], ['c', 25.5, -3.5, 5.8], ['c', 26.5, 3.5, 6], ['c', 25, 10.5, 5.6], ['q', 13, -6, 12.5, -15, 15, -23, 10]],
           lines: [['p', 'M 30 0 L 24.5 0'], ['p', 'M 30 7 L 24.5 7'], ['p', 'M 9.5 -6.4 Q 13.5 -4.6 18 -6.6']],
-          front: [cuff] },
+          front: [cuff], ast: [15, 4.5] },
   point: { base: [['e', 15, 3, 11.5, 11.5], ['c', 25, 5, 5.6], ['c', 24, 11.5, 5.4], ['q', 20, -3, 21, -14, 20.5, -25, 10]],
           lines: [['p', 'M 28.8 8.4 L 23.8 8.4'], ['p', 'M 16 -4.5 Q 19.5 -2.6 24 -4']],
-          front: [[['q', 10, 1, 16, 0, 22, 3, 8]], cuff] }
+          front: [[['q', 10, 1, 16, 0, 22, 3, 8]], cuff], ast: [14, 11, 2.4], astEncima: true }
 };
 delete GLOVES.open;
 const GLOVE_NAMES = Object.keys(GLOVES);
@@ -78,13 +78,25 @@ function prim(p, outline) {
   if (t === 'q') return `<path d="M ${p[1]} ${p[2]} Q ${p[3]} ${p[4]} ${p[5]} ${p[6]}" fill="none" stroke="${fill}" stroke-width="${outline ? p[7] + 2 * O : p[7]}" stroke-linecap="round"/>`;
   return '';
 }
+// Asterisco rojo en el dorso, el icono de la herramienta: seis brazos.
+function asterisco([x, y, r = 3.4]) {
+  const brazo = (a) => {
+    const dx = (r * Math.sin(a)).toFixed(2), dy = (r * Math.cos(a)).toFixed(2);
+    return `M${(x - dx).toFixed(2)},${(y - dy).toFixed(2)}L${(x + +dx).toFixed(2)},${(y + +dy).toFixed(2)}`;
+  };
+  const d = [0, Math.PI / 3, (2 * Math.PI) / 3].map(brazo).join('');
+  return `<path d="${d}" fill="none" stroke="${RED}" stroke-width="2" stroke-linecap="round"/>`;
+}
 const detail = (p) => `<path d="${p[1]}" fill="none" stroke="${INK}" stroke-width="1.7" stroke-linecap="round"/>`;
 function gloveSVG(name) {
   const g = GLOVES[name];
   let s = g.base.map(p => prim(p, true)).join('') + g.base.map(p => prim(p, false)).join('');
   s += g.lines.map(detail).join('');
+  if (g.ast && !g.astEncima) s += asterisco(g.ast);
   g.front.forEach(f => { s += f.map(p => prim(p, true)).join('') + f.map(p => prim(p, false)).join(''); });
   s += cuffLines.map(detail).join('');
+  // En el índice, el pulgar cruzado tapa el dorso: el asterisco va encima.
+  if (g.ast && g.astEncima) s += asterisco(g.ast);
   return `<g data-g="${name}" style="display:none">${s}</g>`;
 }
 
