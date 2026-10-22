@@ -69,9 +69,9 @@ export const paradasComoVotar: ParadaGuia[] = [
 ];
 
 export const guiaEscrutinio = {
-  recorrido: {
+  calendario: {
     pose: "ok",
-    dice: "Cinco paradas, de la urna al BOE. Sígueme.",
+    dice: "Del 29 de noviembre al BOE, día a día. Sígueme.",
   },
   provisional: {
     pose: "piensa",
@@ -100,10 +100,10 @@ export const paradasEscrutinio: ParadaGuia[] = [
     pose: "hola",
     dice: "¡Hola! Te enseño el viaje de tu voto cuando cierra el colegio.",
   },
-  { ancla: "recorrido", ...guiaEscrutinio.recorrido },
-  { ancla: "provisional", ...guiaEscrutinio.provisional },
-  { ancla: "cifras", pose: "ok", dice: "Estas cifras las fija la ley, cada una con su artículo." },
-  ...guiaEscrutinio.fases.map((g, f) => ({ ancla: `fase-${f}`, ...g })),
+  { ancla: "calendario", ...guiaEscrutinio.calendario },
+  { ancla: "fase-0", ...guiaEscrutinio.fases[0] },
+  { ancla: "provisionales", ...guiaEscrutinio.provisional },
+  ...guiaEscrutinio.fases.slice(1).map((g, f) => ({ ancla: `fase-${f + 1}`, ...g })),
   { ancla: "tipos", ...guiaEscrutinio.tipos },
   { ancla: "voton-cierre", ...cierreEscrutinio },
 ];

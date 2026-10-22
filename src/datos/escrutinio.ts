@@ -3,6 +3,12 @@
 // fechas salen del calendario de la Junta Electoral Central para el 29-N.
 
 const LOREG = "https://www.boe.es/buscar/act.php?id=BOE-A-1985-11672";
+const RD_605 = "https://www.boe.es/buscar/act.php?id=BOE-A-1999-8583";
+const INTERIOR = "https://infoelectoral.interior.gob.es/es/proceso-electoral";
+const FAQ_ESCRUTINIO = `${INTERIOR}/preguntas-frecuentes/escrutinio-y-final-de-la-jornada-electoral/`;
+const FAQ_REPRESENTANTES = `${INTERIOR}/preguntas-frecuentes/representantes-de-la-administracion-en-los-locales-electorales/`;
+const FAQ_RESULTADOS = `${INTERIOR}/preguntas-frecuentes/resultados-electorales/`;
+const QUIEN_HACE_QUE = `${INTERIOR}/visitas-virtuales/quien-hace-que/`;
 const CALENDARIO_JEC =
   "https://www.juntaelectoralcentral.es/cs/jec/documentos/eg2026_calendario.pdf";
 
@@ -11,6 +17,8 @@ export type Icono =
   | "suma" | "escudo" | "balanza" | "premio" | "boe" | "urna" | "junta";
 
 export type Paso = {
+  // Cuándo ocurre, con las palabras de la fuente; sin él, la fuente no lo dice.
+  cuando?: string;
   titulo: string;
   icono: Icono;
   resumen: string;
@@ -28,15 +36,15 @@ export type Fase = {
 
 export const fases: Fase[] = [
   {
-    etiqueta: "29 nov · 20:00",
+    etiqueta: "29 nov",
     titulo: "En la mesa electoral",
     fuente: { nombre: "Art. 84.1 LOREG", url: `${LOREG}#aochentaycuatro` },
     pasos: [
       {
+        cuando: "20:00",
         titulo: "Cierre de la votación",
         icono: "reloj",
-        resumen:
-          "Votan quienes ya están en el local; después, el voto por correo y la mesa.",
+        resumen: "Votan quienes ya están dentro; luego, el voto por correo y la mesa.",
         detalle: [
           "A las 20:00 el presidente anuncia en voz alta que va a concluir la votación. Votan los electores que estén en el local o en su acceso, y nadie más.",
           "El presidente introduce en la urna los votos por correo, tras comprobar sus requisitos y que el elector está en el censo.",
@@ -46,10 +54,10 @@ export const fases: Fase[] = [
         url: `${LOREG}#aochentayocho`,
       },
       {
+        cuando: "acto seguido",
         titulo: "Recuento público",
         icono: "ojo",
-        resumen:
-          "El presidente saca los sobres uno a uno y lee cada voto en voz alta.",
+        resumen: "Sobre a sobre, en voz alta y en público.",
         detalle: [
           "El escrutinio empieza en cuanto termina la votación, es público y no se suspende salvo fuerza mayor.",
           "Se escrutan primero las papeletas del Congreso y después las del Senado.",
@@ -59,10 +67,10 @@ export const fases: Fase[] = [
         url: `${LOREG}#anoventaycinco`,
       },
       {
+        cuando: "al terminar el recuento",
         titulo: "Comprobación y resultado",
         icono: "lista",
-        resumen:
-          "Se cuadran sobres y votantes, se resuelven protestas y se anuncia el resultado.",
+        resumen: "Se cuadran sobres y votantes y se anuncia el resultado.",
         detalle: [
           "Se confronta el total de sobres con el de votantes anotados.",
           "El presidente pregunta si hay protestas; la mesa las resuelve por mayoría.",
@@ -73,10 +81,10 @@ export const fases: Fase[] = [
         url: `${LOREG}#anoventaysiete`,
       },
       {
-        titulo: "Acta en la puerta y datos provisionales",
+        cuando: "inmediatamente",
+        titulo: "Acta en la puerta",
         icono: "acta",
-        resumen:
-          "El acta de escrutinio se fija fuera del local; una copia sirve al Gobierno para los datos de esa noche.",
+        resumen: "Se cuelga fuera del local; una copia va al Gobierno.",
         detalle: [
           "La mesa hace públicos los resultados con un acta de escrutinio que fija sin demora en el exterior o la entrada del local.",
           "Cada candidatura presente puede pedir una copia (una por candidatura).",
@@ -86,10 +94,10 @@ export const fases: Fase[] = [
         url: `${LOREG}#anoventayocho`,
       },
       {
+        cuando: "al concluir el escrutinio",
         titulo: "Acta de la sesión",
         icono: "firma",
-        resumen:
-          "Presidente, vocales e interventores firman el acta con las cifras y las reclamaciones.",
+        resumen: "La firman la mesa y los interventores, con las reclamaciones.",
         detalle: [
           "Recoge electores, votantes, interventores que votaron sin figurar en la mesa, nulos, blancos y votos por candidatura.",
           "Consigna las reclamaciones y protestas, las resoluciones motivadas de la mesa y cualquier incidente.",
@@ -99,6 +107,7 @@ export const fases: Fase[] = [
         url: `${LOREG}#anoventaynueve`,
       },
       {
+        cuando: "acto seguido",
         titulo: "Tres sobres",
         icono: "sobre",
         resumen:
@@ -120,10 +129,10 @@ export const fases: Fase[] = [
     fuente: { nombre: "Calendario JEC", url: CALENDARIO_JEC },
     pasos: [
       {
+        cuando: "8:00",
         titulo: "Voto desde el extranjero (CERA)",
         icono: "mundo",
-        resumen:
-          "Antes del escrutinio, la Junta se constituye en mesa y añade estos votos.",
+        resumen: "La Junta añade los votos de los residentes en el extranjero.",
         detalle: [
           "A las 8:00 del día del escrutinio general, la Junta Electoral se constituye en mesa electoral con interventores de las candidaturas.",
           "El presidente introduce en la urna los sobres de los residentes en el extranjero recibidos hasta ese día.",
@@ -133,10 +142,10 @@ export const fases: Fase[] = [
         url: `${LOREG}#asetentaycinco`,
       },
       {
+        cuando: "10:00",
         titulo: "Suma de las actas",
         icono: "suma",
-        resumen:
-          "La Junta Electoral Provincial abre los sobres de cada mesa y suma sus resultados.",
+        resumen: "La Junta Electoral Provincial suma las actas de cada mesa.",
         detalle: [
           "Se celebra el quinto día tras la votación, en acto único y público, desde las 10:00.",
           "Si falta el sobre 1 o está incompleto, se usa el sobre 3; en su defecto, la copia del acta que presente un representante. Si hay copias contradictorias, no se tiene en cuenta ninguna.",
@@ -146,10 +155,10 @@ export const fases: Fase[] = [
         url: `${LOREG}#acientotres`,
       },
       {
+        cuando: "hasta el 7 dic",
         titulo: "La Junta no anula votos",
         icono: "escudo",
-        resumen:
-          "Solo verifica el recuento y la suma de las mesas y corrige errores materiales.",
+        resumen: "Solo verifica y corrige errores materiales.",
         detalle: [
           "Durante el escrutinio la Junta no puede anular ningún acta ni voto.",
           "Los representantes solo pueden hacer observaciones sobre la exactitud de los datos leídos.",
@@ -166,10 +175,10 @@ export const fases: Fase[] = [
     fuente: { nombre: "Art. 108 LOREG", url: `${LOREG}#acientoocho` },
     pasos: [
       {
-        titulo: "Acta de la circunscripción y reclamaciones",
+        cuando: "1 día + 1 día",
+        titulo: "Reclamaciones",
         icono: "balanza",
-        resumen:
-          "Un día para reclamar, un día para resolver y recurso ante la Junta Electoral Central.",
+        resumen: "Plazos para reclamar, resolver y recurrir ante la JEC.",
         detalle: [
           "La Junta extiende por triplicado el acta de escrutinio: electores, votantes, votos por candidatura, blancos y nulos.",
           "Las reclamaciones solo pueden referirse a incidencias recogidas en las actas.",
@@ -179,10 +188,10 @@ export const fases: Fase[] = [
         url: `${LOREG}#acientoocho`,
       },
       {
+        cuando: "dentro del día siguiente",
         titulo: "Proclamación de electos",
         icono: "premio",
-        resumen:
-          "Al día siguiente de agotarse los plazos o de resolver la Junta Electoral Central.",
+        resumen: "Se proclama a los electos.",
         detalle: [
           "El acta de proclamación recoge electores, votantes, votos por candidatura, blancos, válidos y nulos, escaños y electos.",
         ],
@@ -190,10 +199,10 @@ export const fases: Fase[] = [
         url: `${LOREG}#acientoocho`,
       },
       {
+        cuando: "≤ 40 días",
         titulo: "Publicación en el BOE",
         icono: "boe",
-        resumen:
-          "La Junta Electoral Central publica los resultados generales y por circunscripción en 40 días.",
+        resumen: "La Junta Electoral Central publica los resultados oficiales.",
         detalle: [
           "Es la publicación oficial de los resultados, sin perjuicio de los recursos contencioso-electorales.",
         ],
@@ -204,41 +213,52 @@ export const fases: Fase[] = [
   },
 ];
 
-// El recorrido de un voto, de la urna al BOE.
-export const recorrido: {
-  icono: Icono;
-  cuando: string;
-  titulo: string;
-  texto: string;
-}[] = [
-  { icono: "urna", cuando: "29 nov · 20:00", titulo: "Urna", texto: "Recuento público, voto a voto" },
-  { icono: "acta", cuando: "Esa noche", titulo: "Acta", texto: "En la puerta del local" },
-  { icono: "sobre", cuando: "Esa noche", titulo: "Sobres", texto: "Al juzgado y por Correos" },
-  { icono: "junta", cuando: "4 a 7 dic", titulo: "Junta Electoral", texto: "Escrutinio general" },
-  { icono: "boe", cuando: "En 40 días", titulo: "BOE", texto: "Resultados oficiales" },
+// Del 29 de noviembre al BOE, día a día.
+export const calendario = [
+  { cuando: "29 nov", titulo: "Votación y recuento", texto: "De 9:00 a 20:00; después, escrutinio en cada mesa y resultados provisionales.", fuente: "Arts. 84.1 y 95", url: `${LOREG}#aochentaycuatro` },
+  { cuando: "+10 h", titulo: "Actas a la Junta", texto: "El juez lleva los sobres 1 a la Junta en las 10 horas siguientes a la última entrega.", fuente: "Art. 101.3", url: `${LOREG}#acientouno` },
+  { cuando: "30 nov", titulo: "Correos envía el sobre 3", texto: "Al día siguiente de la elección, a la Junta que hace el escrutinio.", fuente: "Art. 102.2", url: `${LOREG}#acientodos` },
+  { cuando: "4 dic", titulo: "Escrutinio general", texto: "El quinto día tras la votación, en cada Junta Electoral Provincial.", fuente: "Art. 103.1 y calendario JEC", url: CALENDARIO_JEC },
+  { cuando: "7 dic", titulo: "Fin del escrutinio", texto: "No puede acabar después del octavo día tras la votación.", fuente: "Art. 107.2 y calendario JEC", url: CALENDARIO_JEC },
+  { cuando: "Después", titulo: "Reclamaciones y proclamación", texto: "Un día para reclamar, uno para resolver, posible recurso ante la JEC y proclamación al día siguiente.", fuente: "Art. 108.2-4", url: `${LOREG}#acientoocho` },
+  { cuando: "≤ 40 días", titulo: "Resultados en el BOE", texto: "La Junta Electoral Central publica los resultados generales y por circunscripción.", fuente: "Art. 108.6", url: `${LOREG}#acientoocho` },
 ];
 
-// Cifras que fija la ley, con su artículo.
-export const cifras = [
-  { valor: "20:00", texto: "Cierre de la votación", articulo: "Art. 88.1", url: `${LOREG}#aochentayocho` },
-  { valor: "3", texto: "Sobres con la documentación de cada mesa", articulo: "Art. 100", url: `${LOREG}#aciento` },
-  { valor: "10 h", texto: "Para que el juez lleve las actas a la Junta", articulo: "Art. 101.3", url: `${LOREG}#acientouno` },
-  { valor: "5.º", texto: "Día tras la votación: empieza el escrutinio general", articulo: "Art. 103.1", url: `${LOREG}#acientotres` },
-  { valor: "40", texto: "Días como máximo para publicar los resultados en el BOE", articulo: "Art. 108.6", url: `${LOREG}#acientoocho` },
+// Los tres sobres de cada mesa.
+export const sobres = [
+  { n: 1, contiene: "Originales de las actas, lista de votantes, papeletas nulas o reclamadas, censo y certificaciones", destino: "Juzgado → Junta Electoral", nota: "El juez lo lleva a la Junta en 10 h" },
+  { n: 2, contiene: "Copia del acta de constitución y del acta de la sesión", destino: "Juzgado", nota: "Queda archivado por si lo pide la Junta o un tribunal" },
+  { n: 3, contiene: "Copia del acta de constitución y del acta de la sesión", destino: "Correos → Junta Electoral", nota: "Sale al día siguiente; sustituye al 1 si falta" },
 ];
+export const fuenteSobres = { nombre: "Arts. 100 a 102 y 105.3 LOREG", url: `${LOREG}#aciento` };
+
+// Resultados provisionales de la noche electoral. Base legal: art. 98.2 LOREG;
+// cómo se hace: preguntas frecuentes y «Quién hace qué» del Ministerio del
+// Interior; los representantes de la Administración: RD 605/1999.
+export const provisional = {
+  flujo: [
+    { icono: "acta" as Icono, titulo: "Mesa", texto: "Entrega una copia del acta", fuente: "Art. 98.2 LOREG", url: `${LOREG}#anoventayocho` },
+    { icono: "firma" as Icono, titulo: "Representante de la Administración", texto: "Uno por local; la transmite", fuente: "Interior", url: FAQ_REPRESENTANTES },
+    { icono: "suma" as Icono, titulo: "Centro de Totalización de Datos", texto: "Suma los datos según llegan", fuente: "Interior", url: FAQ_ESCRUTINIO },
+    { icono: "junta" as Icono, titulo: "Ministerio del Interior", texto: "Los difunde desde las 20:00", fuente: "Interior", url: FAQ_RESULTADOS },
+  ],
+  // Lo que los resultados definitivos incluyen y los provisionales no.
+  diferencias: ["Voto CERA", "Reclamaciones resueltas", "Correcciones de las Juntas"],
+  fuenteDiferencias: FAQ_RESULTADOS,
+};
 
 export const tiposDeVoto = [
   {
     titulo: "Válido",
-    texto: "El que va a una candidatura. Varias papeletas iguales en un sobre cuentan como un voto.",
+    texto: "Va a una candidatura.",
   },
   {
     titulo: "En blanco",
-    texto: "Sobre sin papeleta. En el Senado, papeleta sin ningún candidato marcado. Es válido.",
+    texto: "Sobre sin papeleta. Cuenta como válido.",
   },
   {
     titulo: "Nulo",
-    texto: "Papeleta o sobre no oficiales, papeleta sin sobre, papeletas de distinta candidatura o papeleta alterada.",
+    texto: "Papeleta alterada, no oficial o de varias candidaturas.",
   },
 ];
 
@@ -254,5 +274,25 @@ export const fuentesEscrutinio = [
   {
     nombre: "Calendario electoral del 29-N (Junta Electoral Central)",
     url: CALENDARIO_JEC,
+  },
+  {
+    nombre: "Interior · Preguntas frecuentes: escrutinio y final de la jornada",
+    url: FAQ_ESCRUTINIO,
+  },
+  {
+    nombre: "Interior · Preguntas frecuentes: representantes de la Administración",
+    url: FAQ_REPRESENTANTES,
+  },
+  {
+    nombre: "Interior · Preguntas frecuentes: resultados electorales",
+    url: FAQ_RESULTADOS,
+  },
+  {
+    nombre: "Interior · Quién hace qué en el proceso electoral",
+    url: QUIEN_HACE_QUE,
+  },
+  {
+    nombre: "Real Decreto 605/1999, de regulación complementaria de los procesos electorales (BOE)",
+    url: RD_605,
   },
 ];
