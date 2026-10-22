@@ -16,8 +16,10 @@ export const MAX_TOKENS_CHAT = 6000;
 
 const LIMITES = {
   // Holgado: en el evento muchos salen por la misma IP del wifi.
-  porMinutoIp: 15,
-  porHoraIp: 120,
+  // Ajustables por entorno solo para pruebas locales (CHAT_POR_MINUTO_IP y
+  // CHAT_POR_HORA_IP en .env.local); en producción, los valores por defecto.
+  porMinutoIp: Number(process.env.CHAT_POR_MINUTO_IP) || 15,
+  porHoraIp: Number(process.env.CHAT_POR_HORA_IP) || 120,
   porMinutoGlobal: 120,
   // El cliente manda todo el historial; solo se usan los 6 últimos mensajes.
   mensajes: 6,
