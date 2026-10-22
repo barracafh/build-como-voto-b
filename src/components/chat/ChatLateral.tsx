@@ -1,6 +1,6 @@
 "use client";
 
-import { RotateCcw, SendHorizontal, X } from "lucide-react";
+import { ArrowUp, ArrowUpRight, ExternalLink, Lock, RotateCcw, X } from "lucide-react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { MensajeChat, RespuestaChat } from "@/app/api/chat/route";
 import type { Source } from "@/components/Fuentes";
@@ -28,6 +28,15 @@ const SUGERENCIAS = [
 
 const sinProtocolo = (url: string) =>
   url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
+// Solo el dominio: la ruta completa ensucia la tarjeta y está en el enlace.
+const dominio = (url: string) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return sinProtocolo(url);
+  }
+};
 
 type Bloque =
   | { tipo: "parrafo"; texto: string }
@@ -291,30 +300,38 @@ export function ChatLateral() {
       id="chat-lateral"
       aria-labelledby="chat-titulo"
       onKeyDown={(e) => e.key === "Escape" && cerrar()}
-      className="fixed inset-x-2 bottom-2 z-40 flex h-[min(560px,calc(100dvh-16px))] flex-col overflow-hidden rounded-2xl bg-background shadow-(--shadow-overlay) sm:inset-x-auto sm:right-4 sm:bottom-4 sm:w-[380px]"
+      className="fixed inset-x-2 bottom-2 z-40 flex h-[min(640px,calc(100dvh-16px))] flex-col overflow-hidden rounded-3xl border bg-background shadow-(--shadow-overlay) sm:inset-x-auto sm:right-4 sm:bottom-4 sm:w-[400px]"
     >
-      <header className="flex items-center justify-between gap-2 border-b px-4 py-3">
+      {/* Cabecera como en una app de mensajería: Votón, su nombre y qué hace. */}
+      <header className="flex items-center gap-3 border-b px-4 py-3">
+        <span className="grid size-11 shrink-0 place-items-start justify-center overflow-hidden rounded-full bg-muted">
+          <Voton
+            estado={enviando ? "piensa" : "idle"}
+            className="mt-1.5 h-[60px] w-14 shrink-0"
+          />
+        </span>
         <div className="min-w-0 flex-1">
-          <h2 id="chat-titulo" className="font-sans text-base font-medium">
-            Dudas sobre cómo votar
+          <h2 id="chat-titulo" className="font-sans text-base leading-tight font-medium">
+            Votón
+            <span className="sr-only">: dudas sobre cómo votar</span>
           </h2>
-          <p className="text-sm text-(--text-secondary)">
-            Cada respuesta enlaza su fuente oficial
+          <p className="mt-0.5 flex items-center gap-1.5 text-sm text-(--text-secondary)">
+            <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-brand" />
+            <span className="truncate">
+              {enviando ? "Buscando en las fuentes…" : "Respondo con la fuente oficial"}
+            </span>
           </p>
         </div>
         {mensajes.length > 0 && (
           <Button
             variant="ghost"
-            size="lg"
+            size="icon-lg"
             onClick={nuevaConversacion}
             aria-label="Nueva conversación"
             title="Nueva conversación"
-            className="size-9 px-0 text-(--text-secondary) sm:w-auto sm:px-2.5"
+            className="text-(--text-secondary)"
           >
             <RotateCcw aria-hidden="true" />
-            <span aria-hidden="true" className="hidden sm:inline">
-              Nueva
-            </span>
           </Button>
         )}
         <Button
@@ -332,20 +349,18 @@ export function ChatLateral() {
         className="min-h-0 flex-1 overflow-y-auto px-4 py-4"
       >
         {mensajes.length === 0 ? (
-          <div className="grid gap-4">
-            <div className="grid grid-cols-[88px_minmax(0,1fr)] items-end gap-2">
-              <Voton estado={saludo} className="h-[94px] w-[88px]" />
-              <p
-                data-entra
-                className="mb-10 rounded-xl rounded-bl-sm bg-muted px-3 py-2 text-[15px]"
-              >
-                ¡Hola! Soy Votón. Pregúntame lo que quieras sobre cómo se vota
-                el 29 de noviembre: voto por correo, plazos, mesas electorales…
-              </p>
+          <div className="grid gap-5">
+            {/* Bienvenida: Votón saluda en su pequeño escenario. */}
+            <div className="grid justify-items-center gap-3 rounded-2xl bg-muted px-5 pt-5 pb-5 text-center">
+              <Voton estado={saludo} className="h-[128px] w-[120px]" />
+              <div data-entra className="grid gap-1">
+                <p className="text-lg leading-snug font-medium">¡Hola! Soy Votón.</p>
+                <p className="text-[15px] text-(--text-secondary)">
+                  Pregúntame cómo se vota el 29 de noviembre: voto por correo,
+                  plazos, mesas electorales…
+                </p>
+              </div>
             </div>
-            <p data-entra className="text-sm text-(--text-secondary)">
-              No escribas datos personales.
-            </p>
             <div data-entra className="grid gap-2">
               <p
                 id="chat-sugerencias"
@@ -356,14 +371,17 @@ export function ChatLateral() {
               <ul aria-labelledby="chat-sugerencias" className="grid gap-2">
                 {SUGERENCIAS.map((s) => (
                   <li key={s}>
-                    <Button
-                      variant="outline"
-                      size="lg"
+                    <button
+                      type="button"
                       onClick={() => void preguntar(s)}
-                      className="h-auto min-h-11 w-full justify-start px-3 py-2.5 text-left text-[15px] leading-snug font-normal whitespace-normal"
+                      className="group flex min-h-11 w-full cursor-pointer items-center justify-between gap-3 rounded-xl border bg-background px-3.5 py-2.5 text-left text-[15px] leading-snug outline-none transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50"
                     >
-                      {s}
-                    </Button>
+                      <span>{s}</span>
+                      <ArrowUpRight
+                        aria-hidden="true"
+                        className="size-4 shrink-0 text-(--text-secondary) transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
+                      />
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -376,61 +394,70 @@ export function ChatLateral() {
                 <li
                   key={i}
                   ref={entrada("derecha")}
-                  className="ml-8 justify-self-end rounded-xl bg-primary px-3 py-2 text-[15px] text-primary-foreground"
+                  className="ml-10 justify-self-end rounded-2xl rounded-br-md bg-primary px-3.5 py-2.5 text-[15px] text-primary-foreground"
                 >
                   <span className="sr-only">Tú: </span>
                   <p className="whitespace-pre-wrap">{m.texto}</p>
                 </li>
               ) : (
-              <li
-                key={i}
-                ref={entrada("abajo")}
-                className="mr-2 grid grid-cols-[56px_minmax(0,1fr)] items-end gap-1"
-              >
-                {/* Votón reacciona a la última respuesta. */}
-                {i === mensajes.length - 1 && !enviando ? (
-                  <ReaccionVoton conFuentes={!!m.fuentes?.length} />
-                ) : (
-                  <span aria-hidden="true" />
-                )}
-                <div className="min-w-0 rounded-xl rounded-bl-sm bg-muted px-3 py-2 text-[15px] [overflow-wrap:anywhere]">
-                <span className="sr-only">Asistente: </span>
-                <Respuesta texto={m.texto} />
-                {m.fuentes && m.fuentes.length > 0 && (
-                  <div data-bloque className="mt-2 border-t pt-2">
-                    <p className="font-mono text-xs tracking-[0.06em] text-(--text-secondary) uppercase">
-                      Fuentes
-                    </p>
-                    <ul className="mt-1 grid gap-1">
-                      {m.fuentes.map((f) => (
-                        <li key={f.url}>
-                          <a
-                            href={f.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="block rounded-sm text-sm underline underline-offset-2 outline-none [overflow-wrap:anywhere] hover:no-underline focus-visible:ring-3 focus-visible:ring-ring/50"
-                          >
-                            {f.nombre}
-                            <span className="block font-mono text-xs text-(--text-secondary) no-underline">
-                              {sinProtocolo(f.url)}
-                            </span>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+                <li
+                  key={i}
+                  ref={entrada("abajo")}
+                  className="mr-1 grid grid-cols-[48px_minmax(0,1fr)] items-end gap-1.5"
+                >
+                  {/* Votón reacciona a la última respuesta. */}
+                  {i === mensajes.length - 1 && !enviando ? (
+                    <ReaccionVoton conFuentes={!!m.fuentes?.length} />
+                  ) : (
+                    <span aria-hidden="true" />
+                  )}
+                  <div className="min-w-0 rounded-2xl rounded-bl-md bg-muted px-3.5 py-2.5 text-[15px] [overflow-wrap:anywhere]">
+                    <span className="sr-only">Votón: </span>
+                    <Respuesta texto={m.texto} />
+                    {m.fuentes && m.fuentes.length > 0 && (
+                      <div data-bloque className="mt-3 grid gap-1.5">
+                        <p className="font-mono text-[11px] tracking-[0.06em] text-(--text-secondary) uppercase">
+                          Fuentes
+                        </p>
+                        <ul className="grid gap-1.5">
+                          {m.fuentes.map((f) => (
+                            <li key={f.url}>
+                              <a
+                                href={f.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="group flex items-start gap-2 rounded-lg bg-background px-2.5 py-2 outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                              >
+                                <ExternalLink
+                                  aria-hidden="true"
+                                  className="mt-0.5 size-3.5 shrink-0 text-brand"
+                                />
+                                <span className="min-w-0">
+                                  <span className="block text-sm leading-snug font-medium underline-offset-2 group-hover:underline">
+                                    {f.nombre}
+                                  </span>
+                                  <span className="block truncate font-mono text-xs text-(--text-secondary)">
+                                    {dominio(f.url)}
+                                  </span>
+                                </span>
+                                <span className="sr-only"> (se abre en otra pestaña)</span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
-                )}
-                </div>
-              </li>
+                </li>
               ),
             )}
             {enviando && (
               <li
                 ref={entrada("abajo")}
-                className="mr-2 grid grid-cols-[56px_minmax(0,1fr)] items-end gap-1 text-[15px] text-(--text-secondary)"
+                className="mr-1 grid grid-cols-[48px_minmax(0,1fr)] items-end gap-1.5 text-[15px] text-(--text-secondary)"
               >
-                <Voton estado="piensa" className="h-[60px] w-14" />
-                <span className="justify-self-start rounded-xl rounded-bl-sm bg-muted px-3 py-2">
+                <Voton estado="piensa" className="h-[51px] w-12" />
+                <span className="justify-self-start rounded-2xl rounded-bl-md bg-muted px-3.5 py-2.5">
                   Buscando en las fuentes oficiales…
                 </span>
               </li>
@@ -439,32 +466,38 @@ export function ChatLateral() {
         )}
       </div>
 
-      <form onSubmit={enviar} className="flex items-end gap-2 border-t p-3">
-        <label htmlFor="chat-pregunta" className="sr-only">
-          Escribe tu pregunta
-        </label>
-        <textarea
-          id="chat-pregunta"
-          ref={campo}
-          value={texto}
-          onChange={(e) => setTexto(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) enviar(e);
-          }}
-          rows={1}
-          placeholder="¿Cómo voto por correo?"
-          className="field-sizing-content max-h-32 min-h-11 w-full resize-none rounded-lg border border-input bg-transparent px-3 py-2.5 text-base outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-        />
-        <Button
-          type="submit"
-          variant="sunset"
-          size="icon-lg"
-          disabled={!texto.trim() || enviando}
-          aria-label="Enviar pregunta"
-          className="size-11 shrink-0"
-        >
-          <SendHorizontal aria-hidden="true" />
-        </Button>
+      <form onSubmit={enviar} className="border-t px-3 pt-3 pb-2">
+        <div className="flex items-end gap-2 rounded-2xl border bg-background py-1.5 pr-1.5 pl-3.5 transition-shadow focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/25 motion-reduce:transition-none">
+          <label htmlFor="chat-pregunta" className="sr-only">
+            Escribe tu pregunta
+          </label>
+          <textarea
+            id="chat-pregunta"
+            ref={campo}
+            value={texto}
+            onChange={(e) => setTexto(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) enviar(e);
+            }}
+            rows={1}
+            placeholder="¿Cómo voto por correo?"
+            className="field-sizing-content max-h-32 min-h-9 w-full resize-none bg-transparent py-1.5 text-base outline-none placeholder:text-muted-foreground"
+          />
+          <Button
+            type="submit"
+            variant="sunset"
+            size="icon-lg"
+            disabled={!texto.trim() || enviando}
+            aria-label="Enviar pregunta"
+            className="size-9 shrink-0 rounded-full"
+          >
+            <ArrowUp aria-hidden="true" />
+          </Button>
+        </div>
+        <p className="mt-1.5 flex items-center justify-center gap-1.5 text-xs text-(--text-secondary)">
+          <Lock aria-hidden="true" className="size-3" />
+          No escribas datos personales.
+        </p>
       </form>
     </section>
   );
