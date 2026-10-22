@@ -3,10 +3,11 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowDown, ArrowRight, CircleX, MessageCircle } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
+import { temas } from "@/datos/bulos";
 import { casos } from "@/datos/como-votar";
 import { abrirChat } from "./eventos";
 import { Voton, type EstadoVoton } from "./Voton";
@@ -23,6 +24,12 @@ const useIsoLayoutEffect = typeof window === "undefined" ? useEffect : useLayout
 const boton = buttonVariants({ variant: "outline", size: "lg" });
 const botonPrincipal = buttonVariants({ variant: "sunset", size: "lg" });
 const etiqueta = "font-mono text-xs tracking-[0.06em] text-(--text-secondary) uppercase";
+
+// Las afirmaciones más extendidas, sacadas de bulos.ts para que la portada
+// diga lo mismo que /bulos.
+const BULOS_PORTADA = ["blanco-reparte", "blanco-abstencion", "correo-y-mesa", "tarjeta-censal"].map(
+  (id) => temas.flatMap((t) => t.afirmaciones).find((a) => a.id === id)!,
+);
 
 type Capitulo = {
   id: string;
@@ -108,15 +115,20 @@ const CAPITULOS: Capitulo[] = [
     texto:
       "Voto en blanco, nulo, abstención, papeletas tachadas o voto por correo: cada afirmación con el artículo que la contradice.",
     escena: (
-      <div className="grid gap-2 text-[15px]" aria-hidden="true">
-        <p className="rounded-xl bg-muted px-4 py-3 font-medium">
-          «El voto en blanco se lo lleva el más votado.»
-        </p>
-        <p className="rounded-xl px-4 py-3 ring-1 ring-border">
-          <span className="font-mono text-xs text-brand">No coincide · </span>
-          No va a ninguna candidatura (art. 96.5 LOREG).
-        </p>
-      </div>
+      <ul className="grid divide-y divide-border rounded-xl ring-1 ring-border" aria-hidden="true">
+        {BULOS_PORTADA.map((a) => (
+          <li key={a.id} className="grid gap-1.5 px-4 py-3">
+            <p className="text-[15px] leading-[1.35] font-medium">«{a.dice}»</p>
+            <p className="flex items-start gap-2 text-sm text-(--text-secondary)">
+              <CircleX className="mt-[0.15em] size-4 shrink-0 text-brand" strokeWidth={1.75} />
+              <span>
+                {a.ley}{" "}
+                <span className="font-mono text-xs">({a.fuente.nombre.replace(" (BOE)", "")})</span>
+              </span>
+            </p>
+          </li>
+        ))}
+      </ul>
     ),
     accion: (
       <Link href="/bulos" className={boton}>
