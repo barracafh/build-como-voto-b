@@ -6,6 +6,7 @@ import type { MensajeChat, RespuestaChat } from "@/app/api/chat/route";
 import type { Source } from "@/components/Fuentes";
 import { Button } from "@/components/ui/button";
 import { BotonVoton } from "@/components/voton/BotonVoton";
+import { entrada } from "@/components/voton/animar";
 import { ABRIR_CHAT, type AbrirChat } from "@/components/voton/eventos";
 import { Voton, useSaludo } from "@/components/voton/Voton";
 import { ruta } from "@/config/sitio";
@@ -101,11 +102,11 @@ function Respuesta({ texto }: { texto: string }) {
     <div className="grid gap-2">
       {trocear(texto).map((b, i) =>
         b.tipo === "parrafo" ? (
-          <p key={i} className="whitespace-pre-line">
+          <p key={i} data-bloque className="whitespace-pre-line">
             {b.texto}
           </p>
         ) : (
-          <ol key={i} start={b.inicio} className="grid gap-2">
+          <ol key={i} data-bloque start={b.inicio} className="grid gap-2">
             {b.pasos.map((paso, j) => (
               <li
                 key={j}
@@ -121,6 +122,22 @@ function Respuesta({ texto }: { texto: string }) {
         ),
       )}
     </div>
+  );
+}
+
+// Votón junto a la última respuesta: pulgar arriba si trae fuentes oficiales,
+// se encoge de hombros si no; después vuelve al reposo.
+function ReaccionVoton({ conFuentes }: { conFuentes: boolean }) {
+  const [reposo, setReposo] = useState(false);
+  useEffect(() => {
+    const t = window.setTimeout(() => setReposo(true), 2200);
+    return () => window.clearTimeout(t);
+  }, []);
+  return (
+    <Voton
+      estado={reposo ? "idle" : conFuentes ? "ok" : "fuera"}
+      className="h-[60px] w-14"
+    />
   );
 }
 
@@ -174,7 +191,10 @@ export function ChatLateral() {
   }, [abierto]);
 
   useEffect(() => {
-    lista.current?.lastElementChild?.scrollIntoView({ block: "end" });
+    lista.current?.lastElementChild?.scrollIntoView({
+      block: "end",
+      behavior: sinMovimiento() ? "auto" : "smooth",
+    });
   }, [mensajes, enviando]);
 
   // Otras partes de la página (el recorrido de la portada) abren el chat.
@@ -351,25 +371,33 @@ export function ChatLateral() {
           </div>
         ) : (
           <ol ref={lista} className="grid gap-3">
-            {mensajes.map((m, i) => (
+            {mensajes.map((m, i) =>
+              m.rol === "usuario" ? (
+                <li
+                  key={i}
+                  ref={entrada("derecha")}
+                  className="ml-8 justify-self-end rounded-xl bg-primary px-3 py-2 text-[15px] text-primary-foreground"
+                >
+                  <span className="sr-only">Tú: </span>
+                  <p className="whitespace-pre-wrap">{m.texto}</p>
+                </li>
+              ) : (
               <li
                 key={i}
-                className={
-                  m.rol === "usuario"
-                    ? "ml-8 justify-self-end rounded-xl bg-primary px-3 py-2 text-[15px] text-primary-foreground"
-                    : "mr-8 min-w-0 rounded-xl bg-muted px-3 py-2 text-[15px] [overflow-wrap:anywhere]"
-                }
+                ref={entrada("abajo")}
+                className="mr-2 grid grid-cols-[56px_minmax(0,1fr)] items-end gap-1"
               >
-                <span className="sr-only">
-                  {m.rol === "usuario" ? "Tú: " : "Asistente: "}
-                </span>
-                {m.rol === "usuario" ? (
-                  <p className="whitespace-pre-wrap">{m.texto}</p>
+                {/* Votón reacciona a la última respuesta. */}
+                {i === mensajes.length - 1 && !enviando ? (
+                  <ReaccionVoton conFuentes={!!m.fuentes?.length} />
                 ) : (
-                  <Respuesta texto={m.texto} />
+                  <span aria-hidden="true" />
                 )}
+                <div className="min-w-0 rounded-xl rounded-bl-sm bg-muted px-3 py-2 text-[15px] [overflow-wrap:anywhere]">
+                <span className="sr-only">Asistente: </span>
+                <Respuesta texto={m.texto} />
                 {m.fuentes && m.fuentes.length > 0 && (
-                  <div className="mt-2 border-t pt-2">
+                  <div data-bloque className="mt-2 border-t pt-2">
                     <p className="font-mono text-xs tracking-[0.06em] text-(--text-secondary) uppercase">
                       Fuentes
                     </p>
@@ -392,12 +420,17 @@ export function ChatLateral() {
                     </ul>
                   </div>
                 )}
+                </div>
               </li>
-            ))}
+              ),
+            )}
             {enviando && (
-              <li className="mr-8 inline-flex items-center gap-2 text-[15px] text-(--text-secondary)">
-                <Voton estado="piensa" className="h-[60px] w-14 shrink-0" />
-                <span className="rounded-xl bg-muted px-3 py-2">
+              <li
+                ref={entrada("abajo")}
+                className="mr-2 grid grid-cols-[56px_minmax(0,1fr)] items-end gap-1 text-[15px] text-(--text-secondary)"
+              >
+                <Voton estado="piensa" className="h-[60px] w-14" />
+                <span className="justify-self-start rounded-xl rounded-bl-sm bg-muted px-3 py-2">
                   Buscando en las fuentes oficiales…
                 </span>
               </li>
