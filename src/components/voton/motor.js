@@ -36,7 +36,7 @@ const MOUTH = {
 // e=elipse, c=círculo, l=dedo recto, q=dedo curvo (x1 y1 cx cy x2 y2 w), f=forma rellena, p=línea de detalle
 const O = 2.5, GS = 1.45;   // grosor de contorno (local) y escala del guante
 // Puño de manga enrollado en campana (pieza propia, delante de la mano) con 2 pliegues.
-const cuff = [['f', 'M 8.5 -7.6 C 5 -8.2 1.8 -9.4 -1.2 -10.4 C -5.6 -11.2 -5.6 11.2 -1.2 10.4 C 1.8 9.4 5 8.2 8.5 7.6 C 10 3.8 10 -3.8 8.5 -7.6 Z']];
+const cuff = [['f', 'M8.5,-7.6C5,-8.2,1.8,-9.4,-1.2,-10.4C-5.6,-11.2,-5.6,11.2,-1.2,10.4C1.8,9.4,5,8.2,8.5,7.6C10,3.8,10,-3.8,8.5,-7.6Z']];
 const cuffLines = [['p', 'M 1.2 -9 Q -1.2 0 1.2 9']];
 const stitches = [['p', 'M 13 -3.4 L 17.5 -3.8'], ['p', 'M 13 0 L 17.5 0'], ['p', 'M 13 3.4 L 17.5 3.8']];
 // Cada guante: "base" se funde en UNA silueta (contorno de tinta común), "lines" son pliegues interiores,
@@ -124,7 +124,7 @@ function buildSVG() {
             fill="${SHOE}" stroke="${INK}" stroke-width="3.4" stroke-linejoin="round"/>
       <path d="M -9 11 C -2 12.4 16 12.6 29.4 10.6" fill="none" stroke="${INK}" stroke-width="2.4" stroke-linecap="round"/>
       <path d="M 2 -5.8 C 5.5 -2.5 10 -2.6 13.5 -4.2" fill="none" stroke="#5c4537" stroke-width="1.6" stroke-linecap="round"/>
-      <path d="M 18.5 -0.8 C 23.5 0.6 26.5 3.4 27 6.4" fill="none" stroke="${WHITE}" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M18.5,-0.8C23.5,0.6,26.5,3.4,27,6.4" fill="none" stroke="${WHITE}" stroke-width="2.6" stroke-linecap="round"/>
       <circle cx="14.6" cy="-2" r="1.5" fill="${WHITE}"/>
     </g>`;
   const glove = (side) => `<g data-v="glove${side}">${GLOVE_NAMES.map(gloveSVG).join('')}</g>`;
